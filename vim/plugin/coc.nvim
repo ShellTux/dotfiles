@@ -1,0 +1,127 @@
+" vim:ft=vim
+set encoding=UTF-8
+set updatetime=300
+set signcolumn=yes
+" let g:coc.preferences.extensionUpdateCheck = "daily"
+
+
+
+" ###############
+" Custom commands
+" ###############
+command! -nargs=0 Format :call CocActionAsync('format') 	" Format current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>) 	" Fold current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')	" Organize imports of the current buffer
+function! CheckBackspace() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+
+
+" ###########
+" Keybindings
+" ###########
+nmap <silent> gd <Plug>(coc-definition)		" Jump to definition(s)
+nmap <silent> gy <Plug>(coc-type-definition)	" Jump to type definition(s)
+nmap <silent> gi <Plug>(coc-implementation)	" Jump to implementation(s)
+nmap <silent> gr <Plug>(coc-references)		" Jump to references
+nmap <silent> gR <Plug>(coc-references-used)	" Jump to references excluding declarations
+nmap <silent> [g <Plug>(coc-diagnostic-prev)	" Jump to previous diagnostic position before current cursor position
+nmap <silent> ]g <Plug>(coc-diagnostic-next)	" Jump to next diagnostic position after current cursor position.
+nmap <leader>rn <Plug>(coc-rename)		" Rename symbols
+xmap <leader>f  <Plug>(coc-format-selected)	" Format selected code
+nmap <leader>f  <Plug>(coc-format-selected)	" Format selected code
+vmap <leader>a <Plug>(coc-codeaction-selected)	" Get and run code action(s) with the selected code.
+nmap <leader>a <Plug>(coc-codeaction-selected)	" Get and run code action(s) with the selected code.
+xmap <leader>a  <Plug>(coc-codeaction-selected)	" Apply code actions to the selected code block
+nmap <leader>a  <Plug>(coc-codeaction-selected)	" Apply code actions to the selected code block
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)	" Apply code action at the cursor position
+nmap <leader>as  <Plug>(coc-codeaction-source)	" Apply code actions affect whole buffer
+nmap <leader>qf  <Plug>(coc-fix-current)	" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)		" Run refactor code action(s) at current cursor position
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)	" Run refactor code action(s) with selected code
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)	" Run refactor code action(s) with selected code
+nmap <leader>cl  <Plug>(coc-codelens-action) 	" Run code lens action on the current line
+" xmap if <Plug>(coc-funcobj-i)
+" omap if <Plug>(coc-funcobj-i)
+" xmap af <Plug>(coc-funcobj-a)
+" omap af <Plug>(coc-funcobj-a)
+" xmap ic <Plug>(coc-classobj-i)
+" omap ic <Plug>(coc-classobj-i)
+" xmap ac <Plug>(coc-classobj-a)
+" omap ac <Plug>(coc-classobj-a)
+nnoremap <silent> K :call ShowDocumentation()<CR>	" Show documentation on previous window
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()		" Tab completion
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>" " Make <CR> to accept selected completion item or notify coc.nvim to format. <C-g>u breaks current undo, please make your own choice.
+if has('nvim')
+	inoremap <silent><expr> <c-space> coc#refresh()
+else
+	inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use <C-l> for trigger snippet expand.
+" imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+" vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+" xmap <leader>x  <Plug>(coc-convert-snippet)
+
+" inoremap <silent><expr> <TAB>
+"       \ coc#pum#visible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ CheckBackspace() ? "\<TAB>" :
+"       \ coc#refresh()
+
+" function! CheckBackspace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+" let g:coc_snippet_next = '<tab>'
+
+let g:coc_global_extensions = [
+			\ 'coc-clangd',
+			\ 'coc-css',
+			\ 'coc-dash-complete',
+			\ 'coc-docker',
+			\ 'coc-fzf-preview',
+			\ 'coc-html',
+			\ 'coc-java',
+			\ 'coc-json',
+			\ 'coc-lua',
+			\ 'coc-markdownlint',
+			\ 'coc-prettier',
+			\ 'coc-pyright',
+			\ 'coc-rls',
+			\ 'coc-sh',
+			\ 'coc-snippets',
+			\ 'coc-texlab',
+			\ 'coc-toml',
+			\ 'coc-tsserver',
+			\ 'coc-xml',
+			\ 'coc-yaml'
+			\ ]
