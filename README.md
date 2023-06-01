@@ -31,6 +31,12 @@ directory will be reflected in the corresponding files in this repository.
 Similarly, any changes you make to the files in this repository
 will be reflected in your home directory.
 
+Some programs depend on my [shell scripts](https://github.com/ShellTux/shell-scripts).
+
+```sh
+git clone https://github.com/ShellTux/shell-scripts ~/.local/bin
+```
+
 ## Included Configurations
 
 This repository includes configurations for:

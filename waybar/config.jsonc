@@ -1,0 +1,28 @@
+[{
+	"layer": "top", // Waybar at top layer
+	// "position": "bottom", // Waybar position (top|bottom|left|right)
+	"height": 30, // Waybar height (to be removed for auto height)
+	// "width": 1280, // Waybar width
+	"spacing": 4, // Gaps between modules (4px)
+	"include": [
+		"~/.config/waybar/modules.jsonc",
+	],
+	// Choose the order of the modules
+	"modules-left": ["idle_inhibitor", "wlr/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
+	"modules-center": ["hyprland/window", "hyprland/submap"],
+	"modules-right": ["keyboard-state", "custom/pacman", "hyprland/language", "pulseaudio", "network", "backlight", "battery", "battery#bat2", "clock#date", "clock", "tray"]
+},
+{
+	"layer": "top", // Waybar at top layer
+	"position": "bottom", // Waybar position (top|bottom|left|right)
+	"height": 30, // Waybar height (to be removed for auto height)
+	// "width": 1280, // Waybar width
+	"spacing": 4, // Gaps between modules (4px)
+	"include": [
+		"~/.config/waybar/modules.jsonc",
+	],
+	// Choose the order of the modules
+	"modules-left": ["custom/power", "custom/kernel", "sway/scratchpad", "disk", "disk#home"],
+	"modules-center": ["mpd"],
+	"modules-right": ["custom/weather", "network#traffic", "cpu", "memory", "temperature", "user"]
+}]
