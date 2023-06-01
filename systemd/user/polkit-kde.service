@@ -1,0 +1,13 @@
+[Unit]
+Description=KDE Polkit Agent
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Restart=always
+RestartSec=2
+ExecStart=/usr/lib/polkit-kde-authentication-agent-1
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+
+[Install]
+WantedBy=default.target
