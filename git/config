@@ -1,0 +1,14 @@
+[user]
+	name = ShellTux
+	email = 115948079+ShellTux@users.noreply.github.com
+[init]
+	defaultBranch = main
+[core]
+	excludesFile = ~/.config/git/ignore_global
+[alias]
+	project-summary = !which onefetch && onefetch
+	diff-staged = diff --staged
+	diff-word = diff --word-diff --color-words
+	conflict = diff --name-only --diff-filter=U
+	graph = log --graph
+	diff-summary = diff --stat
