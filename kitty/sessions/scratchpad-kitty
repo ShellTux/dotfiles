@@ -1,0 +1,47 @@
+new_tab term
+cd ~
+launch zsh
+enabled_layouts tall:bias=50;full_size=1
+layout tall
+
+new_tab htop
+cd ~
+launch zsh -c 'htop'
+enabled_layouts tall:bias=50;full_size=1
+layout tall
+
+new_tab nvtop
+cd ~
+launch zsh -c 'nvtop'
+enabled_layouts tall:bias=50;full_size=1
+layout tall
+
+new_tab files
+cd ~
+launch zsh -c 'ranger'
+enabled_layouts tall:bias=50;full_size=1
+layout tall
+
+new_tab qalc
+cd ~
+launch zsh -c 'qalc'
+enabled_layouts tall:bias=50;full_size=1
+layout tall
+
+new_tab music
+cd ~
+launch zsh -c 'ncmpcpp --screen visualizer'
+enabled_layouts tall:bias=50;full_size=1
+layout tall
+
+new_tab python
+cd ~
+launch zsh -c 'bpython'
+enabled_layouts tall:bias=50;full_size=1
+layout tall
+
+new_tab lua
+cd ~
+launch zsh -c 'lua'
+enabled_layouts tall:bias=50;full_size=1
+layout tall
