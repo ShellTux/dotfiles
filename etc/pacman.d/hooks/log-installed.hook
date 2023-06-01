@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Logging installed packages...
+When = PostTransaction
+Exec = /bin/sh -c 'sudo -u <user> pacman -Qe > /var/log/pacman-installed.log ; sudo -u <user> pacman -Qe > ~<user>/.local/share/pacman-installed-<name>.log'
