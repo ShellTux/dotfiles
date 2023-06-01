@@ -1,0 +1,28 @@
+/* vim: set ft=xdefaults: */
+/* name		dark	light */
+/* black	0	8 */
+/* red		1	9 */
+/* green	2	10 */
+/* yellow	3	11 */
+/* blue		4	12 */
+/* purple	5	13 */
+/* cyan		6	14 */
+/* white	7	15 */
+
+#include "$HOME/.config/X11/colorschemes/one-dark.Xresources"
+#define cursorColor #111111
+Xcursor.size: 32
+st.font: Fira Code:size=14:autohint=true:antialias=true
+*.colorname: cursorColor
+*.termname: st-256color
+/* *.shell: /bin/sh */
+*.minlatency: 8
+*.maxlatency: 33
+*.blinktimeout: 800
+*.bellvolume: 0
+*.tabspaces: 8
+*.borderpx: 2
+*.cwscale: 1.0
+*.chscale: 1.0
+*.alpha: 0.8
+*.alphaUnfocused: 0.7
