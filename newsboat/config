@@ -1,0 +1,38 @@
+# general settings
+auto-reload yes
+max-items 50
+
+# Colorschemes
+# include /usr/share/doc/newsboat/contrib/colorschemes/commander
+# include /usr/share/doc/newsboat/contrib/colorschemes/cyanism
+# include /usr/share/doc/newsboat/contrib/colorschemes/greenscreen
+# include /usr/share/doc/newsboat/contrib/colorschemes/gruvbox
+# include /usr/share/doc/newsboat/contrib/colorschemes/inkpot
+# include /usr/share/doc/newsboat/contrib/colorschemes/kinda-maia
+# include /usr/share/doc/newsboat/contrib/colorschemes/light
+include /usr/share/doc/newsboat/contrib/colorschemes/nord
+# include /usr/share/doc/newsboat/contrib/colorschemes/plain
+# include /usr/share/doc/newsboat/contrib/colorschemes/psychedelic
+# include /usr/share/doc/newsboat/contrib/colorschemes/schleichfahrt
+# include /usr/share/doc/newsboat/contrib/colorschemes/simple
+# include /usr/share/doc/newsboat/contrib/colorschemes/solarized-dark
+# include /usr/share/doc/newsboat/contrib/colorschemes/solarized-light
+# include /usr/share/doc/newsboat/contrib/colorschemes/universal-color
+# include ~/.config/newsboat/themes/dark
+# include ~/.config/newsboat/themes/latte
+
+# bind keys - vim style
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key h quit
+
+# highlights
+highlight article "^(Title):.*$" blue default
+highlight article "https?://[^ ]+" red default
+highlight article "\\[image\\ [0-9]+\\]" green default
+
+# Macros
+macro y set browser "mpv %u" ; open-in-browser ; set browser "qutebrowser %u"
+macro i set browser "feh %u" ; open-in-browser ; set browser "qutebrowser %u"
+macro o set browser "qutebrowser %u" ; open-in-browser ; set browser "qutebrowser %u"
