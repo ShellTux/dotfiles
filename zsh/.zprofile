@@ -1,0 +1,127 @@
+# vim:ft=sh
+# My custom exports
+export BROWSER="firefox"
+export EDITOR="env -u VIMINIT nvim"
+export FILE_EXPLORER="ranger"
+export GIT_EDITOR="$EDITOR"
+export _JAVA_AWT_WM_NONREPARENTING=1
+export LESS='-R --use-color -Dd+r$Du+b'
+[ -f "$(which bat)" ] \
+	|| export MANPAGER="less -RAW-CONTROL-CHARS --use-color -Dd+b -Du+g" \
+	&& export MANPAGER="sh -c 'col --no-backspaces --spaces | bat --language man --plain'"
+export PAGER="less"
+export QT_QPA_PLATFORMTHEME='qt5ct'
+export SHELL="/bin/zsh"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export STATUSBAR="dwmblocks"
+export TERMINAL="st"
+export VIDEO_PLAYER="mpv"
+export VISUAL="$EDITOR"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# Clipmenud ENVIRONMENT Variables
+export CM_DEBUG=0 # turn on debugging output (default: 0)
+# export CM_DIR="$XDG_RUNTIME_DIR" # specify the base directory to store the cache dir in (default: $XDG_RUNTIME_DIR, $TMPDIR, or /tmp)
+export CM_MAX_CLIPS=15 # soft maximum number of clips to store, 0 for inf. At $CM_MAX_CLIPS + 10, the number of clips is reduced to $CM_MAX_CLIPS (default: 1000)
+# export CM_ONESHOT=0 # run once immediately, do not loop (default: 0)
+# export CM_OWN_CLIPBOARD=0 # take ownership of the clipboard. Note: this may cause missed copies if some other application also handles the clipboard directly (default: 0)
+export CM_SELECTIONS="clipboard" # space separated list of the selections to manage (default: "clipboard primary")
+export CM_IGNORE_WINDOW="KeePassXC" # disable recording the clipboard in windows where the windowname matches the given regex
+
+# Clipmenu ENVIRONMENT Variables
+export CM_DIR="$XDG_RUNTIME_DIR" # specify the base directory to store the cache dir in (default: $XDG_RUNTIME_DIR, $TMPDIR, or /tmp)
+# export CM_HISTLENGTH=8 # specify the number of lines to show in dmenu/rofi (default: 8)
+# export CM_LAUNCHER=dmenu # specify a dmenu-compatible launcher (default: dmenu)
+# export CM_OUTPUT_CLIP=0 # if set, output clip selection to stdout
+
+# ~/ Clean up
+export CALCHISTFILE="$XDG_CACHE_HOME"/calc_history
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
+export EM_CACHE="$XDG_CACHE_HOME"/emscripten/cache
+# export EM_CONFIG="$XDG_CONFIG_HOME"/emscripten/config
+export EM_PORTS="$XDG_DATA_HOME"/emscripten/cache
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GOPATH="$XDG_DATA_HOME"/go
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | source $MYGVIMRC'
+export HISTFILE="$XDG_STATE_HOME"/bash/history
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export LESSHISTFILE="$XDG_STATE_HOME"/less/history
+# export LESSHISTFILE="-" # Disable less history file
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc.py
+export PYTHONUSERBASE=$XDG_DATA_HOME/python
+export RANDFILE="$XDG_STATE_HOME"/rnd
+export R_ENVIRON_USER="$HOME"/.config/R/Renviron
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
+export STACK_ROOT="$XDG_DATA_HOME"/stack
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | source $MYVIMRC'
+export VSCODE_PORTABLE="$XDG_DATA_HOME"/vscode
+export W3M_DIR="$XDG_CONFIG_HOME"/w3m
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority # This will give an error with LightDM
+export XCURSOR_PATH=${XCURSOR_PATH}:/usr/share/icons:${XDG_DATA_HOME}/icons
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+
+# set PATH so it includes user's cargo executables if it exists
+[ -d "$CARGO_HOME"/bin ] && export PATH="$CARGO_HOME/bin:$PATH"
+
+# set PATH so it includes user's Applications if it exists
+[ -d "$HOME"/Applications ] && export PATH="$HOME/Applications:$PATH"
+
+# set PATH so it includes user's private bin if it exists
+[ -d "$HOME"/bin ] && export PATH="$HOME/bin:$PATH"
+
+# set PATH so it includes user's private bin if it exists
+[ -d "$HOME"/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
+
+echo -e "\033[38;2;200;0;0mUpdate pacman database\n\033[0mpacman -Syy\033[0m"
+doas pacman -Syy 2>/dev/null
+if [ ! "$(tty | grep /dev/tty)" = "" ]
+then
+	[ ! "$(pacman -Qu linux)" = "" ] \
+		&& echo "There is a kernel update" \
+		&& pacman -Qu linux
+
+	[ ! "$(pacman -Qu nvidia 2>/dev/null)" = "" ] \
+		&& echo "There is a nvidia driver update" \
+		&& pacman -Qu nvidia
+
+	[ ! "$(pacman -Qu linux)" = "" ] \
+		|| [ ! "$(pacman -Qu nvidia 2>/dev/null)" = "" ] \
+		&& doas pacman -Syu \
+		&& reboot
+fi
+
+alias newsboat-repo='newsboat --url-file="$HOME"/.config/newsboat/repos-urls --cache-file="$HOME"/.local/share/newsboat/cache-repos.db --refresh-on-start'
+
+if [ ! "$(newsboat-repo --execute='reload' --execute='print-unread')" = "0 unread articles" ]
+then
+	printf "There are updates in your repos would you like to read the articles? [Y/n] "
+	read -r confirm
+	[ ! "$confirm" = "n" ] \
+		&& [ ! "$confirm" = "N" ] \
+		&& newsboat-repo \
+		&& printf "Would you like to update your repos? [Y/n] " \
+		&& read -r confirm \
+		&& [ ! "$confirm" = "n" ] \
+		&& [ ! "$confirm" = "N" ] \
+		&& update-repos
+fi
