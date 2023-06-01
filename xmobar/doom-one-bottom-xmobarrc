@@ -1,0 +1,74 @@
+-- Xmobar (http://projects.haskell.org/xmobar/)
+-- This is one of the xmobar configurations for DTOS.
+-- This config is packaged in the DTOS repo as 'dtos-xmobar'
+-- Color scheme: Doom One
+-- Dependencies: 
+   -- otf-font-awesome 
+   -- ttf-mononoki 
+   -- ttf-ubuntu-font-family
+   -- htop
+   -- emacs
+   -- pacman (Arch Linux)
+   -- trayer
+   -- 'dtos-local-bin' (from dtos-core-repo)
+
+Config { font            = "xft:Ubuntu:weight=bold:pixelsize=18:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Mononoki:pixelsize=18:antialias=true:hinting=true"
+                           , "xft:Font Awesome 6 Free Solid:pixelsize=18"
+                           , "xft:Font Awesome 6 Brands:pixelsize=18"
+                           ]
+       , bgColor      = "#282c34"
+       , fgColor      = "#ff6c6b"
+       -- Position TopSize and BottomSize take 3 arguments:
+       --   an alignment parameter (L/R/C) for Left, Right or Center.
+       --   an integer for the percentage width, so 100 would be 100%.
+       --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
+       --   NOTE: The height should be the same as the trayer (system tray) height.
+       , position       = BottomSize C 100 24
+       , lowerOnStart = True
+       , hideOnStart  = False
+       , allDesktops  = True
+       , persistent   = True
+       , iconRoot     = ".xmonad/xpm/"  -- default: "."
+       , commands = [
+                        -- Echos a "penguin" icon in front of the kernel output. 
+                      Run Com "echo" ["<fn=3>\xf17c</fn>"] "penguin" 0
+                        -- Get kernel version
+                    , Run Com "uname" ["-r"] "kernel" 0
+                        -- Echos a "rss feeder" icon in front of the news. 
+                    , Run Com "echo" ["<fn=2>\xf143</fn>"] "rss" 0
+                        -- Get unread news (script found in .local/bin)
+                    , Run Com ".local/bin/sb-news" [] "news" 1200
+			-- IP address 
+                    , Run Com "echo" ["<fn=2>\xf796</fn>"] "ethicon" 0
+                    , Run Com "hostname" ["-i"] "ipadd" 100
+                        -- Cpu usage in percent 
+                    , Run Cpu ["-t", "<fn=2>\xf2db</fn>  <total>%","-H","50","--high","red"] 30
+			-- Cpu temperature
+		    , Run CoreTemp       [ "--template" , "<core0>°C"
+                             , "--Low"      , "70"        -- units: °C
+                             , "--High"     , "80"        -- units: °C
+                             , "--low"      , "lightgreen"
+                             , "--normal"   , "orange"
+                             , "--high"     , "red"
+                             ] 30
+                        -- Ram used number and percent 
+                    , Run Memory ["-t", "<fn=2>\xf538</fn>  <used>M (<usedratio>%)"] 20
+                        -- Swap used number and percent 
+                    , Run Swap [] 20
+                        -- Disk space free RFS, /home, /storage
+                    , Run DiskU [("/", "<fn=2>\xf0c7</fn>  /: <free> free"), ("sdb4", "<fn=2>\xf0c7</fn>  /home: <free> free"), ("sdb8", "<fn=2>\xf0c7</fn>  /storage: <free> free")] ["rfs", "home", "storage"] 600
+			-- Network activity monitor (dynamic interface resolution) 
+		    , Run DynNetwork     [ "--template" , "<fn=2>\xf6ff</fn> <dev>: <fn=2>\xf063</fn><rx>kB/s <fn=2>\xf062</fn><tx>kB/s"
+                             , "--Low"      , "1000000"       -- units: B/s
+                             , "--High"     , "5000000"       -- units: B/s
+                             , "--low"      , "green"
+                             , "--normal"   , "orange"
+                             , "--high"     , "red"
+                             ] 10
+                    ]
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " <box type=Bottom width=2 mb=2 color=#51afef><fc=#51afef>%penguin%  %kernel% </fc></box>    <box type=Bottom width=2 mb=2 color=#ecbe7b><fc=#ecbe7b><action=`$TERMINAL -e htop`>%cpu% %coretemp%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#ff6c6b><fc=#ff6c6b><action=`$TERMINAL -e htop`>%memory% %swap%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1>%rfs% | %home% | %storage%</fc></box>    <box type=Bottom width=2 mb=2 color=#39e578><fc=#39e578>%ethicon% %ipadd%</fc></box>    <box type=Bottom width=2 mb=2 color=#3472af><fc=#3472af>%dynnetwork%</fc></box>   <box type=Bottom width=2 mb=2 color=#f4890e><fc=#f4890e><action=`$TERMINAL -e newsboat`> %rss% %news% </action></fc></box> "
+       }

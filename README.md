@@ -85,4 +85,6 @@ This repository includes configurations for:
 Feel free to fork this repository and customize the configurations to your liking.
 
 <!-- TODO: Add credits -->
-<!-- ## Credits -->
+## Credits
+
+- Xmonad: Distrotube

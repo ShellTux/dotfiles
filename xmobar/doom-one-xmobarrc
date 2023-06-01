@@ -1,0 +1,63 @@
+-- Xmobar (http://projects.haskell.org/xmobar/)
+-- This is one of the xmobar configurations for DTOS.
+-- This config is packaged in the DTOS repo as 'dtos-xmobar'
+-- Color scheme: Doom One
+-- Dependencies: 
+   -- otf-font-awesome 
+   -- ttf-mononoki 
+   -- ttf-ubuntu-font-family
+   -- htop
+   -- emacs
+   -- pacman (Arch Linux)
+   -- trayer
+   -- 'dtos-local-bin' (from dtos-core-repo)
+
+Config { font            = "xft:Ubuntu:weight=bold:pixelsize=16:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Mononoki:pixelsize=16:antialias=true:hinting=true"
+                           , "xft:Font Awesome 6 Free Solid:pixelsize=16"
+                           , "xft:Font Awesome 6 Brands:pixelsize=16"
+                           ]
+       , bgColor      = "#282c34"
+       , fgColor      = "#ff6c6b"
+       -- Position TopSize and BottomSize take 3 arguments:
+       --   an alignment parameter (L/R/C) for Left, Right or Center.
+       --   an integer for the percentage width, so 100 would be 100%.
+       --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
+       --   NOTE: The height should be the same as the trayer (system tray) height.
+       , position       = TopSize L 100 24
+       , lowerOnStart = True
+       , hideOnStart  = False
+       , allDesktops  = True
+       , persistent   = True
+       , iconRoot     = ".xmonad/xpm/"  -- default: "."
+       , commands = [
+                        -- Echos an "up arrow" icon in front of the uptime output.
+                      Run Com "echo" ["<fn=2>\xf0aa</fn>"] "uparrow" 0
+                        -- Uptime
+                    , Run Uptime ["-t", "uptime: <days>d <hours>h"] 360
+                        -- Echos a "bell" icon in front of the pacman updates.
+                    , Run Com "echo" ["<fn=2>\xf0f3</fn>"] "bell" 0
+                        -- Check for packages updates (script found in .local/bin)
+                    , Run Com ".local/bin/sb-packages" [] "pacupdate" 36000
+                        -- Echos a "package" icon in front of the pacman updates. 
+                    , Run Com "echo" ["<fn=2>\xf49e</fn>"] "package" 0
+--                        -- Echos a "battery" icon in front of the pacman updates.
+--                    , Run Com "echo" ["<fn=2>\xf242</fn>"] "baticon" 0
+--                        -- Battery
+--                    , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
+                        -- Time and date
+                    , Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
+                        -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
+                    , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
+			-- Run Brightness
+		    , Run Brightness ["-t", "<fn=2>\xf185</fn> <percent>"] 60
+			-- Run Locks
+		    , Run Locks
+                        -- Prints out the left side items such as workspaces, layout, etc.
+                    , Run UnsafeStdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       --, template = " %UnsafeStdinReader% }{ <box type=Bottom width=2 mb=2 color=#f4f6f7><fc=#f4f6f7>%bright%</fc></box>   <box type=Bottom width=2 mb=2 color=#98be65><fc=#98be65>%uparrow%  %uptime%</fc></box>    <box type=Bottom width=2 mb=2 color=#c678dd><fc=#c678dd>%bell%  <action=`alacritty -e sudo pacman -Syu`>%pacupdate%</action> %package%</fc></box>   <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%  %battery%</fc></box>    <box type=Bottom width=2 mb=2 color=#46d9ff><fc=#46d9ff><action=`emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(dt/year-calendar))'`>%date%</action></fc></box> %trayerpad%"
+       , template = " %UnsafeStdinReader% }{ <box type=Bottom width=2 mb=2 color=#9a52f2><fc=#9a52f2>%locks%</fc></box>   <box type=Bottom width=2 mb=2 color=#f4f6f7><fc=#f4f6f7>%bright%</fc></box>   <box type=Bottom width=2 mb=2 color=#98be65><fc=#98be65>%uparrow%  %uptime%</fc></box>    <box type=Bottom width=2 mb=2 color=#c678dd><fc=#c678dd>%bell%  <action=`$TERMINAL -e .local/bin/sb-popupgrade`>%pacupdate% %package%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#46d9ff><fc=#46d9ff><action=`emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(dt/year-calendar))'`>%date%</action></fc></box> %trayerpad%"
+       }

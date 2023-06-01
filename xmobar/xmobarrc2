@@ -1,0 +1,16 @@
+Config { overrideRedirect = False
+       , font     = "xft:Ubuntu:weight=bold:pixelsize=16:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Noto Sans CJK JP:pixelsize=16:antialias=true:hinting=true"
+                           , "xft:Font Awesome 6 Free Solid:pixelsize=16:antialias=true:hinting=true"
+                           , "xft:Font Awesome 6 Brands:pixelsize=16:antialias=true:hinting=true"
+                           ]
+       , bgColor  = "#5f5f5f"
+       , fgColor  = "#f8f8f2"
+       , position = Bottom
+       , commands = [ 
+                    ]
+       , sepChar  = "%"
+       , alignSep = "}{"
+       , template = ""
+       }
+
