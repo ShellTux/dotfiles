@@ -37,7 +37,7 @@ This repository includes configurations for:
 
 - [Alacritty](https://alacritty.org/)
 - [Awesome WM](https://awesomewm.org/)
-- Bash
+- [Bash](https://www.gnu.org/software/bash/)
 - [Bat](https://github.com/sharkdp/bat)
 - [Bpython](https://bpython-interpreter.org/)
 - [Calcurse](https://www.calcurse.org/)
