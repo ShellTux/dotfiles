@@ -1,0 +1,65 @@
+#super + {alt,ctrl,alt + ctrl} + XF86Eject
+#	doas systemctl {suspend,reboot,poweroff}
+
+XF86AudioPlay
+      mpc toggle; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+
+super + XF86AudioPlay
+      $HOME/.local/bin/dmenumpcplay ; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+
+super + alt + {0-9}
+      mpc -q seek {0-9}0%
+
+XF86AudioMute
+      $HOME/.local/bin/toggle_mute ; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+
+XF86Audio{LowerVolume,RaiseVolume}
+      $HOME/.local/bin/change-volume 5 {-,+}; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+
+control + XF86Audio{LowerVolume,RaiseVolume}
+      $HOME/.local/bin/change-volume 1 {-,+}; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+
+shift + XF86Audio{LowerVolume,RaiseVolume}
+      mpc volume {-,+}5 ; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+
+control + shift + XF86Audio{LowerVolume,RaiseVolume}
+      mpc volume {-,+}1; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+
+XF86Audio{Prev,Next}
+      mpc -q {prev,next}; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+
+XF86MonBrightness{Down,Up}
+      brightnessctl set {5%-,+5%} --min-value 1; pkill -RTMIN+3 dwmblocks; pkill -SIGUSR1 i3status
+
+shift + XF86MonBrightness{Down,Up}
+      brightnessctl set {1%-,+1%} --min-value 1; pkill -RTMIN+3 dwmblocks; pkill -SIGUSR1 i3status
+
+# super + o ; {f}
+# 	{firefox}
+
+super + shift + apostrophe
+      $HOME/.local/bin/arch-wiki
+
+super + Insert
+      $HOME/.local/bin/dmenumount
+
+super + shift + Insert
+      $HOME/.local/bin/dmenuumount
+
+#super + p
+#	keepassxc-dmenu
+
+super + v
+      clipmenu
+
+super + F4
+      case "$(echo -e "\nShutdown\nReboot" | dmenu -p "Choose: ")" in "Shutdown") shutdown now ;; "Reboot") reboot ;; esac
+
+Print
+      flameshot gui
+
+super + Print
+      screenshot "$(echo -e "Fullscreen\nSelect Window\nCurrent Window" | dmenu | sed 's/Fullscreen/fullscreen/;s/Select Window/select/;s/Current Window/current/')"
+
+super + period
+      $HOME/.local/bin/dmenuunicode
