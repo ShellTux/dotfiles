@@ -1,0 +1,16 @@
+snippet <cite> "Citation" "<cite>[Text][1]</cite>"
+	<cite>[${1:Text}][${2:Number}]</cite>$0
+
+snippet code_block "Markdown code block"
+	\`\`\`${1:Language}
+	$0
+	\`\`\`
+
+snippet image "Image"
+	![${1:Description}](${2:Link})
+
+snippet link_section "Link to Section"
+	[${1:Link to Subsection}](#${2:Section})
+
+snippet link "Link to URL"
+	[${1:Text}](${2})

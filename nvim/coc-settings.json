@@ -1,0 +1,69 @@
+{
+      "snippets.ultisnips.enable": false,
+      "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
+
+      // Spell Checker
+      "cSpell.enabled": true,
+      "cSpellExt.enableDictionaries": ["portuguese"],
+      "cSpell.language": "pt,pt_PT,en",
+      "cSpell.enabledLanguageIds": [
+	      "vim",
+	      "asciidoc",
+	      "c",
+	      "cpp",
+	      "csharp",
+	      "css",
+	      "git-commit",
+	      "gitcommit",
+	      "go",
+	      "handlebars",
+	      "haskell",
+	      "html",
+	      "jade",
+	      "java",
+	      "javascript",
+	      "javascriptreact",
+	      "json",
+	      "jsonc",
+	      "latex",
+	      "less",
+	      "markdown",
+	      "php",
+	      "plaintext",
+	      "python",
+	      "pug",
+	      "restructuredtext",
+	      "rust",
+	      "scala",
+	      "scss",
+	      "text",
+	      "typescript",
+	      "typescriptreact",
+	      "yaml",
+	      "yml"
+      ],
+
+      // Haskell server configuration
+      "languageserver": {
+	    "haskell": {
+		  "command": "haskell-language-server-wrapper",
+		  "args": ["--lsp"],
+		  "rootPatterns": [
+			  "*.cabal",
+			  "stack.yaml",
+			  "cabal.project",
+			  "package.yaml",
+			  "hie.yaml"
+		  ],
+		  "filetypes": ["haskell", "lhaskell"]
+	    }
+      },
+
+      "clangd.path": "/usr/bin/clangd",
+      "clangd.arguments": ["--clang-tidy"],
+
+      "Lua.misc.executablePath": "/usr/bin/lua-language-server",
+
+      "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+      "rust-analyzer.updates.checkOnStartup": false,
+}

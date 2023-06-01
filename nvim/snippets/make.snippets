@@ -1,0 +1,53 @@
+snippet Makefile "Makefile Template"
+	CC = ${2:gcc}
+	CFLAGS = ${3:-Wall -Wextra}
+
+	SRCDIR = ${4:src}
+	OBJDIR = ${5:obj}
+	$(shell mkdir --parents $(OBJDIR))
+
+	SOURCES = $(wildcard $(SRCDIR)/*.c)
+	OBJECTS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SOURCES))
+
+	TARGET = ${1:program}
+	TARDIR = ${6:build}
+	$(shell mkdir --parents $(TARDIR))
+
+	all: run
+
+	debug-flags: CFLAGS += -g -Og
+	debug-flags: all
+
+	debug: CFLAGS += -DDEBUG=1
+	debug: run
+
+	$(TARGET): $(OBJECTS)
+		$(CC) $(CFLAGS) -o $@ $^
+
+	$(OBJDIR):
+		mkdir --parents --verbose $(OBJDIR)
+
+	$(OBJDIR)/%.o: $(SRCDIR)/%.c
+		@printf "\n"
+		@printf "\033[31m"
+		@printf "########################\n"
+		@printf "Building %s\n" $@
+		@printf "########################\n"
+		@printf "\033[0m"
+		@printf "\n"
+		$(CC) $(CFLAGS) -c -o $@ $<
+
+	.PHONY: clean
+	clean:
+		@printf "Cleaning\n"
+		rm -f $(OBJDIR)/*.o $(TARGET)
+
+	run: $(TARGET)
+		@printf "\n"
+		@printf "\033[32m"
+		@printf "###############\n"
+		@printf "#   Running   #\n"
+		@printf "###############\n"
+		@printf "\033[0m"
+		@printf "\n"
+		./$(TARGET)
