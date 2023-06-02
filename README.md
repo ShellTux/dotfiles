@@ -13,16 +13,13 @@ To install these dotfiles on a new machine, simply clone this repository into yo
 git clone https://github.com/ShellTux/dotfiles ~/.config
 ```
 
-<!-- TODO: Add make instruction to install -->
+Then run make to install symbolic links to `.bashrc`, `.bash_profile`,
+`.xinitrc`, `.Xresources` on the home directory.
 
-<!-- Then, run the `install` script in the repository root: -->
-
-<!-- ```sh -->
-<!-- cd ~/.config -->
-<!-- make -->
-<!-- ``` -->
-
-<!-- The `install` script will create symbolic links from your home directory to the corresponding files in the repository. -->
+```sh
+cd ~/.config
+make
+```
 
 ## Usage
 
