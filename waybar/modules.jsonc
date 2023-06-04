@@ -219,6 +219,7 @@
 		"interval": 2,
 		"max-length": 70,
 		"on-click": "notify-music",
+		"on-click-right": "mpc toggle",
 		"on-scroll-up": "mpc volume +5",
 		"on-scroll-down": "mpc volume -5",
 		"consume-icons": {
