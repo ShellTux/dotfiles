@@ -98,6 +98,11 @@ ex ()
 	fi
 }
 
+mkcd() {
+	mkdir "$@"
+	cd "$1" || exit
+}
+
 vimfzf () {
       wd="$(pwd)"
       file=$(find -L "$HOME" ! -path "$HOME/.cache/*" ! -path "*/.stfolder/*" ! -path "*/.stversions/*" ! -path "*/__pycache__/*" -maxdepth 7 2>/dev/null | sk --exact --preview='bat --color=always {}')
