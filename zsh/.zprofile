@@ -59,6 +59,7 @@ export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc.py
 export PYTHONUSERBASE=$XDG_DATA_HOME/python
