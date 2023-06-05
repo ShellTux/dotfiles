@@ -93,6 +93,7 @@ kitty/colorschemes/*
 !/lf/lfrc
 !/LICENSE
 !/Makefile
+!/mimeapps.list
 !/mpd/
 /mpd/*
 !/mpd/mpd.conf
