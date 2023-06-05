@@ -21,6 +21,7 @@ cd ~/.config
 make
 ```
 
+
 ## Usage
 
 Once installed, any changes you make to the configuration files in your home

@@ -1,47 +1,47 @@
 new_tab term
 cd ~
-launch zsh
+launch /bin/sh -c 'while true ; do zsh ; done'
 enabled_layouts tall:bias=50;full_size=1
 layout tall
 
 new_tab htop
 cd ~
-launch zsh -c 'htop'
+launch zsh -c 'while true ; do htop ; done'
 enabled_layouts tall:bias=50;full_size=1
 layout tall
 
 new_tab nvtop
 cd ~
-launch zsh -c 'nvtop'
+launch zsh -c 'while true ; do nvtop ; done'
 enabled_layouts tall:bias=50;full_size=1
 layout tall
 
 new_tab files
 cd ~
-launch zsh -c 'ranger'
+launch zsh -c 'while true ; do ranger ; done'
 enabled_layouts tall:bias=50;full_size=1
 layout tall
 
 new_tab qalc
 cd ~
-launch zsh -c 'qalc'
+launch zsh -c 'while true ; do qalc ; done'
 enabled_layouts tall:bias=50;full_size=1
 layout tall
 
 new_tab music
 cd ~
-launch zsh -c 'ncmpcpp --screen visualizer'
+launch zsh -c 'while true ; do ncmpcpp --screen visualizer ; done'
 enabled_layouts tall:bias=50;full_size=1
 layout tall
 
 new_tab python
 cd ~
-launch zsh -c 'bpython'
+launch zsh -c 'while true ; do bpython ; done'
 enabled_layouts tall:bias=50;full_size=1
 layout tall
 
 new_tab lua
 cd ~
-launch zsh -c 'lua'
+launch zsh -c 'while true ; do lua ; done'
 enabled_layouts tall:bias=50;full_size=1
 layout tall
