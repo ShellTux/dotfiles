@@ -6,11 +6,11 @@
 
 eval $(thefuck --alias)
 
-if [ ! "$(which fastfetch 2>/dev/null)" = "" ]
+if command -v fastfetch &> /dev/null
 then
 	fastfetch
 else
-	[ ! "$(which neofetch 2>/dev/null)" = "" ] && neofetch
+	neofetch
 fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
