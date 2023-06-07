@@ -60,9 +60,9 @@ fi
 unset use_color safe_term match_lhs sh
 
 
-if [ ! "$(which fastfetch 2>/dev/null)" = "" ]
+if command -v fastfetch &> /dev/null
 then
-	fastfetch
+    fastfetch
 else
-	[ ! "$(which neofetch 2>/dev/null)" = "" ] && neofetch
+    neofetch
 fi
