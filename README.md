@@ -14,7 +14,7 @@ git clone https://github.com/ShellTux/dotfiles ~/.config
 ```
 
 Then run make to install symbolic links to `.bashrc`, `.bash_profile`,
-`.xinitrc`, `.Xresources` on the home directory.
+`.xinitrc`, `.Xresources` on the home directory, and install the files under the etc folder.
 
 ```sh
 cd ~/.config
