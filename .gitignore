@@ -37,6 +37,9 @@
 !/bpython/
 /bpython/*
 !/bpython/config
+!/btop/
+/btop/*
+!/btop/btop.conf
 !/calcurse/
 /calcurse/*
 !/calcurse/conf

@@ -44,6 +44,7 @@ This repository includes configurations for:
 - [Bash](https://www.gnu.org/software/bash/)
 - [Bat](https://github.com/sharkdp/bat)
 - [Bpython](https://bpython-interpreter.org/)
+- [Btop](https://github.com/aristocratos/btop)
 - [Calcurse](https://www.calcurse.org/)
 - [Dunst](https://dunst-project.org/)
 - [Fastfetch](https://github.com/LinusDierheimer/fastfetch)
