@@ -9,12 +9,12 @@ snippet Makefile "Makefile Template"
 	SRCDIR = ${4:src}
 	OBJDIR = ${5:obj}
 
-	SOURCES = $(wildcard $(SRCDIR)/*.c)
-	HEADERS = $(wildcard $(SRCDIR)/*.h)
-	OBJECTS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
+	SOURCES = $(wildcard $(SRCDIR)/*.${6:c})
+	HEADERS = $(wildcard $(SRCDIR)/*.${7:h})
+	OBJECTS = $(patsubst $(SRCDIR)/%.${6:c}, $(OBJDIR)/%.o, $(SOURCES))
 
-	TARGET = ${6:programa}
-	TARDIR = ${7:build}
+	TARGET = ${8:programa}
+	TARDIR = ${9:build}
 
 	.PHONY: all clean
 	all: run
@@ -31,7 +31,7 @@ snippet Makefile "Makefile Template"
 	$(SRCDIR) $(OBJDIR) $(TARDIR) $(TESTDIR):
 		mkdir --parents --verbose $@
 
-	$(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEADERS) | $(OBJDIR)
+	$(OBJDIR)/%.o: $(SRCDIR)/%.${6:c} $(HEADERS) | $(OBJDIR)
 		@printf "\n"
 		@printf "\033[31m"
 		@printf "########################\n"
