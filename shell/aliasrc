@@ -64,7 +64,7 @@ alias updateMirrors='doas reflector --age 12 --country Portugal,USA,World ' \
 	'--protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias upper='tr [:lower:] [:upper:]'
 alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
-# alias yay='yay --sudo doas'
+alias yay='yay --sudo notify-sudo'
 alias youtube-dl='yt-dlp'
 alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail --embed-metadata ' \
 	'--embed-chapters'
