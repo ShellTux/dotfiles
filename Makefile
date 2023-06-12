@@ -1,3 +1,4 @@
+.PHONY: symlink mpd
 SHELL     := /bin/sh
 HOME_DIR   = $(shell echo $$HOME)
 USERNAME   = $(shell whoami)
@@ -11,7 +12,6 @@ MPD_STATE  = $(shell echo "$$HOME"/.local/state/mpd)
 
 all: symlink install
 
-.PHONY: symlink
 symlink:
 	ln -sf $(HOME_DIR)/.config/bash/bash_profile $(HOME_DIR)/.bash_profile
 	ln -sf $(HOME_DIR)/.config/bash/bashrc $(HOME_DIR)/.bashrc
@@ -31,7 +31,7 @@ install:
 $(MPD_SHARE) $(MPD_STATE):
 	mkdir --parents --verbose $@
 
-mpd: $(MPD_SHARE)/database $(MPD_SHARE)/mpd.log $(MPD_STATE)/mpd.pid $(MPD_STATE)/mpdstate | $(MPD_SHARE) $(MPD_STATE)
+mpd: | $(MPD_SHARE) $(MPD_STATE)
 	touch "$(MPD_SHARE)/database"
 	touch "$(MPD_SHARE)/mpd.log"
 	touch "$(MPD_STATE)/mpd.pid"
