@@ -1,6 +1,9 @@
-SHELL := /bin/sh
-HOME_DIR = $(shell echo $$HOME)
-USERNAME = $(shell whoami)
+SHELL     := /bin/sh
+HOME_DIR   = $(shell echo $$HOME)
+USERNAME   = $(shell whoami)
+MPD_SHARE  = $(shell echo "$$HOME"/.local/share/mpd)
+MPD_STATE  = $(shell echo "$$HOME"/.local/state/mpd)
+
 # .xinitrc
 # .Xresources
 # .bash_profile
@@ -24,3 +27,12 @@ install:
 	sudo cp ./etc/doas.conf /etc/doas.conf
 	sudo sed -i 's/<user>/$(USERNAME)/g' /etc/doas.conf
 	sudo cp ./etc/vconsole.conf /etc
+
+$(MPD_SHARE) $(MPD_STATE):
+	mkdir --parents --verbose $@
+
+mpd: $(MPD_SHARE)/database $(MPD_SHARE)/mpd.log $(MPD_STATE)/mpd.pid $(MPD_STATE)/mpdstate | $(MPD_SHARE) $(MPD_STATE)
+	touch "$(MPD_SHARE)/database"
+	touch "$(MPD_SHARE)/mpd.log"
+	touch "$(MPD_STATE)/mpd.pid"
+	touch "$(MPD_STATE)/mpdstate"
