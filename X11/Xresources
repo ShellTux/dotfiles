@@ -12,6 +12,63 @@
 #include "$HOME/.config/X11/colorschemes/one-dark.Xresources"
 #define cursorColor #111111
 Xcursor.size: 32
+
+/* XTerm */
+XTerm*faceName: Fira Code Regular
+XTerm*faceSize: 14
+XTerm*highlightSelection: true
+XTerm*saveLines: 15000
+XTerm*scrollTtyOutput: false
+XTerm*selectToClipboard: true
+XTerm.termName: xterm-256color
+XTerm*title: XTerminal
+XTerm*trimSelection: true
+XTerm.ttyModes: erase ^?
+XTerm.vt100.backarrowKey: false
+XTerm*VT100.geometry: 130x50
+XTerm.vt100.locale: true
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.reverseVideo: true
+XTerm.vt100.saveLines: 4096
+XTerm*vt100.scrollBar: false
+XTerm.vt100.scrollBar: true
+XTerm.vt100.scrollbar.width: 8
+XTerm*vt100.translations: #override \n\
+  Ctrl <Key>-: smaller-vt-font() \n\
+  Ctrl <Key>+: larger-vt-font() \n\
+  Ctrl <Key>0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Ctrl Alt <Key>S: secure()
+
+/* UXTerm */
+UXTerm*faceName: Fira Code Regular
+UXTerm*faceSize: 14
+UXTerm*highlightSelection: true
+UXTerm*saveLines: 15000
+UXTerm*scrollTtyOutput: false
+UXTerm*selectToClipboard: true
+UXTerm.termName: xterm-256color
+UXTerm*title: XTerminal
+UXTerm*trimSelection: true
+UXTerm.ttyModes: erase ^?
+UXTerm.vt100.backarrowKey: false
+UXTerm*VT100.geometry: 130x50
+UXTerm.vt100.locale: true
+UXTerm.vt100.metaSendsEscape: true
+UXTerm.vt100.reverseVideo: true
+UXTerm.vt100.saveLines: 4096
+UXTerm*vt100.scrollBar: false
+UXTerm.vt100.scrollBar: true
+UXTerm.vt100.scrollbar.width: 8
+UXTerm*vt100.translations: #override \n\
+  Ctrl <Key>-: smaller-vt-font() \n\
+  Ctrl <Key>+: larger-vt-font() \n\
+  Ctrl <Key>0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Ctrl Alt <Key>S: secure()
+
 st.font: Fira Code:size=14:autohint=true:antialias=true
 *.colorname: cursorColor
 *.termname: st-256color
