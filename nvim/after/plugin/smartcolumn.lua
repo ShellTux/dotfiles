@@ -10,6 +10,7 @@ local config = {
 	},
 	custom_colorcolumn = {
 		java = { '180', '200' },
+		lua = '100',
 		ruby = '120',
 		rust = { '90', '100' },
 		sh = '90',
