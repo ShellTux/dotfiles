@@ -1,0 +1,12 @@
+#!/bin/sh
+
+killall waybar
+while true
+do
+	printf '\033[31m#####################\n'
+	printf ' Run \n'
+	printf '\033[31m#####################\n\033[0m'
+	waybar &
+	inotifywait --event modify --recursive ~/.config/waybar
+	killall waybar
+done
