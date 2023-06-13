@@ -1,0 +1,17 @@
+# vim:ft=sh
+
+# Load and merge Xresources
+[ -f ~/.Xresources ] \
+	&& xrdb -merge -I$HOME "${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources"
+
+clipmenud &
+firewall-applet &
+flameshot &
+mpdnotify &
+nm-applet &
+numlockx on &
+picom &
+qpwgraph --minimized &
+redshift-gtk &
+syncthingtray --wait &
+killall wallpaperLoop ; wallpaperLoop &
