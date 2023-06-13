@@ -6,8 +6,10 @@
 
 userresources=${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources
 usermodmap=${XDG_CONFIG_HOME:-$HOME/.config}/X11/xmodmap
+userprofile=${XDG_CONFIG_HOME:-$HOME/.config}/X11/xprofile
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
+sysprofile=/etc/X11/xinit/.xprofile
 
 DEFAULT_SESSION=dwm
 export XDG_CURRENT_DESKTOP=X-Generic
@@ -33,8 +35,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
       unset f
 fi
 
-[ -f /etc/xprofile ] && . /etc/xprofile
-[ -f ~/.xprofile ] && . "$HOME"/.xprofile
+[ -f "$sysprofile" ] && . "$sysprofile"
+[ -f "$userprofile" ] && . "$userprofile"
 
 systemctl --user import-environment XDG_CURRENT_DESKTOP DISPLAY # Import which display X server is using for clipmenud and dunst
 systemctl --no-block --user start xsession.target

@@ -13,7 +13,6 @@ symlink:
 	ln -sf $(CONFIG_DIR)/bash/bashrc $(HOME_DIR)/.bashrc
 	ln -sf $(CONFIG_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
 	ln -sf $(CONFIG_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
-	ln -sf $(CONFIG_DIR)/X11/xprofile $(HOME_DIR)/.xprofile
 
 install:
 	sudo cp ./etc/grub.d/* /etc/grub.d
