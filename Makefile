@@ -1,22 +1,19 @@
 .PHONY: symlink mpd
-SHELL     := /bin/sh
-HOME_DIR   = $(shell echo $$HOME)
-USERNAME   = $(shell whoami)
-MPD_SHARE  = $(shell echo "$$HOME"/.local/share/mpd)
-MPD_STATE  = $(shell echo "$$HOME"/.local/state/mpd)
-
-# .xinitrc
-# .Xresources
-# .bash_profile
-# .bashrc
+SHELL         := /bin/sh
+HOME_DIR       = $(shell echo $$HOME)
+CONFIG_DIR    ?= $(or $(shell echo $$XDG_CONFIG_HOME),$(shell echo $$HOME)/.config)
+USERNAME       = $(shell whoami)
+MPD_SHARE      = $(shell echo "$$HOME"/.local/share/mpd)
+MPD_STATE      = $(shell echo "$$HOME"/.local/state/mpd)
 
 all: symlink install
 
 symlink:
-	ln -sf $(HOME_DIR)/.config/bash/bash_profile $(HOME_DIR)/.bash_profile
-	ln -sf $(HOME_DIR)/.config/bash/bashrc $(HOME_DIR)/.bashrc
-	ln -sf $(HOME_DIR)/.config/X11/xinitrc $(HOME_DIR)/.xinitrc
-	ln -sf $(HOME_DIR)/.config/X11/Xresources $(HOME_DIR)/.Xresources
+	ln -sf $(CONFIG_DIR)/bash/bash_profile $(HOME_DIR)/.bash_profile
+	ln -sf $(CONFIG_DIR)/bash/bashrc $(HOME_DIR)/.bashrc
+	ln -sf $(CONFIG_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
+	ln -sf $(CONFIG_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
+	ln -sf $(CONFIG_DIR)/X11/xprofile $(HOME_DIR)/.xprofile
 
 install:
 	sudo cp ./etc/grub.d/* /etc/grub.d

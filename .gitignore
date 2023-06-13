@@ -223,9 +223,10 @@ vifm/scripts/*
 !/wofi/*.css
 !/X11/
 /X11/*
-!/X11/xinitrc
-!/X11/Xresources
 !/X11/colorschemes
+!/X11/xinitrc
+!/X11/xprofile
+!/X11/Xresources
 !/xmobar
 !/xmonad
 /xmonad/*
