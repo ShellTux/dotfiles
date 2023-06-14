@@ -9,6 +9,7 @@ local config = {
 		'text',
 	},
 	custom_colorcolumn = {
+		bash = '90',
 		java = { '180', '200' },
 		lua = '100',
 		ruby = '120',
