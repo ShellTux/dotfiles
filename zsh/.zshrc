@@ -113,8 +113,9 @@ promptinit
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-# [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-[ "$is_tty" = "yes" ] && source ~/.config/zsh/.p10k.zsh || source ~/.config/zsh/.p10k.terminal.zsh
+[ "$is_tty" = "yes" ] \
+	&& source ~/.config/zsh/p10k.zsh \
+	|| source ~/.config/zsh/p10k.terminal.zsh
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

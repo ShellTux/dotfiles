@@ -244,8 +244,8 @@ vifm/scripts/*
 !/zathura/zathurarc
 !/zsh
 /zsh/*
-!/zsh/.p10k.terminal.zsh
-!/zsh/.p10k.zsh
+!/zsh/[.]p10k.terminal.zsh
+!/zsh/[.]p10k.zsh
 !/zsh/.zprofile
 !/zsh/.zshenv
 !/zsh/.zshrc
