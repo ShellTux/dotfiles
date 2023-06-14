@@ -13,7 +13,7 @@ snippet Makefile "Makefile Template"
 	HEADERS = $(wildcard $(SRCDIR)/*.${7:h})
 	OBJECTS = $(patsubst $(SRCDIR)/%.${6:c}, $(OBJDIR)/%.o, $(SOURCES))
 
-	TARGET = ${8:programa}
+	TARGET = ${8:program}
 	TARDIR = ${9:build}
 
 	.PHONY: all clean
