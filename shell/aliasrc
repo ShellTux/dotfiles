@@ -38,7 +38,8 @@ alias lA='ls -l --human-readable --almost-all'
 alias ll='ls -l --human-readable'
 alias lower='tr [:upper:] [:lower]'
 alias lsblk-label='lsblk -o name,fstype,mountpoint,label,partlabel,size'
-alias ls='exa --across --color=automatic  --color-scale --icons --group-directories-first --binary --group --header --git'
+alias ls='exa --across --color=automatic  --color-scale --icons \
+	--group-directories-first --binary --group --header --git'
 # alias ls='ls --color=auto'
 alias lspkgs='pacman -Qe --color=always | $PAGER -R'
 alias mkdir='mkdir --parents --verbose'
@@ -62,14 +63,14 @@ alias suvim='doas vim'
 alias terminal="\$TERMINAL"
 alias tmux='tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf'
 alias updateDwmblocks='pkill -SIGUSR1 dwmblocks'
-alias updateMirrors='doas reflector --age 12 --country Portugal,USA,World ' \
-	'--protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias updateMirrors='doas reflector --age 12 --country Portugal,USA,World \
+	--protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias upper='tr [:lower:] [:upper:]'
 alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
 alias yay='yay --sudo notify-sudo'
 alias youtube-dl='yt-dlp'
-alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail --embed-metadata ' \
-	'--embed-chapters'
+alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail --embed-metadata \
+	--embed-chapters'
 _trap_exit() { tmux kill-session -t music; }
 trap _trap_exit EXIT
 
@@ -107,7 +108,12 @@ mkcd() {
 
 vimfzf () {
       wd="$(pwd)"
-      file=$(find -L "$HOME" ! -path "$HOME/.cache/*" ! -path "*/.stfolder/*" ! -path "*/.stversions/*" ! -path "*/__pycache__/*" -maxdepth 7 2>/dev/null | sk --exact --preview='bat --color=always {}')
+      file=$(find -L "$HOME" \
+	      ! -path "$HOME/.cache/*" \
+	      ! -path "*/.stfolder/*" \
+	      ! -path "*/.stversions/*" \
+	      ! -path "*/__pycache__/*" \
+	      -maxdepth 7 2>/dev/null | sk --exact --preview='bat --color=always {}')
       [ -f "$file" ] && cd "$(dirname "$file")" || exit
       [ -d "$file" ] && cd "$file" || exit
       [ -f "$file" ] || [ -d "$file" ] && $EDITOR "$file" && cd "$wd" || exit
