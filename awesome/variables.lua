@@ -9,7 +9,7 @@ local module           = {
 	scratchpad = {},
 }
 
-module.workspace_names = { '', '', '', '', 'E', '', '', '', '' }
+module.workspace_names = { '  ', '  ', '  ', '  ', ' E ', '  ', '  ', '  ', '  ' }
 module.layouts         = {
 	suit.floating,
 	suit.tile,
