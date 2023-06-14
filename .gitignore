@@ -23,10 +23,7 @@
 !/alacritty/colorschemes/*.yml
 !/awesome/
 /awesome/*
-!/awesome/rc.lua
-!/awesome/theme.lua
-!/awesome/functions.lua
-!/awesome/variables.lua
+!/awesome/*.lua
 !/bash
 /bash/*
 !/bash/bash_profile
@@ -61,6 +58,11 @@
 !/etc/pacman.d/hooks
 /etc/pacman.d/hooks/*
 !/etc/pacman.d/hooks/log-installed.hook
+!etc/X11/
+etc/X11/*
+!etc/X11/xorg.conf.d/
+etc/X11/xorg.conf.d/*
+!etc/X11/xorg.conf.d/*.conf
 !/etc/xdg/
 /etc/xdg/*
 !/etc/xdg/reflector/
