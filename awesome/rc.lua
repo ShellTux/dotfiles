@@ -155,8 +155,13 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
+local scratch = require('scratch')
 globalkeys = gears.table.join(
-	awful.key({ modkey, }, 's', hotkeys_popup.show_help,
+-- awful.key({ modkey, }, 's', hotkeys_popup.show_help,
+-- 	{ description = 'show help', group = 'awesome' }),
+	awful.key({ modkey, }, 's',
+		scratch.toggle('st -n ' .. variables.scratchpad.rule.instance .. ' -e zsh',
+			variables.scratchpad.rule),
 		{ description = 'show help', group = 'awesome' }),
 	awful.key({ modkey, }, 'Left', functions.tag.view_next(true, -1),
 		{ description = 'view previous', group = 'tag' }),
@@ -404,7 +409,9 @@ awful.rules.rules = {
 				'Tor Browser', -- Needs a fixed window size to avoid fingerprinting by screen size.
 				'Wpa_gui',
 				'veromix',
-				'xtightvncviewer' },
+				'xtightvncviewer',
+				-- variables.scratchpad.rule.instance,
+			},
 			-- Note that the name property shown in xprop might be set slightly after creation of the client
 			-- and the name shown there might not match defined rules here.
 			name = {
@@ -426,9 +433,13 @@ awful.rules.rules = {
 		properties = { titlebars_enabled = false }
 	},
 
+	variables.scratchpad,
+
 	-- Set Firefox to always map on the tag named "2" on screen 1.
-	-- { rule = { class = "Firefox" },
-	--   properties = { screen = 1, tag = "2" } },
+	{
+		rule = { class = "Firefox" },
+		properties = { screen = 1, tag = "2" }
+	},
 }
 -- }}}
 
