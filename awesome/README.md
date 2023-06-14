@@ -51,3 +51,46 @@ client.connect_signal("manage", function(c)
     end
 end)
 ```
+
+- Browse non-empty tags
+
+When browsing tags left or right, it will go to the next non-empty tag.
+Inspired by this [reddit](https://www.reddit.com/r/awesomewm/comments/lzly7b/browse_through_non_empty_tags/) post.
+
+```lua
+module.tag.view_next = function(empty, direction, screen)
+	if empty then
+		local wrap = function(index, total)
+			if index < 1 then
+				return total
+			elseif index > total then
+				return 1
+			else
+				return index
+			end
+		end
+
+		return function()
+			screen = screen or awful.screen.focused()
+			local tags = screen.tags
+			local original_index = wrap(screen.selected_tag.index + direction, #tags)
+
+			local current_index = original_index
+			while #(tags[current_index]:clients()) == 0 do
+				current_index = wrap(current_index + direction, #tags)
+				if current_index == original_index then
+					break
+				end
+			end
+
+			tags[current_index]:view_only()
+		end
+	else
+		if direction > 0 then
+			return awful.tag.viewnext
+		elseif direction < 0 then
+			return awful.tag.viewprev
+		end
+	end
+end
+```

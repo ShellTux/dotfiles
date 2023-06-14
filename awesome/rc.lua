@@ -158,9 +158,9 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
 	awful.key({ modkey, }, 's', hotkeys_popup.show_help,
 		{ description = 'show help', group = 'awesome' }),
-	awful.key({ modkey, }, 'Left', awful.tag.viewprev,
+	awful.key({ modkey, }, 'Left', functions.tag.view_next(true, -1),
 		{ description = 'view previous', group = 'tag' }),
-	awful.key({ modkey, }, 'Right', awful.tag.viewnext,
+	awful.key({ modkey, }, 'Right', functions.tag.view_next(true, 1),
 		{ description = 'view next', group = 'tag' }),
 	awful.key({ modkey, }, 'Tab', awful.tag.history.restore,
 		{ description = 'Focus to previous tag', group = 'tag' }),

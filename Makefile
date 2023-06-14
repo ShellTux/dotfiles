@@ -1,14 +1,34 @@
 .PHONY: symlink mpd
-SHELL         := /bin/sh
-HOME_DIR       = $(shell echo $$HOME)
-CONFIG_DIR    ?= $(or $(shell echo $$XDG_CONFIG_HOME),$(shell echo $$HOME)/.config)
-USERNAME       = $(shell whoami)
-MPD_SHARE      = $(shell echo "$$HOME"/.local/share/mpd)
-MPD_STATE      = $(shell echo "$$HOME"/.local/state/mpd)
-PKG_MANAGER = sudo pacman -S --needed --noconfirm
-DEPENDECIES = libinput xf86-input-libinput
+
+SHELL           := /bin/sh
+HOME_DIR         = $(shell echo $$HOME)
+CONFIG_DIR      ?= $(or $(shell echo $$XDG_CONFIG_HOME),$(shell echo $$HOME)/.config)
+USERNAME         = $(shell whoami)
+MPD_SHARE        = $(shell echo "$$HOME"/.local/share/mpd)
+MPD_STATE        = $(shell echo "$$HOME"/.local/state/mpd)
+PKG_MANAGER      = sudo pacman -S --needed --noconfirm
+AUR_MANAGER      = yay -S --aur --needed --noconfirm
+DEPENDECIES      = \
+		   clipmenu \
+		   firewalld \
+		   flameshot \
+		   libinput \
+		   network-manager-applet \
+		   picom \
+		   qpwgraph \
+		   syncthing \
+		   xf86-input-libinput \
+		   xorg-xrdb
+
+AUR_DEPENDECIES  = \
+		   redshift-wayland-git \
+		   syncthing-gtk \
+		   syncthingtray
 
 all: symlink install
+
+test:
+	@echo $(DEPENDECIES) $(AUR_DEPENDECIES)
 
 symlink:
 	ln -sf $(CONFIG_DIR)/bash/bash_profile $(HOME_DIR)/.bash_profile
@@ -18,6 +38,7 @@ symlink:
 
 dependecies:
 	$(PKG_MANAGER) $(DEPENDECIES)
+	$(AUR_MANAGER) $(AUR_DEPENDECIES)
 
 install: dependecies
 	sudo cp ./etc/grub.d/* /etc/grub.d
