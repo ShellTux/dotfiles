@@ -1,19 +1,7 @@
 # Blocklist files/folders in same directory as the .gitignore file
 /*
 
-# Includelist some files
 !/.gitignore
-!/README.md
-
-# Ignore syncthing sync-conflicts
-**.sync-conflict**
-
-# Ignore .git repos
-**/.git
-
-# Ignore all files named .DS_Store or ending with .log
-**/.DS_Store
-**.log
 
 !/alacritty/
 /alacritty/*
@@ -260,3 +248,15 @@ vifm/scripts/*
 !/zsh/.zprofile
 !/zsh/.zshenv
 !/zsh/.zshrc
+
+!**README.md
+
+# Ignore syncthing sync-conflicts
+**.sync-conflict**
+
+# Ignore .git repos
+**/.git
+
+# Ignore all files named .DS_Store or ending with .log
+**/.DS_Store
+**.log
