@@ -27,7 +27,7 @@ end
 
 module.screen.connect_for_each_screen = function (screen)
 	-- Wallpaper
-	module.screen.set_wallpaper(screen)
+	-- module.screen.set_wallpaper(screen)
 
 	-- Each screen has its own tag table.
 	awful.tag(variables.workspace_names, screen, variables.startup_layout)
