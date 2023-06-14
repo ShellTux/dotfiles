@@ -3,7 +3,7 @@ local beautiful     = require('beautiful')
 local gears         = require('gears')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local wibox         = require('wibox') -- Widget and layout library
-local variables = require('variables')
+local variables     = require('variables')
 
 
 local module = {
@@ -25,7 +25,7 @@ module.screen.set_wallpaper = function(screen)
 	end
 end
 
-module.screen.connect_for_each_screen = function (screen)
+module.screen.connect_for_each_screen = function(screen)
 	-- Wallpaper
 	-- module.screen.set_wallpaper(screen)
 
@@ -79,6 +79,46 @@ module.screen.connect_for_each_screen = function (screen)
 			screen.mylayoutbox,
 		},
 	}
+end
+
+local function is_terminal(client)
+	return (client.class and client.class:match('kitty'))
+end
+
+local function copy_size(client, parent_client)
+	if not client or not parent_client then
+		return
+	end
+	if not client.valid or not parent_client.valid then
+		return
+	end
+	client.x = parent_client.x;
+	client.y = parent_client.y;
+	client.width = parent_client.width;
+	client.height = parent_client.height;
+end
+
+module.check_resize_client = function(client)
+	if (client.child_resize) then
+		copy_size(client.child_resize, client)
+	end
+end
+
+-- TODO: Disable swallowing for specific child windows
+module.manage = function(client)
+	if is_terminal(client) then
+		return
+	end
+	local parent_client = awful.client.focus.history.get(client.screen, 1)
+	if parent_client and is_terminal(parent_client) then
+		parent_client.child_resize = client
+		parent_client.minimized = true
+
+		client:connect_signal("unmanage", function() parent_client.minimized = false end)
+
+		-- c.floating=true
+		copy_size(client, parent_client)
+	end
 end
 
 return module
