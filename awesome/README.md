@@ -94,3 +94,12 @@ module.tag.view_next = function(empty, direction, screen)
 	end
 end
 ```
+
+- Scratchpad
+
+Launch a dropdown terminal, here is some sources and inspiration:
+
+- [Documentation for scratchpad_manager](https://www.reddit.com/r/awesomewm/comments/9u8ndc/documentation_for_scratchpad_manager/)
+- [awesome-scratch](https://github.com/notnew/awesome-scratch)
+- [Easy scratchpad](https://www.reddit.com/r/awesomewm/comments/x3lxgd/easy_scratchpad/)
+- [awesome-scratchpad.lua](https://pastebin.com/p8ZLV2wq)
