@@ -25,6 +25,8 @@
 /awesome/*
 !/awesome/rc.lua
 !/awesome/theme.lua
+!/awesome/functions.lua
+!/awesome/variables.lua
 !/bash
 /bash/*
 !/bash/bash_profile
