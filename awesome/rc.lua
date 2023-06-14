@@ -499,5 +499,8 @@ end)
 client.connect_signal('focus', function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal('unfocus', function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+client.connect_signal('property::size', functions.check_resize_client)
+client.connect_signal('property::position', functions.check_resize_client)
+client.connect_signal('manage', functions.manage)
 
 awful.spawn.with_shell('wallpaper next')
