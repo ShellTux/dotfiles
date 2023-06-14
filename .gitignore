@@ -162,6 +162,7 @@ ranger/colorschemes/*
 !/shell/
 /shell/*
 !/shell/aliasrc
+!/shell/profile
 !/sxhkd/
 /sxhkd/*
 !/sxhkd/sxhkdrc
