@@ -162,6 +162,7 @@ function format()
 	local command = ":call CocAction('format')"
 
 	if filetype == 'cpp' or filetype == 'c' then
+		-- FIX: clang-format on a buffer that is not yet saved
 		command = 'silent !clang-format -i ' ..
 		'--style="file:${XDG_CONFIG_HOME:-$HOME/.config}/clang-format" ' ..
 		"'" .. path .. "'"
