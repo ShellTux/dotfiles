@@ -246,6 +246,7 @@ vifm/scripts/*
 /zsh/*
 !/zsh/[.]p10k.terminal.zsh
 !/zsh/[.]p10k.zsh
+!/zsh/p10k.glyphs.zsh
 !/zsh/.zprofile
 !/zsh/.zshenv
 !/zsh/.zshrc
