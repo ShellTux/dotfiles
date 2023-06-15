@@ -153,7 +153,19 @@ keyset("x", "<C-s>", "<Plug>(coc-range-select)", {silent = true})
 
 
 -- Add `:Format` command to format current buffer
-vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
+-- vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
+function format()
+	local filetype = vim.bo.filetype
+	local command = ":call CocAction('format')"
+
+	if filetype == 'cpp' or filetype == 'c' then
+		command = 'silent !clang-format -i --style="file:${XDG_CONFIG_HOME:-$HOME/.config}/clang-format" %'
+	end
+
+	vim.cmd('command! -nargs=0 Format ' .. command)
+end
+vim.cmd([[autocmd BufEnter,BufNewFile * lua format()]])
+vim.cmd([[autocmd FileType * lua format()]])
 
 -- " Add `:Fold` command to fold current buffer
 vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", {nargs = '?'})
