@@ -2,17 +2,18 @@
 
 ## Files
 
-- rc.lua: main configuration file
-- theme.lua: theme
-- variables.lua: where the variables are defined
-- functions.lua: some custom functions
+- `rc.lua`: main configuration file
+- `theme.lua`: theme
+- `variables.lua`: where the variables are defined
+- `functions.lua`: some custom functions
+- `scratch.lua`: scratchpad lua file
 
 ## Features of My Awesome WM
 
 - Window Swallowing
 
-For window swallowing, I came across this [reddit post](https://www.reddit.com/r/awesomewm/comments/h07f5y/does_awesome_support_window_swallowing/),
-and simply copy and paste with some modifications.
+  For window swallowing, I came across this [reddit post](https://www.reddit.com/r/awesomewm/comments/h07f5y/does_awesome_support_window_swallowing/),
+  and simply copy and paste with some modifications.
 
 ```lua
 function is_terminal(c)
@@ -54,8 +55,8 @@ end)
 
 - Browse non-empty tags
 
-When browsing tags left or right, it will go to the next non-empty tag.
-Inspired by this [reddit](https://www.reddit.com/r/awesomewm/comments/lzly7b/browse_through_non_empty_tags/) post.
+  When browsing tags left or right, it will go to the next non-empty tag.
+  Inspired by this [reddit](https://www.reddit.com/r/awesomewm/comments/lzly7b/browse_through_non_empty_tags/) post.
 
 ```lua
 module.tag.view_next = function(empty, direction, screen)
@@ -97,9 +98,23 @@ end
 
 - Scratchpad
 
-Launch a dropdown terminal, here is some sources and inspiration:
+  Launch a dropdown terminal, here is some sources and inspiration:
 
-- [Documentation for scratchpad_manager](https://www.reddit.com/r/awesomewm/comments/9u8ndc/documentation_for_scratchpad_manager/)
-- [awesome-scratch](https://github.com/notnew/awesome-scratch)
-- [Easy scratchpad](https://www.reddit.com/r/awesomewm/comments/x3lxgd/easy_scratchpad/)
-- [awesome-scratchpad.lua](https://pastebin.com/p8ZLV2wq)
+  - [Documentation for scratchpad_manager](https://www.reddit.com/r/awesomewm/comments/9u8ndc/documentation_for_scratchpad_manager/)
+  - [awesome-scratch](https://github.com/notnew/awesome-scratch)
+  - [Easy scratchpad](https://www.reddit.com/r/awesomewm/comments/x3lxgd/easy_scratchpad/)
+  - [awesome-scratchpad.lua](https://pastebin.com/p8ZLV2wq)
+
+- Sticky windows
+
+  Make a window visible in all tags
+
+  - [Awesome WM shortcut to toggle or make a window sticky. This shortcut is not show in my Super+S help menu](https://stackoverflow.com/questions/73519361/awesome-wm-shortcut-to-toggle-or-make-a-window-sticky-this-shortcut-is-not-show)
+  - [Clients not going sticky.](https://www.reddit.com/r/awesomewm/comments/yl6w8c/clients_not_going_sticky/)
+
+You need to make sure the keybind is inside the `clientkey` not globalkeys
+
+```lua
+awful.key({ modkey, 'Shift' }, 's', function(client) client.sticky = not client.sticky end,
+	{ description = 'Toggle sticky', group = 'client' }),
+```
