@@ -157,8 +157,8 @@ root.buttons(gears.table.join(
 -- {{{ Key bindings
 local scratch = require('scratch')
 globalkeys = gears.table.join(
--- awful.key({ modkey, }, 's', hotkeys_popup.show_help,
--- 	{ description = 'show help', group = 'awesome' }),
+	awful.key({ modkey, 'Shift' }, "'", hotkeys_popup.show_help,
+		{ description = 'show help', group = 'awesome' }),
 	awful.key({ modkey, }, 's',
 		scratch.toggle('st -n ' .. variables.scratchpad.rule.instance .. ' -e zsh',
 			variables.scratchpad.rule),
