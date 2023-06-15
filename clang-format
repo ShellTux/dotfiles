@@ -89,4 +89,4 @@ SpacesInSquareBrackets: false
 TabWidth: 8
 UseTab: ForIndentation
 
-# ...
+# vim: ft=yaml
