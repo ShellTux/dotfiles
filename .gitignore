@@ -33,6 +33,8 @@
 !/calcurse/keys
 !/calcurse/hooks
 /calcurse/hooks/*
+!/clang-format
+!/clang-tidy
 !/dunst/
 /dunst/*
 !/dunst/dunstrc
