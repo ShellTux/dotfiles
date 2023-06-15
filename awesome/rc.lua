@@ -414,7 +414,6 @@ awful.rules.rules = {
 				'Wpa_gui',
 				'veromix',
 				'xtightvncviewer',
-				-- variables.scratchpad.rule.instance,
 			},
 			-- Note that the name property shown in xprop might be set slightly after creation of the client
 			-- and the name shown there might not match defined rules here.
@@ -438,11 +437,110 @@ awful.rules.rules = {
 	},
 
 	variables.scratchpad,
-
-	-- Set Firefox to always map on the tag named "2" on screen 1.
+	{
+		rule = { class = 'Arduino IDE' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[1]
+		}
+	},
 	{
 		rule = { class = 'firefox' },
-		properties = { screen = 1, tag = variables.workspace_names[2] }
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[2]
+		}
+	},
+	{
+		rule = { class = 'krita' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[4]
+		}
+	},
+	{
+		rule = { class = 'xournalpp' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[4]
+		}
+	},
+	{
+		rule = { class = 'com.obsproject.Studio' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[7]
+		}
+	},
+	{
+		rule = { class = 'com.stremio.stremio' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[7]
+		}
+	},
+	{
+		rule = { class = 'Jellyfin Media Player' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[7]
+		}
+	},
+	{
+		rule = { class = 'org.jellyfin.jellyfinmediaplayer' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[7]
+		}
+	},
+	{
+		rule = { class = 'com-atlauncher-App' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[8]
+		}
+	},
+	{
+		rule = { class = 'lutris' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[8]
+		}
+	},
+	{
+		rule = { class = 'Minecraft' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[8]
+		}
+	},
+	{
+		rule = { class = 'PPSSPPQt' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[8]
+		}
+	},
+	{
+		rule = { class = 'PPSSPPSDL' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[8]
+		}
+	},
+	{
+		rule = { class = 'Steam' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[8]
+		}
+	},
+	{
+		rule = { class = 'discord' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[9]
+		}
 	},
 }
 -- }}}
