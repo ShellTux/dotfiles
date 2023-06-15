@@ -13,6 +13,7 @@ vim.keymap.set('n', '<Left>',     '<cmd>vertical resize -2<cr>') -- Vertical spl
 vim.keymap.set('n', '<Right>',    '<cmd>vertical resize +2<cr>') -- Vertical split resize
 vim.keymap.set('n', '<up>',       '<cmd>resize -2<cr>') -- split resize
 vim.keymap.set('n', '<down>',     '<cmd>resize +2<cr>') -- split resize
+vim.keymap.set('t', '<Esc>',     '<C-\\><C-n>', {silent = true}) -- Escape Terminal
 -- vim.keymap.set('v', 'J', vim.cmd("mark '>+1<CR>gv=gv")) -- Move visual block one line above
 -- vim.keymap.set('v', 'K', vim.cmd("mark '<-2<CR>gv=gv")) -- Move visual block one line below
 -- vim.keymap.set('n', 'Y', vim.cmd('yg$')) -- Yank to then end of the line without moving cursor
