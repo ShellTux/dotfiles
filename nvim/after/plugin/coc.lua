@@ -169,7 +169,7 @@ function format()
 	vim.cmd('command! -nargs=0 Format ' .. command)
 end
 vim.cmd([[autocmd BufEnter,BufNewFile * lua format()]])
-vim.cmd([[autocmd FileType * lua format()]])
+vim.cmd([[autocmd TabEnter, FileType * lua format()]])
 
 -- " Add `:Fold` command to fold current buffer
 vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", {nargs = '?'})
