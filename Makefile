@@ -1,5 +1,4 @@
-.PHONY: symlink mpd
-
+.PHONY = test sxhkd
 SHELL           := /bin/sh
 HOME_DIR         = $(shell echo $$HOME)
 CONFIG_DIR      ?= $(or $(shell echo $$XDG_CONFIG_HOME),$(shell echo $$HOME)/.config)
@@ -16,6 +15,7 @@ DEPENDECIES      = \
 		   network-manager-applet \
 		   picom \
 		   qpwgraph \
+		   sxhkd \
 		   syncthing \
 		   xf86-input-libinput \
 		   xorg-xrdb
@@ -50,6 +50,9 @@ install: dependecies
 	sudo sed -i 's/<user>/$(USERNAME)/g' /etc/doas.conf
 	sudo cp ./etc/vconsole.conf /etc
 	sudo cp ./etc/X11/xorg.conf.d/*.conf /etc/X11/xorg.conf.d
+
+sxhkd:
+	systemctl enable --user sxhkd.service
 
 $(MPD_SHARE) $(MPD_STATE):
 	mkdir --parents --verbose $@
