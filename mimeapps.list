@@ -1,5 +1,5 @@
 [Default Applications]
-application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+application/pdf=org.pwmt.zathura.desktop
 audio/flac=mpv.desktop
 audio/mp4=mpv.desktop
 audio/mpeg=mpv.desktop
@@ -16,7 +16,7 @@ x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 
 [Added Associations]
-application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;org.pwmt.zathura.desktop;
 inode/directory=thunar.desktop
 inode/directory=dolphin.desktop
 audio/flac=vlc.desktop
