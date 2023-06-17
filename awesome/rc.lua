@@ -16,6 +16,7 @@ local functions = require('functions')
 local variables = require('variables')
 
 naughty.config.defaults['icon_size'] = 384
+naughty.config.defaults['timeout'] = 10
 
 -- beautiful.init(gears.filesystem.get_themes_dir() .. 'default/theme.lua')
 beautiful.init('~/.config/awesome/theme.lua')

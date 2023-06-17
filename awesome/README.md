@@ -119,8 +119,9 @@ awful.key({ modkey, 'Shift' }, 's', function(client) client.sticky = not client.
 	{ description = 'Toggle sticky', group = 'client' }),
 ```
 
-- Icon size
+- Notifaction defaults
 
 ```lua
 naughty.config.defaults['icon_size'] = 384
+naughty.config.defaults['timeout'] = 10
 ```
