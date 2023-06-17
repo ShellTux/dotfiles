@@ -15,6 +15,8 @@ require('awful.hotkeys_popup.keys')
 local functions = require('functions')
 local variables = require('variables')
 
+naughty.config.defaults['icon_size'] = 384
+
 -- beautiful.init(gears.filesystem.get_themes_dir() .. 'default/theme.lua')
 beautiful.init('~/.config/awesome/theme.lua')
 
