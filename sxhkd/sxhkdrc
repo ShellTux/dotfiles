@@ -4,8 +4,11 @@
 XF86AudioPlay
       mpc toggle; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
 
+shift + XF86AudioPlay
+      $HOME/.local/bin/notify-music
+
 super + XF86AudioPlay
-      $HOME/.local/bin/dmenumpcplay ; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      $HOME/.local/bin/music-menu dmenu ; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
 
 super + alt + {0-9}
       mpc -q seek {0-9}0%
@@ -41,10 +44,10 @@ super + shift + apostrophe
       $HOME/.local/bin/arch-wiki
 
 super + Insert
-      $HOME/.local/bin/dmenumount
+      $HOME/.local/bin/mount-menu mount
 
 super + shift + Insert
-      $HOME/.local/bin/dmenuumount
+      $HOME/.local/bin/mount-menu unmount
 
 #super + p
 #	keepassxc-dmenu
@@ -62,4 +65,4 @@ super + Print
       screenshot "$(echo -e "Fullscreen\nSelect Window\nCurrent Window" | dmenu | sed 's/Fullscreen/fullscreen/;s/Select Window/select/;s/Current Window/current/')"
 
 super + period
-      $HOME/.local/bin/dmenuunicode
+      $HOME/.local/bin/emoji-menu
