@@ -1,5 +1,6 @@
 require('keybinds')
 require('plugin-manager')
+require('autocmds')
 
 ------------
 --- Settings
