@@ -118,3 +118,9 @@ You need to make sure the keybind is inside the `clientkey` not globalkeys
 awful.key({ modkey, 'Shift' }, 's', function(client) client.sticky = not client.sticky end,
 	{ description = 'Toggle sticky', group = 'client' }),
 ```
+
+- Icon size
+
+```lua
+naughty.config.defaults['icon_size'] = 384
+```
