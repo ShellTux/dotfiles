@@ -107,6 +107,7 @@ kitty/colorschemes/*
 /newsboat/*
 !/newsboat/config
 !/newsboat/themes
+!/newsboat/urls
 !/npm/
 /npm/*
 !/npm/npmrc
