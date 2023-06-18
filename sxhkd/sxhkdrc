@@ -2,40 +2,40 @@
 #	doas systemctl {suspend,reboot,poweroff}
 
 XF86AudioPlay
-      mpc toggle; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      mpc toggle; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 shift + XF86AudioPlay
       $HOME/.local/bin/notify-music
 
 super + XF86AudioPlay
-      $HOME/.local/bin/music-menu dmenu ; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      $HOME/.local/bin/music-menu dmenu ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 super + alt + {0-9}
       mpc -q seek {0-9}0%
 
 XF86AudioMute
-      $HOME/.local/bin/toggle_mute ; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      $HOME/.local/bin/toggle_mute ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 XF86Audio{LowerVolume,RaiseVolume}
-      $HOME/.local/bin/change-volume 5 {-,+}; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      $HOME/.local/bin/change-volume 5 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 control + XF86Audio{LowerVolume,RaiseVolume}
-      $HOME/.local/bin/change-volume 1 {-,+}; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      $HOME/.local/bin/change-volume 1 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 shift + XF86Audio{LowerVolume,RaiseVolume}
-      mpc volume {-,+}5 ; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      mpc volume {-,+}5 ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 control + shift + XF86Audio{LowerVolume,RaiseVolume}
-      mpc volume {-,+}1; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      mpc volume {-,+}1; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 XF86Audio{Prev,Next}
-      mpc -q {prev,next}; pkill -RTMIN+5 dwmblocks; pkill -SIGUSR1 i3status
+      mpc -q {prev,next}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 XF86MonBrightness{Down,Up}
-      brightnessctl set {5%-,+5%} --min-value 1; pkill -RTMIN+3 dwmblocks; pkill -SIGUSR1 i3status
+      brightnessctl set {5%-,+5%} --min-value 1; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 shift + XF86MonBrightness{Down,Up}
-      brightnessctl set {1%-,+1%} --min-value 1; pkill -RTMIN+3 dwmblocks; pkill -SIGUSR1 i3status
+      brightnessctl set {1%-,+1%} --min-value 1; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 # super + o ; {f}
 # 	{firefox}
