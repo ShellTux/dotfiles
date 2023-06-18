@@ -15,4 +15,6 @@ vim.cmd('set number') -- precede each line with its line number.
 vim.cmd('set encoding=UTF-8') -- Sets the character encoding used inside Vim.
 vim.cmd('set scrolloff=999') -- Minimal number of screen lines to keep above and below the cursor.
 vim.cmd('set termguicolors')
+vim.cmd('set wrap')
+vim.cmd('set linebreak')
 vim.cmd('highlight ColorColumn ctermbg=0 guibg=red')
