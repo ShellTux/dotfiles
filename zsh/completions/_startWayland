@@ -1,0 +1,3 @@
+#compdef startWayland
+
+_arguments '1: :(hyprland sway)'

@@ -6,6 +6,8 @@
 
 eval $(thefuck --alias)
 
+fpath=(${XDG_CONFIG_HOME:-HOME/.config}/zsh/completions $fpath)
+
 if command -v fastfetch &> /dev/null
 then
 	fastfetch
@@ -43,7 +45,7 @@ zstyle ':completion:*' prompt '%e'
 zstyle :compinstall filename "$HOME"'/.config/zsh/.zshrc'
 
 autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+compinit -i -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 # End of lines added by compinstall
 
 # bindkey -M menuselect 'h' vi-backward-char
