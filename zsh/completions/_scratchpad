@@ -1,0 +1,21 @@
+#compdef scratchpad
+
+_arguments \
+	'-h[Print help page]' \
+	'--help[Print help page]' \
+	'-c[Change window class]:class:(Scratchpad)' \
+	'--class[Change window class]:class:(Scratchpad)' \
+	'-n[Change window instance name]:name:(Scratchpad)' \
+	'--name[Change window instance name]:name:(Scratchpad)' \
+	'-t[Change window title]:title:(Scratchpad)' \
+	'--title[Change window title]:title:(Scratchpad)' \
+	'-L+[Change terminal amount of lines]:number:(20 30 40)' \
+	'--lines[Change terminal amount of lines]:number:(20 30 40)' \
+	'-C+[Change terminal amount of columns]:number:(90 100 110)' \
+	'--columns[Change terminal amount of columns]:number:(90 100 110)' \
+	'-e[Command to be run on the new terminal]' \
+	'--command[Command to be run on the new terminal]' \
+	'-T[Change terminal to be used]' \
+	'--terminal[Change terminal to be used]' \
+	'-w[Change working directory]:directory:_files -/' \
+	'--working-directory[Change working directory]:directory:_files -/'
