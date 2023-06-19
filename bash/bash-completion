@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 _startX_complete() {
 	local cur
@@ -20,5 +20,57 @@ _startWayland_complete() {
 	return 0
 }
 
+_scratchpad()
+{
+	local cur prev opts
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	opts="-h --help -c --class -n --name -t --title -L --lines -C --columns
+	-e --command -T --terminal -w --working-directory"
+
+	class_values="Scratchpad"
+	name_values="Scratchpad"
+	title_values="Scratchpad"
+	lines_values="20 30 40"
+	columns_values="90 100 110"
+
+	case "$prev" in
+		-h|--help)
+			# no additional completions needed for help flag
+			;;
+		-T|--terminal|-e|--command)
+			# no additional completions needed for these flags
+			;;
+		-c|--class)
+			COMPREPLY=( $(compgen -W "${class_values}" -- ${cur}) )
+			;;
+		-n|--name)
+			COMPREPLY=( $(compgen -W "${name_values}" -- ${cur}) )
+			;;
+		-t|--title)
+			COMPREPLY=( $(compgen -W "${title_values}" -- ${cur}) )
+			;;
+		-L|--lines)
+			# complete integer values
+			COMPREPLY=( $(compgen -W "${lines_values}" -- "$cur") )
+			;;
+		-C|--columns)
+			# complete integer values
+			COMPREPLY=( $(compgen -W "${columns_values}" -- "$cur") )
+			;;
+		-w|--working-directory)
+			# complete directory names
+			COMPREPLY=( $(compgen -d -- "$cur") )
+			;;
+		*)
+			COMPREPLY=( $(compgen -W "${opts}" -- "$cur") )
+			;;
+	esac
+
+	return 0
+}
+
 complete -F _startX_complete startX
 complete -F _startWayland_complete startWayland
+complete -F _scratchpad scratchpad
