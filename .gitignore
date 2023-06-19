@@ -253,6 +253,9 @@ vifm/scripts/*
 !/zsh/.zprofile
 !/zsh/.zshenv
 !/zsh/.zshrc
+!/zsh/completions
+/zsh/completions/*
+!/zsh/completions/_*
 
 !**README.md
 

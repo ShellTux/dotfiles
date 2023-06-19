@@ -1,0 +1,3 @@
+#compdef startX
+
+_arguments '1: :(dwm awesome i3 xmonad)'
