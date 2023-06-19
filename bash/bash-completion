@@ -1,0 +1,24 @@
+#!/bin/sh
+
+_startX_complete() {
+	local cur
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+
+	COMPREPLY=( $( compgen -W 'dwm awesome i3 xmonad' -- $cur ) )
+
+	return 0
+}
+
+_startWayland_complete() {
+	local cur
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+
+	COMPREPLY=( $( compgen -W 'hyprland sway' -- $cur ) )
+
+	return 0
+}
+
+complete -F _startX_complete startX
+complete -F _startWayland_complete startWayland
