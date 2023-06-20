@@ -39,7 +39,7 @@ local registers = {
 	u = 'Undo Tree'
 }
 
-for i = 0, #vim_fugitive.diff do
+for i = 0, 9 do
 	local description = 'Git diff HEAD'
 	if i >= 1 then
 		description = description .. '~'
@@ -47,7 +47,7 @@ for i = 0, #vim_fugitive.diff do
 			description = description .. i
 		end
 	end
-	registers.g['d' .. i] = { vim_fugitive.diff[i], description }
+	registers.g['d' .. i] = { vim_fugitive.diff(i), description }
 end
 
 whichKey.register(registers, { prefix = '<leader>' })
