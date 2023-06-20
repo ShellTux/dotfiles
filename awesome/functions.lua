@@ -44,9 +44,9 @@ module.screen.connect_for_each_screen = function(screen)
 		awful.button({}, 4, function() awful.layout.inc(1) end),
 		awful.button({}, 5, function() awful.layout.inc(-1) end)))
 	-- Create a taglist widget
-	screen.mytaglist = awful.widget.taglist {
+	screen.tag_list = awful.widget.taglist {
 		screen  = screen,
-		filter  = awful.widget.taglist.filter.all,
+		filter  = awful.widget.taglist.filter.noempty,
 		buttons = taglist_buttons
 	}
 
@@ -67,7 +67,7 @@ module.screen.connect_for_each_screen = function(screen)
 			-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			mylauncher,
-			screen.mytaglist,
+			screen.tag_list,
 			screen.mypromptbox,
 		},
 		screen.mytasklist, -- Middle widget
