@@ -10,7 +10,8 @@
 
 ## Features of My Awesome WM
 
-- Window Swallowing
+- [x] Window Swallowing
+  - [ ] Disable swallowing per window class
 
   For window swallowing, I came across this [reddit post](https://www.reddit.com/r/awesomewm/comments/h07f5y/does_awesome_support_window_swallowing/),
   and simply copy and paste with some modifications.
@@ -53,7 +54,7 @@ client.connect_signal("manage", function(c)
 end)
 ```
 
-- Browse non-empty tags
+- [x] Browse non-empty tags
 
   When browsing tags left or right, it will go to the next non-empty tag.
   Inspired by this [reddit](https://www.reddit.com/r/awesomewm/comments/lzly7b/browse_through_non_empty_tags/) post.
@@ -96,7 +97,7 @@ module.tag.view_next = function(empty, direction, screen)
 end
 ```
 
-- Scratchpad
+- [x] Scratchpad
 
   Launch a dropdown terminal, here is some sources and inspiration:
 
@@ -105,7 +106,7 @@ end
   - [Easy scratchpad](https://www.reddit.com/r/awesomewm/comments/x3lxgd/easy_scratchpad/)
   - [awesome-scratchpad.lua](https://pastebin.com/p8ZLV2wq)
 
-- Sticky windows
+- [x] Sticky windows
 
   Make a window visible in all tags
 
@@ -126,7 +127,7 @@ naughty.config.defaults['icon_size'] = 384
 naughty.config.defaults['timeout'] = 10
 ```
 
-- Hide tags without clients
+- [x] Hide tags without clients
 
 ```lua
 awful.widget.taglist {
