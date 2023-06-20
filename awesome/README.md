@@ -125,3 +125,13 @@ awful.key({ modkey, 'Shift' }, 's', function(client) client.sticky = not client.
 naughty.config.defaults['icon_size'] = 384
 naughty.config.defaults['timeout'] = 10
 ```
+
+- Hide tags without clients
+
+```lua
+awful.widget.taglist {
+    ...,
+    filter  = awful.widget.taglist.filter.noempty,
+    ...,
+}
+```
