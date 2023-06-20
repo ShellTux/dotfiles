@@ -1,31 +1,25 @@
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 require('which-key').setup()
+local vim_fugitive = require('vim-fugitive')
+
 local whichKey = require("which-key")
-whichKey.register({
+local registers = {
 	g = {
 		name = 'Git',
-		a = 'Git add file',  -- Add file to index of git repository
-		c = 'Git commit',  -- Make a commit. Record changes to the repository
-		C = 'Git switch branch',  -- Switch branches or restore working tree files
-		l = 'Git log',  -- Show commit logs
-		g = 'Git',  -- Show git
-		S = 'Git show objects',  -- Show various type of objects
-		s = 'Git stage file',  -- Add file contents to the staging area
-		p = 'Git update remote refs',  -- Update remote refs along with associated objects. Push commits to remote
-		d = {
-			name = 'Git diff',
-			['0'] = 'HEAD',
-			['1'] = 'HEAD~1',
-			['2'] = 'HEAD~2',
-			['3'] = 'HEAD~3',
-			['4'] = 'HEAD~4',
-			['5'] = 'HEAD~5',
-			['6'] = 'HEAD~6',
-			['7'] = 'HEAD~7',
-			['8'] = 'HEAD~8',
-			['9'] = 'HEAD~9',
-		},
+		a    = { vim_fugitive.add, 'Git add file' },
+		ch   = { vim_fugitive.checkout, 'Git checkout file' },
+		co   = { vim_fugitive.commit, 'Git commit file' },
+		d    = 'Git diff',
+		g    = { vim_fugitive.git, 'Git' },
+		l    = 'Git log',
+		lg   = { vim_fugitive.graph, 'Git log --graph' },
+		lo   = { vim_fugitive.log, 'Git log' },
+		p    = { vim_fugitive.push, 'Git push' },
+		sh   = { vim_fugitive.show, 'Git show objects' },
+		st   = { vim_fugitive.stage, 'Git stage file' },
+		sw   = { vim_fugitive.switch, 'Git switch branch' },
+		u    = { vim_fugitive.update, 'Git update remote refs' },
 	},
 	p = {
 		name = 'Project',
@@ -43,4 +37,17 @@ whichKey.register({
 		c = 'Tab Close',
 	},
 	u = 'Undo Tree'
-}, { prefix = '<leader>' })
+}
+
+for i = 0, #vim_fugitive.diff do
+	local description = 'Git diff HEAD'
+	if i >= 1 then
+		description = description .. '~'
+		if i >= 2 then
+			description = description .. i
+		end
+	end
+	registers.g['d' .. i] = { vim_fugitive.diff[i], description }
+end
+
+whichKey.register(registers, { prefix = '<leader>' })
