@@ -58,10 +58,11 @@ module.screen.connect_for_each_screen = function(screen)
 	}
 
 	-- Create the wibox
-	screen.mywibox = awful.wibar({ position = 'top', screen = screen })
+	screen.top_wibox = awful.wibar({ position = 'top', screen = screen })
+	screen.bottom_wibox = awful.wibar({ position = 'bottom', screen = screen })
 
 	-- Add widgets to the wibox
-	screen.mywibox:setup {
+	screen.top_wibox:setup {
 		layout = wibox.layout.align.horizontal,
 		{
 			-- Left widgets
@@ -78,6 +79,19 @@ module.screen.connect_for_each_screen = function(screen)
 			wibox.widget.systray(),
 			mytextclock,
 			screen.mylayoutbox,
+		},
+	}
+
+	screen.bottom_wibox:setup {
+		layout = wibox.layout.align.horizontal,
+		{
+			-- Left widgets
+			layout = wibox.layout.fixed.horizontal,
+		},
+		screen.mytasklist, -- Middle widget
+		{
+			-- Right widgets
+			layout = wibox.layout.fixed.horizontal,
 		},
 	}
 end
