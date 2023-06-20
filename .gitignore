@@ -224,6 +224,9 @@ vifm/scripts/*
 !/X11/xinitrc
 !/X11/xprofile
 !/X11/Xresources
+!/xbindkeys/
+/xbindkeys/*
+!/xbindkeys/config
 !/xmobar
 !/xmonad
 /xmonad/*
