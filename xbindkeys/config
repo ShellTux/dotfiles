@@ -65,6 +65,109 @@
 #"rxvt"
 #  Control + b:2 + Release
 
+# Toggle mpd music
+"mpc toggle; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   XF86AudioPlay
+
+# Notify music
+"notify-music"
+   shift + XF86AudioPlay
+
+# Select mpd music
+"music-menu dmenu ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   super + XF86AudioPlay
+
+# "mpc -q seek {0-9}0%"
+#    super + alt + {0-9}
+
+# Toggle Mute
+"toggle-mute ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   XF86AudioMute
+
+# Increase volume
+"change-volume 5 + ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"change-volume 5 - ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   XF86AudioLowerVolume
+
+# Increase volume by 1%
+"change-volume 1 + ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   control + XF86AudioRaiseVolume
+
+# Decrease volume by 1%
+"change-volume 1 - ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   control + XF86AudioLowerVolume
+
+# Increase mpd volume by 5
+"mpc volume +5 ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   shift + XF86AudioRaiseVolume
+
+# Decrease mpd volume by 5
+"mpc volume -5 ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   shift + XF86AudioLowerVolume
+
+# Increase mpd volume by 1
+"mpc volume +1 ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   shift + XF86AudioRaiseVolume
+
+# Decrease mpd volume by 1
+"mpc volume -1 ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   shift + XF86AudioLowerVolume
+
+# Go to previous mpd song
+"mpc -q prev ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   XF86AudioPrev
+
+# Go to next mpd song
+"mpc -q next ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status"
+   XF86AudioNext
+
+# Increase brightness by 5%
+"brightnessctl set +5% ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status"
+   XF86MonBrightnessUp
+
+# Decrease brightness by 5%
+"brightnessctl set 5%- --min-value 1 ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status"
+   XF86MonBrightnessDown
+
+# Increase brightness by 1%
+"brightnessctl set +1% ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status"
+   shift + XF86MonBrightnessDown
+
+# Decrease brightness by 1%
+"brightnessctl set 1%- --min-value 1 ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status"
+   shift + XF86MonBrightnessDown
+
+"arch-wiki"
+   super + shift + apostrophe
+
+"mount-menu mount"
+   super + Insert
+
+"mount-menu unmount"
+   super + shift + Insert
+
+"clipmenu"
+   super + v
+
+# "case "$(echo -e "\nShutdown\nReboot" | dmenu -p "Choose: ")" in "Shutdown") shutdown now ;; "Reboot") reboot ;; esac"
+#    super + F4
+
+"flameshot gui"
+   Print
+
+# "screenshot "$(echo -e "Fullscreen\nSelect Window\nCurrent Window" | dmenu | sed 's/Fullscreen/fullscreen/;s/Select Window/select/;s/Current Window/current/')""
+#    super + Print
+
+"emoji-menu"
+   super + period
+
+# Mute microphone
+# "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+#    XF86AudioMicMute
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
