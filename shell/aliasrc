@@ -8,6 +8,7 @@ alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settin
 alias sqlite3='sqlite3 -init "$XDG_CONFIG_HOME"/sqlite3/sqliterc'
 alias units='units --history "$XDG_CACHE_HOME"/units_history'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+alias xbindkeys='xbindkeys -f "${XDG_CONFIG_HOME:-HOME/.config}"/xbindkeys/config'
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 # My custom aliaseses
