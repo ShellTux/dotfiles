@@ -1,9 +1,9 @@
 local function gitdiff(history)
 	return function()
 		vim.cmd.tabnew('%')
-		local command = 'Gvdiffsplit HEAD'
-		if history > 0 then
-			command = command .. '~' .. history
+		local command = 'Gvdiffsplit '
+		if history>= 0 then
+			command = command .. 'HEAD~' .. history
 		end
 		vim.cmd(command)
 
@@ -33,7 +33,7 @@ local module = {
 	add      = command('Git add %'),
 	checkout = command('Git checkout'),
 	commit   = command('Git commit'),
-	diff     = {},
+	diff     = gitdiff,
 	git      = openCommandInNewTab('Git'),
 	-- TODO: If more than 1 branch ask for which branch log
 	graph    = openCommandInNewTab('Git log --graph'),
@@ -42,10 +42,7 @@ local module = {
 	push     = command('Git push'),
 	show     = openCommandInNewTab('Git show'),
 	stage    = command('Git stage %'),
+	switch   = command('Telescope git_branches'),
 }
-
-for i = 0, 9 do
-	module.diff[i] = gitdiff(i)
-end
 
 return module
