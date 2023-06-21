@@ -56,13 +56,15 @@
 			  "hie.yaml"
 		  ],
 		  "filetypes": ["haskell", "lhaskell"]
+	    },
+	    "lua": {
+		    "command": "lua-language-server",
+		    "filetypes": ["lua"]
 	    }
       },
 
       "clangd.path": "/usr/bin/clangd",
       "clangd.arguments": ["--clang-tidy"],
-
-      "Lua.misc.executablePath": "/usr/bin/lua-language-server",
 
       "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
       "rust-analyzer.updates.checkOnStartup": false,
