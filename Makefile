@@ -1,4 +1,3 @@
-.PHONY = test sxhkd
 SHELL           := /bin/sh
 HOME_DIR         = $(shell echo $$HOME)
 CONFIG_DIR      ?= $(or $(shell echo $$XDG_CONFIG_HOME),$(shell echo $$HOME)/.config)
@@ -27,6 +26,7 @@ AUR_DEPENDECIES  = \
 
 all: symlink install
 
+.PHONY: test
 test:
 	@echo $(DEPENDECIES) $(AUR_DEPENDECIES)
 
@@ -51,6 +51,7 @@ install: dependecies
 	sudo cp ./etc/vconsole.conf /etc
 	sudo cp ./etc/X11/xorg.conf.d/*.conf /etc/X11/xorg.conf.d
 
+.PHONY: sxhkd
 sxhkd:
 	systemctl enable --user sxhkd.service
 
@@ -62,3 +63,13 @@ mpd: | $(MPD_SHARE) $(MPD_STATE)
 	touch "$(MPD_SHARE)/mpd.log"
 	touch "$(MPD_STATE)/mpd.pid"
 	touch "$(MPD_STATE)/mpdstate"
+
+.PHONY: xmonad
+xmonad:
+	sudo pacman -S --needed --noconfirm \
+		xmonad \
+		xmonad-utils \
+		xmonad-extras \
+		xmonad-contrib \
+		xmobar \
+		trayer
