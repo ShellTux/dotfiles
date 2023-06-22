@@ -91,8 +91,3 @@ This repository includes configurations for:
 - [Zsh](https://www.zsh.org/)
 
 Feel free to fork this repository and customize the configurations to your liking.
-
-<!-- TODO: Add credits -->
-## Credits
-
-- Xmonad: Distrotube
