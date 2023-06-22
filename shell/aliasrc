@@ -78,6 +78,7 @@ alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail --embed-metad
 	--embed-chapters'
 _trap_exit() { tmux kill-session -t music; }
 trap _trap_exit EXIT
+eval "$(thefuck --alias)"
 
 # Start - Custom functions
 
