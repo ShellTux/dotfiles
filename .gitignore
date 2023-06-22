@@ -257,6 +257,9 @@ vifm/scripts/*
 !/zsh/.zprofile
 !/zsh/.zshenv
 !/zsh/.zshrc
+!/zsh/zsh-comp
+!/zsh/zsh-keybindings
+!/zsh/zsh-onefetch
 !/zsh/completions
 /zsh/completions/*
 !/zsh/completions/_*
