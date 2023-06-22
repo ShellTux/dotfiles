@@ -4,7 +4,8 @@
 
 [[ $- != *i* ]] && return
 
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+[ -r /usr/share/bash-completion/bash_completion ] \
+	&& . /usr/share/bash-completion/bash_completion
 [ -r "$(which doas)" ] && complete -cf doas
 [ -f "${XDG_CONFIG_HOME:-HOME/.config}"/shell/aliasrc ] \
 	&& . "${XDG_CONFIG_HOME:-HOME/.config}"/shell/aliasrc
@@ -65,7 +66,8 @@ unset use_color safe_term match_lhs sh
 
 if command -v fastfetch &> /dev/null
 then
-    fastfetch
-else
-    neofetch
+	fastfetch
+elif command -v neofetch &> /dev/null
+then
+	neofetch
 fi
