@@ -107,7 +107,7 @@
 		"exec-if": "exit 0",                  // always run; consider advanced run conditions
 		"on-click": "sb-packages 1",
 		"on-click-right": "scratchpad --command 'sb-packages 3'; pkill -SIGRTMIN+8 waybar",
-		"on-double-click": "scratchpad --command 'sb-popupgrade'; pkill -SIGRTMIN+8 waybar", // update system
+		"on-double-click": "scratchpad --command 'arch-linux-upgrade'; pkill -SIGRTMIN+8 waybar", // update system
 		"signal": 8
 	},
 
