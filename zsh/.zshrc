@@ -38,8 +38,10 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # Completions
-[ -f "$ZDOTDIR"/zsh-comp ] && source "$ZDOTDIR"/zsh-comp
 fpath=("${XDG_CONFIG_HOME:-HOME/.config}/zsh/completions" $fpath)
+[ -f "$ZDOTDIR"/zsh-comp ] && source "$ZDOTDIR"/zsh-comp
+autoload -Uz compinit
+compinit -i -d "${XDG_CACHE_HOME:-HOME/.cache}"/zsh/zcompdump-"$ZSH_VERSION"
 
 # Themes
 fpath=("${XDG_CONFIG_HOME:-HOME/.config}/zsh/prompt_themes" "$fpath[@]")
