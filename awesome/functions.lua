@@ -116,21 +116,34 @@ module.screen.connect_for_each_screen = function(screen)
 			-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			mykeyboardlayout,
-			wibox.widget.systray(),
+			awful.widget.watch('sb-packages', 0),
+			awful.widget.watch('sb-volume', 0),
+			awful.widget.watch('sb-internet', 15),
 			mytextclock,
+			wibox.widget.systray(),
 			screen.mylayoutbox,
 		},
 	}
 
 	screen.bottom_wibox:setup {
 		layout = wibox.layout.align.horizontal,
-		{
-			-- Left widgets
+		{ -- Left
+			awful.widget.watch('sb-kernel', 0),
+			awful.widget.watch('sb-cpu', 3),
+			awful.widget.watch('sb-mem', 30),
+			awful.widget.watch('sb-disk /', 3600),
+			awful.widget.watch('sb-disk /home', 3600),
 			layout = wibox.layout.fixed.horizontal,
+
 		},
-		screen.mytasklist, -- Middle widget
-		{
+		{ -- Middle
+			layout = wibox.layout.align.horizontal,
+		},
+		{ -- Right
 			-- Right widgets
+			awful.widget.watch('sb-network-traffic', 1),
+			awful.widget.watch('sb-weather', 3600),
+			awful.widget.watch('sb-news', 1800),
 			layout = wibox.layout.fixed.horizontal,
 		},
 	}
