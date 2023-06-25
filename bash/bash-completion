@@ -1,5 +1,31 @@
 #!/usr/bin/env bash
 
+_change-volume_complete() {
+	local cur prev opts
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+	case ${prev} in
+		change-volume) opts="notify toggle-mute 1 2 5 10" ;;
+		[0-9]|[0-9][0-9]|100) opts="+ -" ;;
+	esac
+	COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+}
+
+_change-brightness_complete() {
+	local cur prev opts
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+	case ${prev} in
+		change-brightness) opts="notify 1 2 5 10" ;;
+		[0-9]|[0-9][0-9]|100) opts="+ -" ;;
+	esac
+	COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+}
+
 _startX_complete() {
 	local cur
 	COMPREPLY=()
@@ -74,3 +100,4 @@ _scratchpad()
 complete -F _startX_complete startX
 complete -F _startWayland_complete startWayland
 complete -F _scratchpad scratchpad
+complete -F _change-volume_complete change-volume

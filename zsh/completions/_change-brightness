@@ -1,0 +1,5 @@
+#compdef change-brightness
+
+_arguments \
+	'1: :(notify 1 2 5 10)' \
+	'2:direction:(+ -)'
