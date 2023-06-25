@@ -124,7 +124,7 @@
     skip_display = yes
 
 [stack-volumes]
-    appname = "changevolume"
+    appname = "change-volume"
     set_stack_tag = "volume"
 
 # vim: ft=cfg
