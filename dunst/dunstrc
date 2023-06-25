@@ -1,18 +1,19 @@
 # See dunst(5) for all configuration options
 
 [global]
-    alignment = center
+    alignment = left
     always_run_script = true
     browser = /usr/bin/xdg-open
     class = Dunst
     corner_radius = 30
     dmenu = /usr/bin/dmenu -p dunst:
     ellipsize = middle
+    enable_recursive_icon_lookup = false
     follow = none
     font = Monospace 14
     force_xinerama = false
     force_xwayland = false
-    format = "<b>%s</b>\n%b"
+    format = "<u><span size='x-large' font_desc='Cantarell,mplus Nerd Font 9' weight='bold' foreground='#f9f9f9'>%s</span></u>\n%b\n<b>App</b>: %a\n"
     frame_color = "#aaaaaa"
     frame_width = 3
     gap_size = 10
@@ -23,6 +24,7 @@
     icon_corner_radius = 20
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
     icon_position = left
+    icon_theme = "Adwaita, breeze"
     # idle_threshold = 120
     ignore_dbusclose = false
     ignore_newline = no
@@ -39,8 +41,8 @@
     offset = 10x50
     origin = top-right
     padding = 8
-    progress_bar_frame_width = 1
-    progress_bar_height = 10
+    progress_bar_frame_width = 2
+    progress_bar_height = 15
     progress_bar_max_width = 300
     progress_bar_min_width = 150
     progress_bar = true
@@ -49,17 +51,24 @@
     separator_height = 2
     show_age_threshold = 60
     show_indicators = yes
-    sort = update
     sort_ascending = false
+    sort = update
     stack_duplicates = true
     sticky_history = yes
     text_icon_padding = 0
     title = Dunst
-    transparency = 10
+    transparency = 0
     vertical_alignment = center
     width = (0, 1024)
+
 [experimental]
-    per_monitor_dpi = false
+	per_monitor_dpi = false
+
+[shortcuts]
+    close = ctrl+shift+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
 
 [urgency_low]
     background = "#222222"
@@ -83,79 +92,35 @@
     default_icon = ~/.local/share/dunst/critical_64px.png
     script = ~/.local/bin/dunst-espeak-critical
 
-# Disable the transient hint so that idle_threshold cannot be bypassed from the
-# client
-#[transient_disable]
-#    match_transient = yes
-#    set_transient = no
-#
-# Make the handling of transient notifications more strict by making them not
-# be placed in history.
-#[transient_history_ignore]
-#    match_transient = yes
-#    history_ignore = yes
-
 # fullscreen values
 # show: show the notifications, regardless if there is a fullscreen window opened
 # delay: displays the new notification, if there is no fullscreen window active
 #        If the notification is already drawn, it won't get undrawn.
 # pushback: same as delay, but when switching into fullscreen, the notification will get
 #           withdrawn from screen again and will get delayed like a new notification
-#[fullscreen_delay_everything]
-#    fullscreen = delay
+[fullscreen_delay_everything]
+    fullscreen = delay
 [fullscreen_show_critical]
     msg_urgency = critical
     fullscreen = show
 
-# [espeak]
-#     summary = "*"
-#     script = dunst_espeak.sh
+[ignore]
+    # This notification will not be displayed
+    summary = "foobar"
+    skip_display = true
 
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
-
-#[ignore]
-#    # This notification will not be displayed
-#    summary = "foobar"
-#    skip_display = true
-
-#[history-ignore]
-#    # This notification will not be saved in history
-#    summary = "foobar"
-#    history_ignore = yes
+[history-ignore]
+    # This notification will not be saved in history
+    summary = "foobar"
+    history_ignore = yes
 
 [music]
     summary = "music"
     urgency = "low"
 
-#[skip-display]
-#    # This notification will not be displayed, but will be included in the history
-#    summary = "foobar"
-#    skip_display = yes
+[skip-display]
+    # This notification will not be displayed, but will be included in the history
+    summary = "foobar"
+    skip_display = yes
 
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
-#[stack-volumes]
-#    appname = "some_volume_notifiers"
-#    set_stack_tag = "volume"
-#
 # vim: ft=cfg
