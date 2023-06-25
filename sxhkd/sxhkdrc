@@ -32,10 +32,10 @@ XF86Audio{Prev,Next}
       mpc -q {prev,next}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 XF86MonBrightness{Down,Up}
-      brightnessctl set {5%-,+5%} --min-value 1; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      $HOME/.local/bin/change-brightness 5 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 shift + XF86MonBrightness{Down,Up}
-      brightnessctl set {1%-,+1%} --min-value 1; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      $HOME/.local/bin/change-brightness 1 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 # super + o ; {f}
 # 	{firefox}
