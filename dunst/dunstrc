@@ -123,4 +123,8 @@
     summary = "foobar"
     skip_display = yes
 
+[stack-volumes]
+    appname = "changevolume"
+    set_stack_tag = "volume"
+
 # vim: ft=cfg
