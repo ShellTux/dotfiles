@@ -4,6 +4,8 @@ CONFIG_DIR      ?= $(or $(shell echo $$XDG_CONFIG_HOME),$(shell echo $$HOME)/.co
 USERNAME         = $(shell whoami)
 MPD_SHARE        = $(shell echo "$$HOME"/.local/share/mpd)
 MPD_STATE        = $(shell echo "$$HOME"/.local/state/mpd)
+DBUS_SERVICE_DIR = $(or $(shell echo $$XDG_DATA_HOME),$(shell echo $$HOME)/.local/share)/dbus-1/services
+DBUS_SERVICES    = dunst/org.freedesktop.Notifications.service
 PKG_MANAGER      = sudo pacman -S --needed --noconfirm
 AUR_MANAGER      = yay -S --aur --needed --noconfirm
 DEPENDECIES      = \
@@ -55,7 +57,7 @@ install: dependecies
 sxhkd:
 	systemctl enable --user sxhkd.service
 
-$(MPD_SHARE) $(MPD_STATE):
+$(MPD_SHARE) $(MPD_STATE) $(DBUS_SERVICE_DIR):
 	mkdir --parents --verbose $@
 
 mpd: | $(MPD_SHARE) $(MPD_STATE)
@@ -73,3 +75,6 @@ xmonad:
 		xmonad-contrib \
 		xmobar \
 		trayer
+
+dbus: | $(DBUS_SERVICE_DIR)
+	cp $(DBUS_SERVICES) $(DBUS_SERVICE_DIR)
