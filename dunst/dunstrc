@@ -115,6 +115,7 @@
 
 [music]
     appname = "music"
+    set_stack_tag = "music"
     urgency = "low"
     timeout = 10
 
