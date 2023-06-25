@@ -39,6 +39,7 @@
 !/dunst/
 /dunst/*
 !/dunst/dunstrc
+!/dunst/org.freedesktop.Notifications.service
 !/etc/
 /etc/*
 !/etc/doas.conf
