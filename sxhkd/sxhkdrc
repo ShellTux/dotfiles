@@ -14,7 +14,7 @@ super + alt + {0-9}
       mpc -q seek {0-9}0%
 
 XF86AudioMute
-      $HOME/.local/bin/toggle-mute ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      $HOME/.local/bin/change-volume toggle-mute ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
 
 XF86Audio{LowerVolume,RaiseVolume}
       $HOME/.local/bin/change-volume 5 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
