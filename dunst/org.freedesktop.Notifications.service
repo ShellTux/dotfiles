@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.freedesktop.Notifications
+Environment=PATH=$PATH:/usr/local/bin:/usr/bin:/bin:~/.local/bin
+Exec=/usr/bin/dunst
