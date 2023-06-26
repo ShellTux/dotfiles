@@ -49,7 +49,6 @@ alias ls='exa --across --color=automatic  --color-scale --icons \
 alias lspkgs='pacman -Qe --color=always | $PAGER -R'
 alias mkdir='mkdir --parents --verbose'
 alias more=less
-alias music='tmux new-session -s music "tmux source-file ~/.config/ncmpcpp/tsession"'
 alias mv='mv --verbose'
 alias newsboat-repo='newsboat --url-file="$HOME"/.config/newsboat/repos-urls' \
 	'--cache-file="$HOME"/.local/share/newsboat/cache-repos.db --refresh-on-start'
@@ -76,8 +75,6 @@ alias yay='yay --sudo notify-sudo'
 alias youtube-dl='yt-dlp'
 alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail --embed-metadata \
 	--embed-chapters'
-_trap_exit() { tmux kill-session -t music; }
-trap _trap_exit EXIT
 eval "$(thefuck --alias)"
 
 # Start - Custom functions
