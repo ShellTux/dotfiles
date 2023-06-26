@@ -89,6 +89,11 @@
     default_icon = critical
     script = ~/.local/bin/dunst-espeak-critical
 
+[help_notification]
+    msg_urgency = normal
+    appname = "help"
+    timeout = 30
+
 # fullscreen values
 # show: show the notifications, regardless if there is a fullscreen window opened
 # delay: displays the new notification, if there is no fullscreen window active
