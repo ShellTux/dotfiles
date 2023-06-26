@@ -6,6 +6,9 @@
     background = "#285577"
     browser = /usr/bin/xdg-open
     class = Dunst
+    close_all = ctrl+shift+space
+    close = ctrl+shift+space
+    context = ctrl+shift+period
     corner_radius = 30
     default_icon = normal
     dmenu = /usr/bin/dmenu -p dunst:
@@ -19,9 +22,11 @@
     format = "<u><span size='x-large' font_desc='Cantarell,mplus Nerd Font 9' weight='bold' foreground='#f9f9f9'>%s</span></u>\n%b\n<b>App</b>: %a\n"
     frame_color = "#aaaaaa"
     frame_width = 3
+    fullscreen = delay
     gap_size = 10
     height = 700
     hide_duplicate_count = false
+    history = ctrl+grave
     history_length = 20
     horizontal_padding = 8
     icon_corner_radius = 20
@@ -54,8 +59,7 @@
     separator_height = 2
     show_age_threshold = 60
     show_indicators = yes
-    sort_ascending = false
-    sort = update
+    sort = true
     stack_duplicates = true
     sticky_history = yes
     text_icon_padding = 0
@@ -67,12 +71,6 @@
 
 [experimental]
 	per_monitor_dpi = false
-
-[shortcuts]
-    close = ctrl+shift+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
 
 [urgency_low]
     background = "#222222"
