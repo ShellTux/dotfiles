@@ -20,10 +20,10 @@ done
 	&& source ~/.config/zsh/p10k.zsh \
 	|| source ~/.config/zsh/p10k.terminal.zsh
 
-aliasrc="${XDG_CONFIG_HOME:-HOME/.config}/shell/aliasrc"
+aliasrc="${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 [ -f "$aliasrc" ] && source "$aliasrc"
 
-LS_COLORS="${XDG_DATA_HOME:-HOME/.local/share}/LS_COLORS"
+LS_COLORS="${XDG_DATA_HOME:-$HOME/.local/share}/LS_COLORS"
 [ -f "$LS_COLORS" ] && eval $(dircolors -b "$LS_COLORS")
 
 # Created by newuser for 5.9
@@ -38,13 +38,13 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # Completions
-fpath=("${XDG_CONFIG_HOME:-HOME/.config}/zsh/completions" $fpath)
+fpath=("${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions" $fpath)
 [ -f "$ZDOTDIR"/zsh-comp ] && source "$ZDOTDIR"/zsh-comp
 autoload -Uz compinit
-compinit -i -d "${XDG_CACHE_HOME:-HOME/.cache}"/zsh/zcompdump-"$ZSH_VERSION"
+compinit -i -d "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh/zcompdump-"$ZSH_VERSION"
 
 # Themes
-fpath=("${XDG_CONFIG_HOME:-HOME/.config}/zsh/prompt_themes" "$fpath[@]")
+fpath=("${XDG_CONFIG_HOME:-$HOME/.config}/zsh/prompt_themes" "$fpath[@]")
 autoload -Uz promptinit
 promptinit
 

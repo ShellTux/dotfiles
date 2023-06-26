@@ -7,10 +7,10 @@
 [ -r /usr/share/bash-completion/bash_completion ] \
 	&& . /usr/share/bash-completion/bash_completion
 [ -r "$(which doas)" ] && complete -cf doas
-[ -f "${XDG_CONFIG_HOME:-HOME/.config}"/shell/aliasrc ] \
-	&& . "${XDG_CONFIG_HOME:-HOME/.config}"/shell/aliasrc
-[ -f "${XDG_CONFIG_HOME:-HOME/.config}"/bash/bash-completion ] \
-	&& . "${XDG_CONFIG_HOME:-HOME/.config}"/bash/bash-completion
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/aliasrc ] \
+	&& . "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/aliasrc
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/bash/bash-completion ] \
+	&& . "${XDG_CONFIG_HOME:-$HOME/.config}"/bash/bash-completion
 
 # Change the window title of X terminals
 case ${TERM} in
