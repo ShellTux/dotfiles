@@ -128,10 +128,12 @@
     appname = "change-volume"
     set_stack_tag = "volume"
     timeout = 2
+    fullscreen = show
 
 [stack-brightness]
     appname = "change-brightness"
     set_stack_tag = "brightness"
     timeout = 2
+    fullscreen = show
 
 # vim: ft=cfg
