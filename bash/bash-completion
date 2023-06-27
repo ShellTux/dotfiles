@@ -52,7 +52,7 @@ _scratchpad()
 	COMPREPLY=()
 	cur=${COMP_WORDS[COMP_CWORD]}
 	prev=${COMP_WORDS[COMP_CWORD-1]}
-	opts="-h --help -c --class -n --name -t --title -L --lines -C --columns
+	opts="-h --help -d --debug -c --class -n --name -t --title -L --lines -C --columns
 	-e --command -T --terminal -w --working-directory"
 
 	class_values="Scratchpad"
@@ -62,30 +62,27 @@ _scratchpad()
 	columns_values="90 100 110"
 
 	case "$prev" in
-		-h|--help)
-			# no additional completions needed for help flag
-			;;
-		-T|--terminal|-e|--command)
+		-h | --help | -d | --debug | -T | --terminal | -e | --command)
 			# no additional completions needed for these flags
 			;;
-		-c|--class)
+		-c | --class)
 			COMPREPLY=( $(compgen -W "${class_values}" -- ${cur}) )
 			;;
-		-n|--name)
+		-n | --name)
 			COMPREPLY=( $(compgen -W "${name_values}" -- ${cur}) )
 			;;
-		-t|--title)
+		-t | --title)
 			COMPREPLY=( $(compgen -W "${title_values}" -- ${cur}) )
 			;;
-		-L|--lines)
+		-L | --lines)
 			# complete integer values
 			COMPREPLY=( $(compgen -W "${lines_values}" -- "$cur") )
 			;;
-		-C|--columns)
+		-C | --columns)
 			# complete integer values
 			COMPREPLY=( $(compgen -W "${columns_values}" -- "$cur") )
 			;;
-		-w|--working-directory)
+		-w | --working-directory)
 			# complete directory names
 			COMPREPLY=( $(compgen -d -- "$cur") )
 			;;
