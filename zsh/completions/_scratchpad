@@ -3,6 +3,8 @@
 _arguments \
 	'-h[Print help page]' \
 	'--help[Print help page]' \
+	'-d[Print debuggging information]' \
+	'--debug[Print debuggging information]' \
 	'-c[Change window class]:class:(Scratchpad)' \
 	'--class[Change window class]:class:(Scratchpad)' \
 	'-n[Change window instance name]:name:(Scratchpad)' \
