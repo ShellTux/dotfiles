@@ -30,3 +30,4 @@
 --map-syntax '*.conf:INI'
 --map-syntax='dunstrc:INI'
 --map-syntax='/etc/apache2/**/*.conf:Apache Conf'
+--map-syntax='**/zsh/completions/_*:Bourne Again Shell (bash)'
