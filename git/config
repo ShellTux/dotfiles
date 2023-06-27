@@ -7,6 +7,7 @@
 	excludesFile = ~/.config/git/ignore_global
 [alias]
 	project-summary = !which onefetch && onefetch
+	diff-copy = !git diff-staged | ([ "$XDG_SESSION_TYPE" = "x11" ] && xclip -selection clipboard || wl-copy)
 	diff-staged = diff --staged
 	diff-word = diff --word-diff --color-words
 	conflict = diff --name-only --diff-filter=U
