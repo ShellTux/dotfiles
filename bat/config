@@ -23,8 +23,10 @@
 #   Example 2: Use ".gitignore"-style highlighting for ".ignore" files
 --map-syntax '*.ino:C++'
 --map-syntax '.ignore:Git Ignore'
---map-syntax '*.conf:INI'
---map-syntax='/etc/apache2/**/*.conf:Apache Conf'
+
 --map-syntax='aliasrc:Bourne Again Shell (bash)'
---map-syntax='bashrc:Bourne Again Shell (bash)'
 --map-syntax='bash_profile:Bourne Again Shell (bash)'
+--map-syntax='bashrc:Bourne Again Shell (bash)'
+--map-syntax '*.conf:INI'
+--map-syntax='dunstrc:INI'
+--map-syntax='/etc/apache2/**/*.conf:Apache Conf'
