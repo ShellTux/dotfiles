@@ -26,7 +26,6 @@ set rtp+=$XDG_DATA_HOME/vim/bundle/Vundle.vim " Add Vundle to the runtime path
 filetype plugin indent on    " Required for Vundle packages Plugins
 call vundle#begin('$XDG_DATA_HOME/vim/bundle')
 Plugin 'airblade/vim-gitgutter' 	" shows a git diff in the sign column
-Plugin 'altercation/vim-colors-solarized' 	" precision colorscheme for the vim text editor
 Plugin 'arcticicestudio/nord-vim' 	" An arctic, north-bluish clean and elegant Vim theme
 Plugin 'bluz71/vim-nightfly-colors' 	" A dark midnight theme for classic Vim & modern Neovim
 Plugin 'dracula/vim'			" Dracula dark theme for vim
