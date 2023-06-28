@@ -5,7 +5,6 @@ require('autocmds')
 ------------
 --- Settings
 ------------
-vim.cmd('colorscheme onedark')
 vim.cmd('syntax enable') -- Syntax highlighting
 vim.cmd('set wildmenu') -- Command-line completion (Tab to invoke completion) and a menu pops up
 vim.cmd('set ignorecase smartcase ') -- Ignores case when the pattern contains lowercase only, otherwise will try to exact match
@@ -24,7 +23,6 @@ math.randomseed(os.time())
 function ApplyRandomColorscheme(colorschemes)
 	local length = #colorschemes
 	local random_index = math.random(length)
-	random_index = 1
 	local random_colorscheme = colorschemes[random_index]
 
 	vim.cmd('colorscheme ' .. random_colorscheme)
@@ -32,7 +30,21 @@ end
 
 local favorite_colorschemes = {
 	'adwaita',
-	'onedark'
+	'carbonfox',
+	'catppuccin',
+	'duskfox',
+	'github_dark',
+	'gruvbox',
+	'kanagawa',
+	'kanagawa-dragon',
+	'monokai-pro',
+	'monokai-pro-ristretto',
+	'nightfox',
+	'nordfox',
+	'onedark',
+	'terafox',
+	'tokyonight',
+	'vscode',
 }
 
 ApplyRandomColorscheme(favorite_colorschemes)
