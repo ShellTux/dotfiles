@@ -74,6 +74,27 @@ call vundle#end()
 
 
 
+" #####################
+" Plugins Configuration
+" #####################
+" My Plugin settings {
+for f in glob('~/.config/vim/plugin/*.vim', 0, 1)
+	if filereadable(expand(f))
+		execute 'source' f
+	endif
+endfor
+if has('nvim')
+	for f in glob('~/.config/vim/plugin/*.nvim', 0, 1)
+		if filereadable(expand(f))
+			execute 'source' f
+		endif
+	endfor
+endif
+" }
+
+
+
+
 " ########
 " Settings
 " ########
@@ -190,24 +211,3 @@ else
       autocmd FileType python map <buffer> <F9> :w<CR>:exec '!time python' shellescape(@%, 1)<CR>
       autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!time python' shellescape(@%, 1)<CR>
 endif
-
-
-
-
-" #####################
-" Plugins Configuration
-" #####################
-" My Plugin settings {
-for f in glob('~/.config/vim/plugin/*.vim', 0, 1)
-	if filereadable(expand(f))
-		execute 'source' f
-	endif
-endfor
-if has('nvim')
-	for f in glob('~/.config/vim/plugin/*.nvim', 0, 1)
-		if filereadable(expand(f))
-			execute 'source' f
-		endif
-	endfor
-endif
-" }
