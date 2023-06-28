@@ -1,4 +1,4 @@
-require('github-theme').setup({
+require('nightfox').setup({
 	options = {
 		transparent = true,
 	}

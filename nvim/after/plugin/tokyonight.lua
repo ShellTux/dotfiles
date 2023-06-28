@@ -1,1 +1,3 @@
-require('tokyonight').setup()
+require('tokyonight').setup({
+	transparent = true,
+})

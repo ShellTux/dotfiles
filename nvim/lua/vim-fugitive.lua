@@ -34,6 +34,7 @@ local module = {
 	checkout = command('Git checkout'),
 	commit   = command('Git commit'),
 	diff     = gitdiff,
+	diff_staged = openCommandInNewTab('Git diff --staged'),
 	git      = openCommandInNewTab('Git'),
 	-- TODO: If more than 1 branch ask for which branch log
 	graph    = openCommandInNewTab('Git log --graph'),

@@ -26,7 +26,6 @@ set rtp+=$XDG_DATA_HOME/vim/bundle/Vundle.vim " Add Vundle to the runtime path
 filetype plugin indent on    " Required for Vundle packages Plugins
 call vundle#begin('$XDG_DATA_HOME/vim/bundle')
 Plugin 'airblade/vim-gitgutter' 	" shows a git diff in the sign column
-Plugin 'altercation/vim-colors-solarized' 	" precision colorscheme for the vim text editor
 Plugin 'arcticicestudio/nord-vim' 	" An arctic, north-bluish clean and elegant Vim theme
 Plugin 'bluz71/vim-nightfly-colors' 	" A dark midnight theme for classic Vim & modern Neovim
 Plugin 'dracula/vim'			" Dracula dark theme for vim
@@ -74,6 +73,27 @@ call vundle#end()
 
 
 
+" #####################
+" Plugins Configuration
+" #####################
+" My Plugin settings {
+for f in glob('~/.config/vim/plugin/*.vim', 0, 1)
+	if filereadable(expand(f))
+		execute 'source' f
+	endif
+endfor
+if has('nvim')
+	for f in glob('~/.config/vim/plugin/*.nvim', 0, 1)
+		if filereadable(expand(f))
+			execute 'source' f
+		endif
+	endfor
+endif
+" }
+
+
+
+
 " ########
 " Settings
 " ########
@@ -88,6 +108,7 @@ set scrolloff=999	" Minimal number of screen lines to keep above and below the c
 set termguicolors
 set wrap
 set linebreak
+set background=dark
 
 let g:favorite_colorschemes = [
       \ 'dracula',
@@ -107,8 +128,10 @@ function! RandomColorscheme(colorschemes)
 	let random_index       = rand() % length
 	let random_colorscheme = a:colorschemes[random_index]
 
-	if index(['onedark'], random_colorscheme) >= 0
-		autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+	let colorscheme_file = $XDG_CONFIG_HOME . '/vim/colorschemes/'
+				\ . random_colorscheme . '.vim'
+	if filereadable(colorscheme_file)
+		execute 'source ' colorscheme_file
 	endif
 
 	execute 'colorscheme ' . random_colorscheme
@@ -190,24 +213,3 @@ else
       autocmd FileType python map <buffer> <F9> :w<CR>:exec '!time python' shellescape(@%, 1)<CR>
       autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!time python' shellescape(@%, 1)<CR>
 endif
-
-
-
-
-" #####################
-" Plugins Configuration
-" #####################
-" My Plugin settings {
-for f in glob('~/.config/vim/plugin/*.vim', 0, 1)
-	if filereadable(expand(f))
-		execute 'source' f
-	endif
-endfor
-if has('nvim')
-	for f in glob('~/.config/vim/plugin/*.nvim', 0, 1)
-		if filereadable(expand(f))
-			execute 'source' f
-		endif
-	endfor
-endif
-" }

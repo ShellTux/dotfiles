@@ -11,6 +11,7 @@ local registers = {
 		ch   = { vim_fugitive.checkout, 'Git checkout file' },
 		co   = { vim_fugitive.commit, 'Git commit file' },
 		d    = 'Git diff',
+		ds   = { vim_fugitive.diff_staged, 'Git diff staged files' },
 		g    = { vim_fugitive.git, 'Git' },
 		l    = 'Git log',
 		lg   = { vim_fugitive.graph, 'Git log --graph' },
@@ -21,6 +22,7 @@ local registers = {
 		sw   = { vim_fugitive.switch, 'Git switch branch' },
 		u    = { vim_fugitive.update, 'Git update remote refs' },
 	},
+	l = { '<cmd>Lazy<cr>', 'Lazy Open' },
 	p = {
 		name = 'Project',
 		b = 'Find Buffer',

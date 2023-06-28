@@ -25,11 +25,24 @@ let g:lightline#component = {
 let g:lightline = {
 		  \ 'colorscheme': 'onedark',
 		  \ 'active': {
-		  \   'left': [ [ 'mode', 'paste' ],
-		  \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+		  \   'left': [ [ 'mode', 'paste', ],
+		  \             [
+		  \               'gitbranch',
+		  \               'colorscheme',
+		  \               'cocstatus',
+		  \               'readonly',
+		  \               'filename',
+		  \               'modified'
+		  \             ]
+		  \           ]
 		  \ },
 		  \ 'component_function': {
 		  \   'gitbranch': 'FugitiveHead',
-		  \   'cocstatus': 'coc#status'
+		  \   'cocstatus': 'coc#status',
+		  \   'colorscheme': 'GetColorscheme'
 		  \ }
 		  \ }
+
+function! GetColorscheme()
+	return g:colors_name
+endfunction
