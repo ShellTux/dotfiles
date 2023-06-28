@@ -11,6 +11,7 @@ local registers = {
 		ch   = { vim_fugitive.checkout, 'Git checkout file' },
 		co   = { vim_fugitive.commit, 'Git commit file' },
 		d    = 'Git diff',
+		ds   = { vim_fugitive.diff_staged, 'Git diff staged files' },
 		g    = { vim_fugitive.git, 'Git' },
 		l    = 'Git log',
 		lg   = { vim_fugitive.graph, 'Git log --graph' },
