@@ -17,4 +17,5 @@ vim.cmd('set scrolloff=999') -- Minimal number of screen lines to keep above and
 vim.cmd('set termguicolors')
 vim.cmd('set wrap')
 vim.cmd('set linebreak')
+vim.cmd('set background=dark')
 vim.cmd('highlight ColorColumn ctermbg=0 guibg=red')
