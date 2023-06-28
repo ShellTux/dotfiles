@@ -135,10 +135,7 @@ module.screen.connect_for_each_screen = function(screen)
 			awful.widget.watch('sb-cpu', 3),
 			awful.widget.watch('sb-mem', 30),
 			awful.widget.watch('sb-disk /', 3600),
-<<<<<<< HEAD
-=======
 			awful.widget.watch('sb-disk /home', 3600),
->>>>>>> origin/main
 			layout = wibox.layout.fixed.horizontal,
 
 		},
