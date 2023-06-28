@@ -21,6 +21,7 @@ local registers = {
 		sw   = { vim_fugitive.switch, 'Git switch branch' },
 		u    = { vim_fugitive.update, 'Git update remote refs' },
 	},
+	l = { '<cmd>Lazy<cr>', 'Lazy Open' },
 	p = {
 		name = 'Project',
 		b = 'Find Buffer',
