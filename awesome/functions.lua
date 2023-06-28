@@ -66,6 +66,7 @@ awful.button({}, 5, function()
 	awful.client.focus.byidx(-1)
 end))
 
+local day_to_seconds = 86400
 module.screen.connect_for_each_screen = function(screen)
 	-- Wallpaper
 	-- module.screen.set_wallpaper(screen)
@@ -116,8 +117,8 @@ module.screen.connect_for_each_screen = function(screen)
 			-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			mykeyboardlayout,
-			awful.widget.watch('sb-packages', 0),
-			awful.widget.watch('sb-volume', 0),
+			awful.widget.watch('sb-packages', day_to_seconds),
+			awful.widget.watch('sb-volume', day_to_seconds),
 			awful.widget.watch('sb-internet', 15),
 			mytextclock,
 			wibox.widget.systray(),
@@ -128,7 +129,7 @@ module.screen.connect_for_each_screen = function(screen)
 	screen.bottom_wibox:setup {
 		layout = wibox.layout.align.horizontal,
 		{ -- Left
-			awful.widget.watch('sb-kernel', 0),
+			awful.widget.watch('sb-kernel', day_to_seconds),
 			awful.widget.watch('sb-cpu', 3),
 			awful.widget.watch('sb-mem', 30),
 			awful.widget.watch('sb-disk /', 3600),
