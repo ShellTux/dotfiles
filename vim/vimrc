@@ -45,7 +45,6 @@ Plugin 'junegunn/fzf.vim'		" A fuzzy finder for vim
 Plugin 'KabbAmine/vCoolor.vim'		" vCoolor is a Vim plugin that allows using a color picker/selector directly from the editor
 Plugin 'kovetskiy/sxhkd-vim'		" indent, highlight syntax and detect sxhkd - Simple X hotkey daemon configuration files
 Plugin 'lervag/vimtex'			" VimTeX is a modern Vim and Neovim filetype and syntax plugin for LaTeX files
-Plugin 'lourenci/github-colors' 	" Yet another GitHub colorscheme
 Plugin 'mbbill/undotree' 		" The undo history visualizer for VIM
 Plugin 'mmisono/viminesweeper' 		" Minesweeper
 Plugin 'Mofiqul/adwaita.nvim' 		" Neovim colorscheme using Gnome Adwaita syntax
@@ -62,7 +61,6 @@ Plugin 'sainnhe/everforest' 		" Comfortable & Pleasant Color Scheme for Vim
 Plugin 'sainnhe/gruvbox-material' 	" Gruvbox with Material Palette
 Plugin 'sainnhe/sonokai' 		" High Contrast & Vivid Color Scheme based on Monokai Pro
 Plugin 'stevearc/vim-arduino'		" Vim plugin for compiling and uploading arduino sketches
-Plugin 'tanvirtin/monokai.nvim' 	" Monokai theme for Neovim written in Lua
 Plugin 'tomasiser/vim-code-dark' 	" Dark color scheme for Vim and vim-airline, inspired by Dark+ in Visual Studio Code
 Plugin 'tomasr/molokai' 		" Molokai color scheme for Vim
 Plugin 'tpope/vim-commentary'		" Comment stuff out
@@ -82,18 +80,42 @@ call vundle#end()
 syntax enable		" Syntax highlighting
 set wildmenu		" Command-line completion (Tab to invoke completion) and a menu pops up
 set ignorecase smartcase 	" Ignores case when the pattern contains lowercase only, otherwise will try to exact match
-set incsearch		"While typing a search command, show where the pattern, as it was typed	so far, matches. The matched string is highlighted. If the pattern is invalid or not found, nothing is shown.
-set hlsearch		" When there is a previous search pattern, highlight all its matches.
+set incsearch		" While typing a search command, show where the pattern, as it was typed	so far, matches. The matched string is highlighted. If the pattern is invalid or not found, nothing is shown.
+set hlsearch		" Highlight search
 set number		" precede each line with its line number.
-set encoding=UTF-8	" Sets the character encoding used inside Vim.
+set encoding=UTF-8
 set scrolloff=999	" Minimal number of screen lines to keep above and below the cursor.
 set termguicolors
-" set shiftwidth=6
+set wrap
+set linebreak
+
+let g:favorite_colorschemes = [
+      \ 'dracula',
+      \ 'gruvbox',
+      \ 'gruvbox-material',
+      \ 'molokai',
+      \ 'nightfly',
+      \ 'onedark',
+      \ 'retrobox',
+      \ 'tokyonight'
+      \]
+
+
+function! RandomColorscheme(colorschemes)
+	call srand(localtime())
+	let length             = len(a:colorschemes)
+	let random_index       = rand() % length
+	let random_colorscheme = a:colorschemes[random_index]
+
+	if index(['onedark'], random_colorscheme) >= 0
+		autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+	endif
+
+	execute 'colorscheme ' . random_colorscheme
+endfunction
+
 if (has('termguicolors') && &termguicolors) || has('gui_running') || &t_Co == 256
-      " If termguicolors is enabled or vim is running on a gui app, then
-      " set transparency and colorscheme
-      autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
-      colorscheme onedark
+	call RandomColorscheme(favorite_colorschemes)
 endif
 
 
