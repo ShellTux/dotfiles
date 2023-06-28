@@ -26,6 +26,7 @@ return {
 	'tpope/vim-repeat',
 	'tpope/vim-surround',
 	'xiyaowong/transparent.nvim',
+	'projekt0n/github-nvim-theme',
 	{
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.1',
@@ -52,10 +53,6 @@ return {
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin'
-	},
-	{
-		'projekt0n/github-nvim-theme',
-		tag = 'v0.0.7',
 	},
 	{
 		'rose-pine/neovim',
