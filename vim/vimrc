@@ -109,6 +109,7 @@ set scrolloff=999	" Minimal number of screen lines to keep above and below the c
 set termguicolors
 set wrap
 set linebreak
+set background=dark
 
 let g:favorite_colorschemes = [
       \ 'dracula',
@@ -128,8 +129,10 @@ function! RandomColorscheme(colorschemes)
 	let random_index       = rand() % length
 	let random_colorscheme = a:colorschemes[random_index]
 
-	if index(['onedark'], random_colorscheme) >= 0
-		autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+	let colorscheme_file = $XDG_CONFIG_HOME . '/vim/colorschemes/'
+				\ . random_colorscheme . '.vim'
+	if filereadable(colorscheme_file)
+		execute 'source ' colorscheme_file
 	endif
 
 	execute 'colorscheme ' . random_colorscheme
