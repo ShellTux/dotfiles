@@ -50,8 +50,6 @@ alias mv='mv --verbose'
 alias newsboat-repo='newsboat --url-file="$HOME"/.config/newsboat/repos-urls' \
 	'--cache-file="$HOME"/.local/share/newsboat/cache-repos.db --refresh-on-start'
 alias np='nano --nowrap PKGBUILD'
-alias nvim='env -u VIMINIT nvim'
-alias nvim-qt='env -u VIMINIT nvim-qt'
 alias open=xdg-open
 alias port='netstat --tcp --udp --listening --all --numeric --program --wide'
 alias publicIP='printf "%s\n" "$(curl --silent ifconfig.me)"'
