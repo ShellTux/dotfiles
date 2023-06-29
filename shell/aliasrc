@@ -20,9 +20,6 @@ alias cd3='cd ../../../'
 alias cd4='cd ../../../../'
 alias cd5='cd ../../../../../'
 alias clang-format='clang-format --verbose'
-[ "$XDG_SESSION_TYPE" = "x11" ] \
-	&& alias clipboard='xclip -selection clipboard' \
-	|| alias clipboard='wl-copy'
 alias chmod='chmod --changes'
 alias chown='chown --changes'
 alias cp='cp --interactive --verbose'
@@ -182,6 +179,14 @@ precmd () {
 
 help() {
 	"$@" --help 2>&1 | bathelp
+}
+
+clipboard() {
+	case $XDG_SESSION_TYPE in
+		x11) xclip -selection clipboard ;;
+		wayland) wl-copy ;;
+		*) echo 'Unsupported session type.' ;;
+	esac
 }
 
 # battheme() {
