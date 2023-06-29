@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+ORIGINAL_BRANCH="original_branch"
+CHERRY_PICK_BRANCH="cherry_pick_branch"
+
+# Switch to the cherry-pick branch
+git switch $CHERRY_PICK_BRANCH
+
+for commit in $(git log --pretty=format:%H $ORIGINAL_BRANCH..HEAD)
+do
+    if ! git cherry-pick "$commit";
+    then
+	    echo "Cherry-pick encountered conflicts. Please resolve them manually."
+	    exit 1
+    fi
+done
+
+chmod u-x "$0"
+git push
+chmod u+x "$0"
+
+git switch $ORIGINAL_BRANCH
