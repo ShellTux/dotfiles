@@ -1,13 +1,13 @@
 #!/bin/sh
 set -e
 
-ORIGINAL_BRANCH="original_branch"
-CHERRY_PICK_BRANCH="cherry_pick_branch"
+ORIGINAL_BRANCH="$(git branch --show-current)"
+CHERRY_PICK_BRANCH="$(git branch | sort --reverse | sed '/^\*/d;s/ //g;1q')"
 
 # Switch to the cherry-pick branch
-git switch $CHERRY_PICK_BRANCH
+git switch "$CHERRY_PICK_BRANCH"
 
-for commit in $(git log --pretty=format:%H $ORIGINAL_BRANCH..HEAD)
+for commit in $(git log --pretty=format:%H "$ORIGINAL_BRANCH"..HEAD)
 do
     if ! git cherry-pick "$commit";
     then
@@ -20,4 +20,4 @@ chmod u-x "$0"
 git push
 chmod u+x "$0"
 
-git switch $ORIGINAL_BRANCH
+git switch "$ORIGINAL_BRANCH"
