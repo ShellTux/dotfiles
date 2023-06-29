@@ -13,7 +13,8 @@ sysprofile=/etc/X11/xinit/.xprofile
 
 DEFAULT_SESSION=dwm
 export XDG_CURRENT_DESKTOP=X-Generic
-export QT_QPA_PLATFORM="xcb"
+export XDG_SESSION_TYPE=x11
+export QT_QPA_PLATFORM=xcb
 
 # merge in defaults and keymaps
 
