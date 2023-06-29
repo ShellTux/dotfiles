@@ -4,20 +4,22 @@ set -e
 ORIGINAL_BRANCH="$(git branch --show-current)"
 CHERRY_PICK_BRANCH="$(git branch | sort --reverse | sed '/^\*/d;s/ //g;1q')"
 
+commits=$(git log --pretty=format:%H origin/"$ORIGINAL_BRANCH"..HEAD | sort --reverse)
+
 # Switch to the cherry-pick branch
 git switch "$CHERRY_PICK_BRANCH"
 
-for commit in $(git log --pretty=format:%H "$ORIGINAL_BRANCH"..HEAD)
+for commit in $commits
 do
-    if ! git cherry-pick "$commit";
-    then
-	    echo "Cherry-pick encountered conflicts. Please resolve them manually."
-	    exit 1
-    fi
+	if ! git cherry-pick "$commit";
+	then
+		echo "Cherry-pick encountered conflicts. Please resolve them manually."
+		exit 1
+	fi
 done
 
-chmod u-x "$0"
+chmod --quiet u-x "$0"
 git push
-chmod u+x "$0"
+chmod --quiet u+x "$0"
 
 git switch "$ORIGINAL_BRANCH"
