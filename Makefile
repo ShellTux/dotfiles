@@ -87,4 +87,4 @@ icons: | $(ICONS_TARGET_DIR)
 	cp -r $(ICONS_SOURCE_DIR) $(ICONS_TARGET_DIR)
 
 push-hook: cherry-pick.hook
-	cp cherry-pick.hook .git/hooks/post-receive
+	cp cherry-pick.hook .git/hooks/pre-push
