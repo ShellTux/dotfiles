@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo --
+# Check if a specific file has been updated
+# if git diff-tree --name-only --exit-code HEAD@{1} HEAD -- path/to/file.ext >/dev/null 2>&1
+# then
+# 	echo "The file 'path/to/file.ext' has been updated."
+# fi

@@ -86,5 +86,5 @@ dbus: | $(DBUS_SERVICE_DIR)
 icons: | $(ICONS_TARGET_DIR)
 	cp -r $(ICONS_SOURCE_DIR) $(ICONS_TARGET_DIR)
 
-git-hooks: pre-push
+git-hooks: pre-push post-merge
 	cp $^ .git/hooks/

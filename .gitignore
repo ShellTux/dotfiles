@@ -164,6 +164,7 @@
 !/polybar/modules/
 /polybar/modules/*
 !/polybar/modules/*.ini
+!/post-merge
 !/python/
 /python/*
 !/python/pythonrc.py
