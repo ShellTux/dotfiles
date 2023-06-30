@@ -143,6 +143,9 @@
 !/nvim/after/plugin/
 /nvim/after/plugin/*
 !/nvim/after/plugin/*.lua
+!/nvim-qt
+/nvim-qt/*
+!/nvim-qt/nvim-qt.conf
 !/picom/
 /picom/*
 !/picom/picom.conf

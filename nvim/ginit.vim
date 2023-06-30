@@ -1,25 +1,29 @@
 " Enable Mouse
 set mouse=a
 
-" Set Editor Font
 if exists(':GuiFont')
-    " Use GuiFont! to ignore font errors
-    GuiFont {font_name}:h{size}
+	" Use GuiFont! to ignore font errors
+	GuiFont FiraCode Nerd Font:h20
 endif
 
-" Disable GUI Tabline
 if exists(':GuiTabline')
-    GuiTabline 0
+	GuiTabline v:false
 endif
 
-" Disable GUI Popupmenu
 if exists(':GuiPopupmenu')
-    GuiPopupmenu 0
+	GuiPopupmenu v:false
 endif
 
-" Enable GUI ScrollBar
 if exists(':GuiScrollBar')
-    GuiScrollBar 1
+	GuiScrollBar v:true
+endif
+
+if exists(':GuiRenderLigatures')
+	GuiRenderLigatures v:true
+endif
+
+if exists(':GuiWindowOpacity')
+	GuiWindowOpacity .8
 endif
 
 " Right Click Context Menu (Copy-Cut-Paste)
