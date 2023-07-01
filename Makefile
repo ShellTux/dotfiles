@@ -88,4 +88,4 @@ icons: | $(ICONS_TARGET_DIR)
 	cp -r $(ICONS_SOURCE_DIR) $(ICONS_TARGET_DIR)
 
 git-hooks: pre-push post-merge
-	cp $^ .git/hooks/
+	install --verbose --mode=755 $^ .git/hooks/
