@@ -51,6 +51,11 @@
 !/etc/pacman.d/hooks
 /etc/pacman.d/hooks/*
 !/etc/pacman.d/hooks/log-installed.hook
+!/etc/NetworkManager/
+/etc/NetworkManager/*
+/etc/NetworkManager/dispatcher.d/*
+!/etc/NetworkManager/dispatcher.d/
+!/etc/NetworkManager/dispatcher.d/10-enable-sshd.sh
 !/etc/X11/
 /etc/X11/*
 !/etc/X11/xorg.conf.d/
