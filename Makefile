@@ -46,15 +46,17 @@ dependecies:
 	$(AUR_MANAGER) $(AUR_DEPENDECIES)
 
 install: dependecies
-	sudo cp ./etc/grub.d/* /etc/grub.d
-	sudo grub-mkconfig -o /boot/grub/grub.cfg
-	sudo cp ./etc/pacman.d/hooks/log-installed.hook /etc/pacman.d
-	sudo cp ./etc/xdg/reflector/reflector.conf /etc/xdg/reflector
-	sudo cp ./etc/zsh/zshenv /etc/zsh
-	sudo cp ./etc/doas.conf /etc/doas.conf
+	sudo install --owner=root --group=root --mode=744 ./etc/grub.d/* /etc/grub.d/
+	sudo grub-mkconfig --output=/boot/grub/grub.cfg
+	sudo install --owner=root --group=root --mode=744 ./etc/pacman.d/hooks/log-installed.hook /etc/pacman.d/hooks/
+	sudo install --owner=root --group=root --mode=644 ./etc/xdg/reflector/reflector.conf /etc/xdg/reflector/
+	sudo install --owner=root --group=root --mode=644 ./etc/doas.conf /etc/
 	sudo sed -i 's/<user>/$(USERNAME)/g' /etc/doas.conf
-	sudo cp ./etc/vconsole.conf /etc
-	sudo cp ./etc/X11/xorg.conf.d/*.conf /etc/X11/xorg.conf.d
+	sudo install --owner=root --group=root --mode=644 ./etc/vconsole.conf /etc/
+	sudo install --owner=root --group=root --mode=644 ./etc/zsh/zshenv /etc/zsh/
+	sudo install --owner=root --group=root --mode=644 ./etc/X11/xorg.conf.d/*.conf /etc/X11/xorg.conf.d/
+	sudo install --owner=root --group=root --mode=700 ./etc/NetworkManager/dispatcher.d/10-enable-sshd.sh /etc/NetworkManager/dispatcher.d/
+	printf '\033[36m%s\033[0m\n' 'You need to change /etc/NetworkManager/dispatcher.d/10-enable-sshd.sh uuid'
 
 .PHONY: sxhkd
 sxhkd:
