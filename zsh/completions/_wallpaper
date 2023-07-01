@@ -1,0 +1,6 @@
+#compdef wallpaper
+
+_arguments \
+	'-h[Print help page]' \
+	'--help[Print help page]' \
+	'1: :(next reset-timer)'

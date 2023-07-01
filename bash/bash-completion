@@ -137,6 +137,27 @@ _scratchpad()
 	return 0
 }
 
+_wallpaper() {
+	local cur prev opts
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	opts="-h --help next reset-timer"
+
+	time_values="20 30 40"
+
+	case "$prev" in
+		-h | --help | next | reset-timer)
+			# no additional completions needed for these flags
+			;;
+		*)
+			COMPREPLY=( $(compgen -W "${opts}" -- "$cur") )
+			;;
+	esac
+
+	return 0
+}
+
 _wallpaperLoop()
 {
 	local cur prev opts
@@ -169,3 +190,4 @@ complete -F _scratchpad scratchpad
 complete -F _startWayland_complete startWayland
 complete -F _startX_complete startX
 complete -F _wallpaperLoop wallpaperLoop
+complete -F _wallpaper wallpaper
