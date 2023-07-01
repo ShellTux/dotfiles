@@ -1,0 +1,10 @@
+#compdef notify-music
+
+_arguments \
+	'-h[Print help page]' \
+	'--help[Print help page]' \
+	'-n[Disable desktop notification]' \
+	'--no-notification[Disable desktop notification]' \
+	'-q[Supress message echoing]' \
+	'--quiet[Supress message echoing]'
+

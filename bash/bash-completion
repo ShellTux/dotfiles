@@ -26,6 +26,49 @@ _change-brightness_complete() {
 	COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
 }
 
+_counter() {
+	local cur prev opts
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	opts="-h --help -n --no-notification -t --time"
+
+	time_values="20 30 40"
+
+	case "$prev" in
+		-h | --help | -n | --no-notification)
+			# no additional completions needed for these flags
+			;;
+		-t | --time)
+			COMPREPLY=( $(compgen -W "${time_values}" -- ${cur}) )
+			;;
+		*)
+			COMPREPLY=( $(compgen -W "${opts}" -- "$cur") )
+			;;
+	esac
+
+	return 0
+}
+
+_notify-music() {
+	local cur prev opts
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	opts="-h --help -n --no-notification -q --quiet"
+
+	case "$prev" in
+		-h | --help | -n | --no-notification | -q | --quiet)
+			# no additional completions needed for these flags
+			;;
+		*)
+			COMPREPLY=( $(compgen -W "${opts}" -- "$cur") )
+			;;
+	esac
+
+	return 0
+}
+
 _startX_complete() {
 	local cur
 	COMPREPLY=()
@@ -94,7 +137,35 @@ _scratchpad()
 	return 0
 }
 
-complete -F _startX_complete startX
-complete -F _startWayland_complete startWayland
-complete -F _scratchpad scratchpad
+_wallpaperLoop()
+{
+	local cur prev opts
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	opts="-h --help --enable-videos --disable-videos --mpv-options --sleep-interval"
+
+	sleep_interval="60 600"
+
+	case "$prev" in
+		-h | --help | --enable-videos | --disable-videos | --mpv-options)
+			# no additional completions needed for these flags
+			;;
+		--sleep-interval)
+			COMPREPLY=( $(compgen -W "${sleep_interval}" -- ${cur}) )
+			;;
+		*)
+			COMPREPLY=( $(compgen -W "${opts}" -- "$cur") )
+			;;
+	esac
+
+	return 0
+}
+
 complete -F _change-volume_complete change-volume
+complete -F _counter counter
+complete -F _notify-music notify-music
+complete -F _scratchpad scratchpad
+complete -F _startWayland_complete startWayland
+complete -F _startX_complete startX
+complete -F _wallpaperLoop wallpaperLoop
