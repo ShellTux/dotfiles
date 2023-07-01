@@ -1,0 +1,9 @@
+#compdef wallpaperLoop
+
+_arguments \
+	'-h[Print help page]' \
+	'--help[Print help page]' \
+	'--enable-videos[Enable videos (wayland only)]' \
+	'--disable-videos[Turn off video support]' \
+	'--mpv-options[Options to pass to mpv through mpvpaper]' \
+	'--sleep-interval[Time interval in seconds between each wallpaper]:number:(60 600)'

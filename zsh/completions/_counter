@@ -1,0 +1,11 @@
+#compdef counter
+
+_arguments \
+	'-h[Print help page]' \
+	'--help[Print help page]' \
+	'-n[Disable desktop notification]' \
+	'--no-notification[Disable desktop notification]' \
+	'-t[Set the countdown time in seconds (default: 20)]:number:(20 30 40)' \
+	'--time[Set the countdown time in seconds (default: 20)]:number:(20 30 40)' \
+	'1:number:(20 30 40)'
+
