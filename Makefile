@@ -49,6 +49,7 @@ install: dependecies
 	sudo install --owner=root --group=root --mode=744 ./etc/grub.d/* /etc/grub.d/
 	sudo grub-mkconfig --output=/boot/grub/grub.cfg
 	sudo install --owner=root --group=root --mode=744 ./etc/pacman.d/hooks/log-installed.hook /etc/pacman.d/hooks/
+	sudo sed -i 's/<user>/$(USERNAME)/g' /etc/pacman.d/hooks/log-installed.hook
 	sudo install --owner=root --group=root --mode=644 ./etc/xdg/reflector/reflector.conf /etc/xdg/reflector/
 	sudo install --owner=root --group=root --mode=644 ./etc/doas.conf /etc/
 	sudo sed -i 's/<user>/$(USERNAME)/g' /etc/doas.conf
