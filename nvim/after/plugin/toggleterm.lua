@@ -1,5 +1,6 @@
 require('toggleterm').setup({
 	open_mapping = '<C-s>',
-	direction = 'float',
+	direction = 'horizontal',
+	size = 10,
 	shade_terminals = true
 })
