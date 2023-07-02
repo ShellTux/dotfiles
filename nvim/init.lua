@@ -20,10 +20,8 @@ vim.cmd('set background=dark')
 vim.cmd('highlight ColorColumn ctermbg=0 guibg=red')
 
 math.randomseed(os.time())
-function ApplyRandomColorscheme(colorschemes)
-	local length = #colorschemes
-	local random_index = math.random(length)
-	local random_colorscheme = colorschemes[random_index]
+local function ApplyRandomColorscheme(colorschemes)
+	local random_colorscheme = colorschemes[math.random(#colorschemes)]
 
 	vim.cmd('colorscheme ' .. random_colorscheme)
 end
@@ -48,3 +46,8 @@ local favorite_colorschemes = {
 }
 
 ApplyRandomColorscheme(favorite_colorschemes)
+
+function RandomColorscheme()
+	ApplyRandomColorscheme(favorite_colorschemes)
+end
+vim.cmd('command! RandomColorscheme lua RandomColorscheme()')
