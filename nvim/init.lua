@@ -1,6 +1,7 @@
 require('keybinds')
 require('plugin-manager')
 require('autocmds')
+require('random-colorscheme')
 
 ------------
 --- Settings
@@ -19,35 +20,4 @@ vim.cmd('set linebreak')
 vim.cmd('set background=dark')
 vim.cmd('highlight ColorColumn ctermbg=0 guibg=red')
 
-math.randomseed(os.time())
-local function ApplyRandomColorscheme(colorschemes)
-	local random_colorscheme = colorschemes[math.random(#colorschemes)]
-
-	vim.cmd('colorscheme ' .. random_colorscheme)
-end
-
-local favorite_colorschemes = {
-	'adwaita',
-	'carbonfox',
-	'catppuccin',
-	'duskfox',
-	'github_dark',
-	'gruvbox',
-	'kanagawa',
-	'kanagawa-dragon',
-	'monokai-pro',
-	'monokai-pro-ristretto',
-	'nightfox',
-	'nordfox',
-	'onedark',
-	'terafox',
-	'tokyonight',
-	'vscode',
-}
-
-ApplyRandomColorscheme(favorite_colorschemes)
-
-function RandomColorscheme()
-	ApplyRandomColorscheme(favorite_colorschemes)
-end
-vim.cmd('command! RandomColorscheme lua RandomColorscheme()')
+vim.cmd('command! Reload lua vim.cmd("source " .. vim.fn.stdpath("config") .. "/init.lua")')
