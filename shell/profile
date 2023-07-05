@@ -63,7 +63,6 @@ export GOPATH="$XDG_DATA_HOME"/go
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export GVIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : (filereadable(expand("$XDG_CONFIG_HOME/nvim/ginit.lua", 1)) ? "$XDG_CONFIG_HOME/nvim/ginit.lua" : "$XDG_CONFIG_HOME/nvim/ginit.vim") | source $MYVIMRC'
-export HISTFILE="$XDG_STATE_HOME"/bash/history
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
