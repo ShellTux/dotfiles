@@ -28,9 +28,9 @@ LS_COLORS="${XDG_DATA_HOME:-$HOME/.local/share}/LS_COLORS"
 
 # Created by newuser for 5.9
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.cache/zsh-histfile
-HISTSIZE=10000
-SAVEHIST=1000
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
+HISTSIZE=1000000
+SAVEHIST=$HISTSIZE
 setopt autocd extendedglob notify
 unsetopt beep
 # bindkey -v

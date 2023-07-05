@@ -63,6 +63,13 @@ fi
 
 unset use_color safe_term match_lhs sh
 
+shopt -s histappend
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
+export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/bash/history
+# PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
 
 if command -v fastfetch &> /dev/null
 then
