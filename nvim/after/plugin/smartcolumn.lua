@@ -15,6 +15,7 @@ local config = {
 		ruby = '120',
 		rust = { '90', '100' },
 		sh = '90',
+		typescript = { '90', '100' },
 		zsh = '90',
 	},
 	scope = 'file',
