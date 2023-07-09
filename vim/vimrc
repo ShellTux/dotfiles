@@ -44,6 +44,7 @@ Plugin 'junegunn/fzf.vim'		" A fuzzy finder for vim
 Plugin 'KabbAmine/vCoolor.vim'		" vCoolor is a Vim plugin that allows using a color picker/selector directly from the editor
 Plugin 'kovetskiy/sxhkd-vim'		" indent, highlight syntax and detect sxhkd - Simple X hotkey daemon configuration files
 Plugin 'lervag/vimtex'			" VimTeX is a modern Vim and Neovim filetype and syntax plugin for LaTeX files
+Plugin 'liuchengxu/vim-which-key'
 Plugin 'mbbill/undotree' 		" The undo history visualizer for VIM
 Plugin 'mmisono/viminesweeper' 		" Minesweeper
 Plugin 'Mofiqul/adwaita.nvim' 		" Neovim colorscheme using Gnome Adwaita syntax
