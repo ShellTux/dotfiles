@@ -49,12 +49,13 @@ end
 
 local function openCommandInNewTab(command)
 	return function()
-		vim.cmd.tabnew();
+		vim.cmd.tabnew()
 		vim.cmd(command)
-		vim.cmd.resize(999)
 		vim.api.nvim_input('<C-w>w:q<cr>')
-		local current_buffer = vim.api.nvim_get_current_buf()
-		vim.api.nvim_buf_set_name(current_buffer, command)
+		if (command ~= 'Git') then
+			local current_buffer = vim.api.nvim_get_current_buf()
+			vim.api.nvim_buf_set_name(current_buffer, command)
+		end
 	end
 end
 
