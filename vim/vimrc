@@ -46,6 +46,7 @@ Plugin 'kovetskiy/sxhkd-vim'		" indent, highlight syntax and detect sxhkd - Simp
 Plugin 'lervag/vimtex'			" VimTeX is a modern Vim and Neovim filetype and syntax plugin for LaTeX files
 Plugin 'liuchengxu/vim-which-key'
 Plugin 'mbbill/undotree' 		" The undo history visualizer for VIM
+Plugin 'mg979/vim-visual-multi'
 Plugin 'mmisono/viminesweeper' 		" Minesweeper
 Plugin 'Mofiqul/adwaita.nvim' 		" Neovim colorscheme using Gnome Adwaita syntax
 Plugin 'mofiqul/vscode.nvim' 		" Neovim/Vim color scheme inspired by Dark+ and Light+ theme in Visual Studio Code
