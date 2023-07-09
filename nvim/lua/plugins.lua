@@ -12,6 +12,7 @@ return {
 	'lunarvim/darkplus.nvim',
 	'm4xshen/smartcolumn.nvim',
 	'mbbill/undotree',
+	'mg979/vim-visual-multi',
 	'mofiqul/adwaita.nvim',
 	'mofiqul/vscode.nvim',
 	'navarasu/onedark.nvim',
