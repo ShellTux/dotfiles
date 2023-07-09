@@ -34,6 +34,7 @@ local registers = {
 		G = 'Rip Grep',
 		h = 'Find Help Tag',
 		t = 'Find TODO',
+		s = 'Git status',
 	},
 	t = {
 		name = 'Tab',
