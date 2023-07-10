@@ -1,0 +1,28 @@
+// vim: filetype=rasi: ts=4 : sw=4
+
+@theme "/usr/share/rofi/themes/Adapta-Nokto.rasi"
+
+element-icon {
+	size: 2.5ch;
+}
+
+configuration {
+	font: "mono 20";
+	show-icons: true;
+	drun-show-actions: true;
+	sort: true;
+	case-sensitive: false;
+	lines: 5;
+	dynamic: true;
+
+	timeout {
+		action: "kb-cancel";
+		delay:  0;
+	}
+
+	filebrowser {
+		directories-first: true;
+		sorting-method:    "name";
+	}
+
+}
