@@ -100,7 +100,7 @@ for directory in \
 	"$HOME"/bin \
 	"$HOME"/.local/bin
 do
-	[ -d "$directory" ] && export PATH"$directory:$PATH"
+	[ -d "$directory" ] && export PATH="$directory:$PATH"
 done
 
 echo -e "\033[38;2;200;0;0mUpdate pacman database\n\033[0mpacman -Syy\033[0m"
