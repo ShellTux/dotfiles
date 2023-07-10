@@ -6,10 +6,11 @@ alias gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
 alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
 alias sqlite3='sqlite3 -init "$XDG_CONFIG_HOME"/sqlite3/sqliterc'
+alias tmux='tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf'
 alias units='units --history "$XDG_CACHE_HOME"/units_history'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias xbindkeys='xbindkeys -f "${XDG_CONFIG_HOME:-$HOME/.config}"/xbindkeys/config'
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME:-$HOME/.config}/yarn/config"'
 
 # My custom aliaseses
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
@@ -46,6 +47,7 @@ alias ls='exa --across --color=automatic  --color-scale --icons \
 # alias ls='ls --color=auto'
 alias lspkgs='pacman -Qe --color=always | $PAGER -R'
 alias mkdir='mkdir --parents --verbose'
+alias man=batman
 alias more=less
 alias mv='mv --verbose'
 alias newsboat-repo='newsboat --url-file="$HOME"/.config/newsboat/repos-urls' \
@@ -54,19 +56,15 @@ alias np='nano --nowrap PKGBUILD'
 alias open=xdg-open
 alias port='netstat --tcp --udp --listening --all --numeric --program --wide'
 alias publicIP='printf "%s\n" "$(curl --silent ifconfig.me)"'
-alias :q='exit'
+alias :q=exit
 alias randomcolor='printf "#$(openssl rand -hex 3 | tr "[:lower:]" "[:upper:]")\n"'
 alias rmdir='rmdir --verbose'
 alias rm='rm --verbose'
 alias ssh-agentd='eval $(ssh-agent -s)'
 alias suvim='doas vim'
-alias terminal="\$TERMINAL"
-alias tmux='tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf'
+alias terminal='$TERMINAL'
 alias updateDwmblocks='pkill -SIGUSR1 dwmblocks'
-alias updateMirrors='doas reflector --age 12 --country Portugal,USA,World \
-	--protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias upper='tr "[:lower:]" "[:upper:]"'
-alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
 alias yay='yay --sudo notify-sudo'
 alias youtube-dl='yt-dlp'
 alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail --embed-metadata \
