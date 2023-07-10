@@ -7,10 +7,11 @@ export FILE_EXPLORER="ranger"
 export GIT_EDITOR="$EDITOR"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export LESS='-R --use-color -Dd+r$Du+b'
-[ -f "$(which bat)" ] \
+[ "$(command -v bat)" ] \
 	|| export MANPAGER="less -RAW-CONTROL-CHARS --use-color -Dd+b -Du+g" \
 	&& export MANPAGER="sh -c 'col --no-backspaces --spaces \
 	| bat --language man --plain'"
+export MANROFFOPT='-c'
 export PAGER="less"
 export QT_QPA_PLATFORMTHEME='qt5ct'
 export SHELL="/bin/zsh"
@@ -93,32 +94,28 @@ export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export XCURSOR_PATH=${XCURSOR_PATH}:/usr/share/icons:${XDG_DATA_HOME}/icons
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 
-# set PATH so it includes user's cargo executables if it exists
-[ -d "$CARGO_HOME"/bin ] && export PATH="$CARGO_HOME/bin:$PATH"
-
-# set PATH so it includes user's Applications if it exists
-[ -d "$HOME"/Applications ] && export PATH="$HOME/Applications:$PATH"
-
-# set PATH so it includes user's private bin if it exists
-[ -d "$HOME"/bin ] && export PATH="$HOME/bin:$PATH"
-
-# set PATH so it includes user's private bin if it exists
-[ -d "$HOME"/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
+for directory in \
+	"$CARGO_HOME"/bin \
+	"$HOME"/Applications \
+	"$HOME"/bin \
+	"$HOME"/.local/bin
+do
+	[ -d "$directory" ] && export PATH"$directory:$PATH"
+done
 
 echo -e "\033[38;2;200;0;0mUpdate pacman database\n\033[0mpacman -Syy\033[0m"
 doas pacman -Syy 2>/dev/null
-if [ ! "$(tty | grep /dev/tty)" = "" ]
+if tty | grep --quiet /dev/tty
 then
-	[ ! "$(pacman -Qu linux)" = "" ] \
+	[ -n "$(pacman -Qu linux)" ] \
 		&& echo "There is a kernel update" \
 		&& pacman -Qu linux
 
-	[ ! "$(pacman -Qu nvidia 2>/dev/null)" = "" ] \
+	[ -n "$(pacman -Qu nvidia 2>/dev/null)" ] \
 		&& echo "There is a nvidia driver update" \
 		&& pacman -Qu nvidia
 
-	[ ! "$(pacman -Qu linux)" = "" ] \
-		|| [ ! "$(pacman -Qu nvidia 2>/dev/null)" = "" ] \
+	[ -n "$(pacman -Qu linux)" ] || [ -n "$(pacman -Qu nvidia 2>/dev/null)" ] \
 		&& doas pacman -Syu \
 		&& reboot
 fi
@@ -133,12 +130,11 @@ then
 		'There are updates in your repos would you like to read the articles?' \
 		'[Y/n]'
 	read -r confirm
-	[ ! "$confirm" = "n" ] \
-		&& [ ! "$confirm" = "N" ] \
-		&& newsboat-repo \
-		&& printf "Would you like to update your repos? [Y/n] " \
-		&& read -r confirm \
-		&& [ ! "$confirm" = "n" ] \
-		&& [ ! "$confirm" = "N" ] \
-		&& update-repos
+	if [ ! "$confirm" = n ] && [ ! "$confirm" = N ]
+	then
+		newsboat-repo
+		printf 'Would you like to update your repos? [Y/n] '
+		read -r confirm
+		[ ! "$confirm" = n ] && [ ! "$confirm" = N ] && update-repos
+	fi
 fi
