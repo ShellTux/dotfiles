@@ -186,6 +186,9 @@
 /redshift/*
 !/redshift/redshift.conf
 !/redshift/redshift-wayland.conf
+!/rofi/
+/rofi/*
+!/rofi/config.rasi
 !/shell/
 /shell/*
 !/shell/aliasrc
