@@ -7,13 +7,16 @@ element-icon {
 }
 
 configuration {
-	font: "mono 20";
-	show-icons: true;
-	drun-show-actions: true;
-	sort: true;
 	case-sensitive: false;
-	lines: 5;
+	display-calc: " ";
+	drun-show-actions: true;
 	dynamic: true;
+	font: "mono 20";
+	lines: 5;
+	modes: [window,drun,run,ssh,calc,emoji];
+	show-icons: true;
+	sort: true;
+
 
 	timeout {
 		action: "kb-cancel";
