@@ -11,6 +11,43 @@ local module = {
 	tag = {},
 }
 
+module.tag.view_next = function(empty, direction, screen)
+	if empty then
+		local wrap = function(index, total)
+			if index < 1 then
+				return total
+			elseif index > total then
+				return 1
+			else
+				return index
+			end
+		end
+
+		return function()
+			screen = screen or awful.screen.focused()
+			local tags = screen.tags
+			local original_index = wrap(screen.selected_tag.index + direction, #tags)
+
+			local current_index = original_index
+			while #(tags[current_index]:clients()) == 0 do
+				current_index = wrap(current_index + direction, #tags)
+				if current_index == original_index then
+					break
+				end
+			end
+
+			tags[current_index]:view_only()
+		end
+	else
+		if direction > 0 then
+			return awful.tag.viewnext
+		elseif direction < 0 then
+			return awful.tag.viewprev
+		end
+	end
+end
+
+
 
 module.help = function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
 module.quit = function() awesome.quit() end
@@ -40,8 +77,8 @@ awful.button({ modkey }, 3, function(t)
 		client.focus:toggle_tag(t)
 	end
 end),
-awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
-awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
+awful.button({}, 4, module.tag.view_next(true, 1)),
+awful.button({}, 5, module.tag.view_next(true, -1))
 )
 
 local tasklist_buttons = gears.table.join(
@@ -189,41 +226,4 @@ module.manage = function(client)
 		copy_size(client, parent_client)
 	end
 end
-
-module.tag.view_next = function(empty, direction, screen)
-	if empty then
-		local wrap = function(index, total)
-			if index < 1 then
-				return total
-			elseif index > total then
-				return 1
-			else
-				return index
-			end
-		end
-
-		return function()
-			screen = screen or awful.screen.focused()
-			local tags = screen.tags
-			local original_index = wrap(screen.selected_tag.index + direction, #tags)
-
-			local current_index = original_index
-			while #(tags[current_index]:clients()) == 0 do
-				current_index = wrap(current_index + direction, #tags)
-				if current_index == original_index then
-					break
-				end
-			end
-
-			tags[current_index]:view_only()
-		end
-	else
-		if direction > 0 then
-			return awful.tag.viewnext
-		elseif direction < 0 then
-			return awful.tag.viewprev
-		end
-	end
-end
-
 return module
