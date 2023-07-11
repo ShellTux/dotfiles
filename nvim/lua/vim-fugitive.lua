@@ -31,12 +31,19 @@ local function findGitConflictFiles()
 	end
 end
 
-local function gitdiff(history)
+local function gitdiff(history, layout)
 	return function()
 		vim.cmd.tabnew('%')
-		local command = 'Gvdiffsplit '
+		local command = 'Gvdiffsplit'
+
+		if layout == 'horizontal' then
+			command = 'Gdiffsplit'
+		elseif layout == 'vertical' then
+			command = 'Gvdiffsplit'
+		end
+
 		if history>= 0 then
-			command = command .. 'HEAD~' .. history
+			command = command .. ' HEAD~' .. history
 		end
 		vim.cmd(command)
 

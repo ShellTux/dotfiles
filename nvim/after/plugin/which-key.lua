@@ -12,6 +12,8 @@ local registers = {
 		com  = { vim_fugitive.commit, 'Git commit file' },
 		con  = { vim_fugitive.conflict, 'Git conflicts' },
 		d    = 'Git diff',
+		dh   = 'Git diff horizontal split',
+		dv   = 'Git diff vertical split',
 		ds   = { vim_fugitive.diff_staged, 'Git diff staged files' },
 		g    = { vim_fugitive.git, 'Git' },
 		l    = 'Git log',
@@ -51,7 +53,9 @@ for i = 0, 9 do
 			description = description .. i
 		end
 	end
-	registers.g['d' .. i] = { vim_fugitive.diff(i), description }
+	registers.g['d' .. i]  = { vim_fugitive.diff(i, 'vertical'), description }
+	registers.g['dh' .. i] = { vim_fugitive.diff(i, 'horizontal'), description }
+	registers.g['dv' .. i] = { vim_fugitive.diff(i, 'vertical'), description }
 end
 
 whichKey.register(registers, { prefix = '<leader>' })
