@@ -20,6 +20,8 @@ DEPENDECIES       = \
 		    network-manager-applet \
 		    picom \
 		    qpwgraph \
+		    rofi \
+		    rofi-emoji \
 		    sxhkd \
 		    syncthing \
 		    xf86-input-libinput \
