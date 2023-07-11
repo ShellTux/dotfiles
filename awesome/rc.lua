@@ -112,8 +112,8 @@ awful.screen.connect_for_each_screen(functions.screen.connect_for_each_screen)
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
 	awful.button({}, 3, function() mymainmenu:toggle() end),
-	awful.button({}, 4, awful.tag.viewnext),
-	awful.button({}, 5, awful.tag.viewprev)
+	awful.button({}, 4, functions.tag.view_next(true, 1)),
+	awful.button({}, 5, functions.tag.view_next(true, -1))
 ))
 -- }}}
 
