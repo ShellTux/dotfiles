@@ -94,7 +94,13 @@ awful.button({}, 1, function(c)
 	end
 end),
 awful.button({}, 3, function()
-	awful.menu.client_list({ theme = { width = 250 } })
+	awful.menu.client_list({
+		theme = {
+			height = 50,
+			width = 500,
+			font = 'mono 20',
+		}
+	})
 end),
 awful.button({}, 4, function()
 	awful.client.focus.byidx(1)
