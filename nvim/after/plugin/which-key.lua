@@ -5,9 +5,14 @@ local vim_fugitive = require('vim-fugitive')
 
 local whichKey = require("which-key")
 local registers = {
+	d = {
+		b = { '<cmd>DapToggleBreakpoint<cr>', 'Add Breakpoint at line' },
+		r = { '<cmd>DapContinue<cr>', 'Start or Continue the debugger' },
+	},
 	g = {
 		name = 'Git',
 		a    = { vim_fugitive.add, 'Git add file' },
+		b    = { '<cmd>Gitsigns toggle_current_line_blame<cr>', 'Git toggle blame' },
 		ch   = { vim_fugitive.checkout, 'Git checkout file' },
 		com  = { vim_fugitive.commit, 'Git commit file' },
 		con  = { vim_fugitive.conflict, 'Git conflicts' },
@@ -34,7 +39,7 @@ local registers = {
 		sta = { '<cmd>LspStart<cr>', 'Lsp Start' },
 		sto = { '<cmd>LspStop<cr>', 'Lsp Stop' },
 	},
-	m = { '<cmd>Mason<cr>', 'Mason'},
+	m = { '<cmd>Mason<cr>', 'Mason' },
 	p = {
 		name = 'Project',
 		b = 'Find Buffer',

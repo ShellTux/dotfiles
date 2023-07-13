@@ -71,7 +71,7 @@ return {
 	},
 	{
 		'iamcco/markdown-preview.nvim',
-		build = function () vim.fn["mkdp#util#install"]() end,
+		build = function() vim.fn["mkdp#util#install"]() end,
 		ft = 'markdown',
 	},
 	{
@@ -108,5 +108,19 @@ return {
 	{
 		'jose-elias-alvarez/null-ls.nvim',
 		event = 'VeryLazy',
+	},
+	-- Debugger
+	{
+		'mfussenegger/nvim-dap',
+		event = 'VeryLazy',
+		dependencies = {
+			'williamboman/mason.nvim',
+			'jay-babu/mason-nvim-dap.nvim',
+		}
+	},
+	{
+		'rcarriga/nvim-dap-ui',
+		event = 'VeryLazy',
+		dependencies = 'mfussenegger/nvim-dap',
 	}
 }

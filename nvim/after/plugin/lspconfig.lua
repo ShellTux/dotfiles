@@ -3,9 +3,9 @@ local lsp = require('lsp-zero').preset({})
 local telescope_present, _ = pcall(require, 'telescope')
 
 lsp.on_attach(function(client, bufnr)
-	lsp.default_keymaps({buffer = bufnr})
+	lsp.default_keymaps({ buffer = bufnr })
 
-	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+	-- vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, opts)
 	vim.keymap.set('n', 'g[', vim.diagnostic.goto_next)
 	vim.keymap.set('n', 'g]', vim.diagnostic.goto_prev)
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -44,9 +44,9 @@ lsp.format_on_save({
 	},
 	servers = {
 		['clangd'] = { 'c', 'cpp' },
-		['lua_ls'] = {'lua'},
+		['lua_ls'] = { 'lua' },
 		['null-ls'] = {},
-		['rust_analyzer'] = {'rust'},
+		['rust_analyzer'] = { 'rust' },
 		['tsserver'] = { 'typescript', 'javascript' },
 	}
 })
@@ -59,6 +59,7 @@ local options = {
 		'bash-language-server',
 		'clangd',
 		'clang-format',
+		'codelldb',
 		'lua-language-server',
 		'pyright',
 		'rust-analyzer',
@@ -86,10 +87,10 @@ require('mason-lspconfig').setup({
 
 -- Nerd Font v3.x.x
 lsp.set_sign_icons({
-    error = ' ',
-    warn = ' ',
-    hint = ' ',
-    info = '󰋼 '
+	error = ' ',
+	warn = ' ',
+	hint = '󰌵 ',
+	info = '󰋼 '
 })
 
 -- (Optional) Configure lua language server for neovim
@@ -119,10 +120,10 @@ cmp.setup({
 		documentation = cmp.config.window.bordered(),
 	},
 	sources = {
-		{name = 'path'},
-		{name = 'nvim_lsp'},
-		{name = 'buffer', keyword_length = 3},
-		{name = 'luasnip', keyword_length = 2},
+		{ name = 'path' },
+		{ name = 'nvim_lsp' },
+		{ name = 'buffer',  keyword_length = 3 },
+		{ name = 'luasnip', keyword_length = 2 },
 	},
 	mapping = {
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
