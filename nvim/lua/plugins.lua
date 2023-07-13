@@ -7,6 +7,7 @@ return {
 	'folke/which-key.nvim',
 	'honza/vim-snippets',
 	'junegunn/vim-easy-align',
+	'L3MON4D3/LuaSnip',
 	'lewis6991/gitsigns.nvim',
 	'loctvl842/monokai-pro.nvim',
 	'lunarvim/darkplus.nvim',
@@ -16,12 +17,13 @@ return {
 	'mofiqul/adwaita.nvim',
 	'mofiqul/vscode.nvim',
 	'navarasu/onedark.nvim',
-	'neoclide/coc.nvim',
+	'neovim/nvim-lspconfig',
 	'norcalli/nvim-colorizer.lua',
 	'nvim-tree/nvim-tree.lua',
 	'nvim-tree/nvim-web-devicons',
 	'nvim-treesitter/nvim-treesitter',
 	'projekt0n/github-nvim-theme',
+	'rafamadriz/friendly-snippets',
 	'rebelot/kanagawa.nvim',
 	'tpope/vim-commentary',
 	'tpope/vim-fugitive',
@@ -80,4 +82,31 @@ return {
 		'windwp/nvim-autopairs',
 		event = 'InsertEnter',
 	},
+	{
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v2.x',
+		dependencies = {
+			-- LSP Support
+			'neovim/nvim-lspconfig',
+			{
+				'williamboman/mason.nvim',
+				build = function() pcall(vim.cmd, 'MasonUpdate') end,
+			},
+			'williamboman/mason-lspconfig.nvim',
+
+			-- Autocompletion
+			'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-cmdline',
+			'hrsh7th/cmp-nvim-lsp',
+			'hrsh7th/cmp-path',
+			'hrsh7th/nvim-cmp',
+			'L3MON4D3/LuaSnip',
+			'rafamadriz/friendly-snippets',
+			'saadparwaiz1/cmp_luasnip',
+		}
+	},
+	{
+		'jose-elias-alvarez/null-ls.nvim',
+		event = 'VeryLazy',
+	}
 }
