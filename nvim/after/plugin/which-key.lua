@@ -26,6 +26,15 @@ local registers = {
 		u    = { vim_fugitive.update, 'Git update remote refs' },
 	},
 	l = { '<cmd>Lazy<cr>', 'Lazy Open' },
+	L = {
+		'LspConfig',
+		f = { '<cmd>LspZeroFormat<cr>', 'Lsp Format' },
+		i = { '<cmd>LspInfo<cr>', 'Lsp Info' },
+		r = { '<cmd>LspRestart<cr>', 'Lsp Restart' },
+		sta = { '<cmd>LspStart<cr>', 'Lsp Start' },
+		sto = { '<cmd>LspStop<cr>', 'Lsp Stop' },
+	},
+	m = { '<cmd>Mason<cr>', 'Mason'},
 	p = {
 		name = 'Project',
 		b = 'Find Buffer',
