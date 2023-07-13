@@ -1,5 +1,4 @@
 return {
-	'airblade/vim-gitgutter',
 	'edeneast/nightfox.nvim',
 	'ellisonleao/gruvbox.nvim',
 	'equalsraf/neovim-gui-shim',
@@ -8,6 +7,7 @@ return {
 	'folke/which-key.nvim',
 	'honza/vim-snippets',
 	'junegunn/vim-easy-align',
+	'lewis6991/gitsigns.nvim',
 	'loctvl842/monokai-pro.nvim',
 	'lunarvim/darkplus.nvim',
 	'm4xshen/smartcolumn.nvim',

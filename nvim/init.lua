@@ -19,5 +19,4 @@ vim.cmd('set wrap')
 vim.cmd('set linebreak')
 vim.cmd('set background=dark')
 vim.cmd('highlight ColorColumn ctermbg=0 guibg=red')
-
 vim.cmd('command! Reload lua vim.cmd("source " .. vim.fn.stdpath("config") .. "/init.lua")')
