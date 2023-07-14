@@ -187,6 +187,17 @@ clipboard() {
 	esac
 }
 
+shellstart() {
+	for neofetch in neofetch fastfetch
+	do
+		if command -v "$neofetch" &>/dev/null
+		then
+			"$neofetch"
+			break
+		fi
+	done
+}
+
 # battheme() {
 # 	bat --list-themes | fzf --preview="bat --theme={} --color=always $@"
 # }

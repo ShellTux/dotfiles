@@ -123,6 +123,7 @@
 !/neofetch/
 /neofetch/*
 !/neofetch/config.conf
+!/neofetch/Arch-linux-logo.png
 !/newsboat/
 /newsboat/*
 !/newsboat/config
