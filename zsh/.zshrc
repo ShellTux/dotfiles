@@ -1,5 +1,7 @@
 [ $(tty | grep tty) ] && is_tty="yes" || is_tty="no"
 
+neofetch
+
 # Enable Powerlevel10k instant prompt.
 # Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -58,14 +60,6 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	function zle_application_mode_stop { echoti rmkx }
 	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
-fi
-
-if command -v fastfetch &> /dev/null
-then
-	fastfetch
-elif command -v neofetch &> /dev/null
-then
-	neofetch
 fi
 
 [ -f "$ZDOTDIR"/zsh-onefetch ] && source "$ZDOTDIR"/zsh-onefetch
