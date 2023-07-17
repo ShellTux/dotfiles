@@ -152,6 +152,11 @@
 !/nvim-qt
 /nvim-qt/*
 !/nvim-qt/nvim-qt.conf
+!/onefetch
+/onefetch/*
+!/onefetch/images
+/onefetch/images/*
+!/onefetch/images/*.png
 !/picom/
 /picom/*
 !/picom/picom.conf
@@ -289,7 +294,6 @@
 !/zsh/.zshrc
 !/zsh/zsh-comp
 !/zsh/zsh-keybindings
-!/zsh/zsh-onefetch
 !/zsh/completions
 /zsh/completions/*
 !/zsh/completions/_*
