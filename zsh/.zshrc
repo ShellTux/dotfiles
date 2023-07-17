@@ -22,9 +22,6 @@ done
 	&& source ~/.config/zsh/p10k.zsh \
 	|| source ~/.config/zsh/p10k.terminal.zsh
 
-aliasrc="${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
-[ -f "$aliasrc" ] && source "$aliasrc"
-
 LS_COLORS="${XDG_DATA_HOME:-$HOME/.local/share}/LS_COLORS"
 [ -f "$LS_COLORS" ] && eval $(dircolors -b "$LS_COLORS")
 
@@ -62,4 +59,5 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-[ -f "$ZDOTDIR"/zsh-onefetch ] && source "$ZDOTDIR"/zsh-onefetch
+aliasrc="${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+[ -f "$aliasrc" ] && source "$aliasrc"

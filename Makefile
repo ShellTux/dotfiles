@@ -16,6 +16,7 @@ DEPENDECIES       = \
 		    clipmenu \
 		    firewalld \
 		    flameshot \
+		    jq \
 		    libinput \
 		    network-manager-applet \
 		    picom \
