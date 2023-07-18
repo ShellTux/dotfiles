@@ -41,8 +41,8 @@ test:
 symlink:
 	ln -sf $(CONFIG_HOME_DIR)/bash/bash_profile $(HOME_DIR)/.bash_profile
 	ln -sf $(CONFIG_HOME_DIR)/bash/bashrc $(HOME_DIR)/.bashrc
-	ln -sf $(CONFIG_HOME_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
 	ln -sf $(CONFIG_HOME_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
+	cp --remove-destination $(CONFIG_HOME_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
 
 dependecies:
 	$(PKG_MANAGER) $(DEPENDECIES)
