@@ -52,9 +52,7 @@ Plugin 'Mofiqul/adwaita.nvim' 		" Neovim colorscheme using Gnome Adwaita syntax
 Plugin 'mofiqul/vscode.nvim' 		" Neovim/Vim color scheme inspired by Dark+ and Light+ theme in Visual Studio Code
 Plugin 'morhetz/gruvbox'		" Retro groove color scheme for Vim
 Plugin 'nanotech/jellybeans.vim' 	" A colorful, dark color scheme for Vim
-Plugin 'neoclide/coc.nvim', {'branch': 'release'} " Nodejs extension host for vim/neovim, load extensions and host language servers
 Plugin 'preservim/nerdtree' 		" File system explorer for the Vim editor
-Plugin 'puremourning/vimspector'	" A multi-language debugging system for Vim
 Plugin 'romainl/Apprentice' 		" A dark, low-contrast, Vim colorscheme
 Plugin 'RRethy/vim-hexokinase', {'do':'make hexokinase'}	" (Neo)Vim plugin for asynchronously displaying the colours in the file
 Plugin 'ryanoasis/vim-devicons'		" Adds file type icons to Vim plugins
