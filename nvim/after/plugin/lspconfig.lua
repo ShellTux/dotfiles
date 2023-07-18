@@ -45,9 +45,8 @@ lsp.format_on_save({
 	servers = {
 		['clangd'] = { 'c', 'cpp' },
 		['lua_ls'] = { 'lua' },
-		['null-ls'] = {},
+		['null-ls'] = { 'typescript', 'javascript' },
 		['rust_analyzer'] = { 'rust' },
-		['tsserver'] = { 'typescript', 'javascript' },
 	}
 })
 
@@ -88,9 +87,9 @@ require('mason-lspconfig').setup({
 -- Nerd Font v3.x.x
 lsp.set_sign_icons({
 	error = ' ',
-	warn = ' ',
-	hint = '󰌵 ',
-	info = '󰋼 '
+	warn  = ' ',
+	hint  = '󰌵 ',
+	info  = '󰋼 '
 })
 
 -- (Optional) Configure lua language server for neovim
@@ -101,6 +100,7 @@ capabilities.offsetEncoding = { 'utf-16' }
 
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 lspconfig.clangd.setup({ capabilities = capabilities })
+lspconfig.tsserver.setup({})
 
 lsp.setup()
 
