@@ -10,7 +10,7 @@ null_ls.setup({
 	sources = {
 		completion.spell,
 		diagnostics.eslint,
+		formatting.eslint,
 		formatting.stylua,
-		formatting.prettierd,
 	},
 })
