@@ -132,7 +132,7 @@ check_directory_for_new_repository() {
 }
 
 cd() {
-	builtin cd "$@" || exit
+	builtin cd "$@" || return
 	check_directory_for_new_repository
 }
 
