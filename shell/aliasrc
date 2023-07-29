@@ -62,7 +62,7 @@ alias :q=exit
 alias randomcolor='printf "#$(openssl rand -hex 3 | tr "[:lower:]" "[:upper:]")\n"'
 alias rmdir='rmdir --verbose'
 alias rm='rm --verbose'
-alias shred='shred --verbose --random-source=/dev/urandom -n1 --zero'
+alias shred='shred --verbose'
 alias ssh-agentd='eval $(ssh-agent -s)'
 alias suvim='doas vim'
 alias terminal='$TERMINAL'
