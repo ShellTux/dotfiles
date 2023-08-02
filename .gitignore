@@ -55,7 +55,9 @@
 /etc/NetworkManager/*
 /etc/NetworkManager/dispatcher.d/*
 !/etc/NetworkManager/dispatcher.d/
-!/etc/NetworkManager/dispatcher.d/10-enable-sshd.sh
+/etc/NetworkManager/dispatcher.d/*
+!/etc/NetworkManager/dispatcher.d/09-timezone
+!/etc/NetworkManager/dispatcher.d/10-enable-sshd
 !/etc/X11/
 /etc/X11/*
 !/etc/X11/xorg.conf.d/
