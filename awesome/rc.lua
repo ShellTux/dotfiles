@@ -459,6 +459,13 @@ awful.rules.rules = {
 		}
 	},
 	{
+		rule = { class = 'Stremio' },
+		properties = {
+			screen = 1,
+			tag = variables.workspace_names[7]
+		}
+	},
+	{
 		rule = { class = 'com-atlauncher-App' },
 		properties = {
 			screen = 1,
