@@ -40,10 +40,10 @@ super + shift + apostrophe
       arch-wiki
 
 super + Insert
-      mount-menu mount
+      sudo -A mount-menu mount
 
 super + shift + Insert
-      mount-menu unmount
+      sudo -A mount-menu unmount
 
 super + v
       clipmenu

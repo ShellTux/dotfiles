@@ -25,6 +25,7 @@ DEPENDECIES       = \
 		    rofi-emoji \
 		    sxhkd \
 		    syncthing \
+		    x11-ssh-askpass \
 		    xf86-input-libinput \
 		    xorg-xrdb
 AUR_DEPENDECIES   = \
@@ -64,7 +65,8 @@ install: dependecies
 	printf '\033[36m%s\033[0m\n' 'You need to change /etc/NetworkManager/dispatcher.d/10-enable-sshd.sh uuid'
 
 .PHONY: sxhkd
-sxhkd:
+sxhkd: dependencies
+	sudo sed -i '0,/Path askpass/{s/.*Path askpass.*/Path askpass \/usr\/lib\/ssh\/ssh-askpass/}' /etc/sudo.conf
 	systemctl enable --user sxhkd.service
 
 $(MPD_SHARE) $(MPD_STATE) $(DBUS_SERVICE_DIR) $(ICONS_TARGET_DIR):
