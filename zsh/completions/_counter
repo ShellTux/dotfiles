@@ -5,6 +5,8 @@ _arguments \
 	'--help[Print help page]' \
 	'-n[Disable desktop notification]' \
 	'--no-notification[Disable desktop notification]' \
+	'-r[Count upwards instead of downwards]' \
+	'--reverse[Count upwards instead of downwards]' \
 	'-t[Set the countdown time in seconds (default: 20)]:number:(20 30 40)' \
 	'--time[Set the countdown time in seconds (default: 20)]:number:(20 30 40)' \
 	'1:number:(20 30 40)'

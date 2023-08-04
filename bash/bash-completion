@@ -31,12 +31,12 @@ _counter() {
 	COMPREPLY=()
 	cur=${COMP_WORDS[COMP_CWORD]}
 	prev=${COMP_WORDS[COMP_CWORD-1]}
-	opts="-h --help -n --no-notification -t --time"
+	opts="-h --help -n --no-notification -r --reverse -t --time"
 
 	time_values="20 30 40"
 
 	case "$prev" in
-		-h | --help | -n | --no-notification)
+		-h | --help | -n | --no-notification | -r | --reverse)
 			# no additional completions needed for these flags
 			;;
 		-t | --time)
