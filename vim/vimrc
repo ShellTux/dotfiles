@@ -66,6 +66,7 @@ Plugin 'tpope/vim-commentary'		" Comment stuff out
 Plugin 'tpope/vim-fugitive'		" A Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-surround' 		" Delete/change/add parentheses/quotes/XML-tags/much more with ease
 Plugin 'VundleVim/Vundle.vim'		" Vundle, the plug-in manager for Vim. Vundle is short for Vim bundle
+Plugin 'waycrate/swhkd-vim'
 Plugin 'xuhdev/vim-latex-live-preview' 	" A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plugin 'Xuyuanp/nerdtree-git-plugin'	" A plugin of NERDTree showing git status
 call vundle#end()

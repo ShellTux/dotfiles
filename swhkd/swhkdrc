@@ -1,0 +1,64 @@
+# vim: sw=6
+
+XF86AudioPlay
+      mpc toggle; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
+
+shift + XF86AudioPlay
+      notify-music
+
+super + XF86AudioPlay
+      music-menu dmenu ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
+
+super + alt + {0-9}
+      mpc -q seek {0-9}0%
+
+XF86AudioMute
+      change-volume toggle-mute ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
+
+XF86Audio{LowerVolume,RaiseVolume}
+      change-volume 5 {-,+}; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
+
+control + XF86Audio{LowerVolume,RaiseVolume}
+      change-volume 1 {-,+}; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
+
+shift + XF86Audio{LowerVolume,RaiseVolume}
+      mpc volume {-,+}5 ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
+
+control + shift + XF86Audio{LowerVolume,RaiseVolume}
+      mpc volume {-,+}1; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
+
+XF86Audio{Prev,Next}
+      mpc --quiet {prev,next}; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
+
+XF86MonBrightness{Down,Up}
+      change-brightness 5 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+
+Brightness{Down,Up}
+      change-brightness 5 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+
+shift + XF86MonBrightness{Down,Up}
+      change-brightness 1 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+
+super + shift + apostrophe
+      arch-wiki
+
+super + Insert
+      mount-menu mount
+
+super + shift + Insert
+      mount-menu unmount
+
+super + v
+      clipmenu
+
+super + F4
+      power-menu
+
+Print
+      flameshot gui
+
+super + Print
+      screenshot
+
+super + period
+      rofi -modes emoji -show emoji

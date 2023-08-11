@@ -7,6 +7,7 @@ return {
 	'folke/which-key.nvim',
 	'honza/vim-snippets',
 	'junegunn/vim-easy-align',
+	'kovetskiy/sxhkd-vim',
 	'L3MON4D3/LuaSnip',
 	'lewis6991/gitsigns.nvim',
 	'loctvl842/monokai-pro.nvim',
@@ -29,6 +30,7 @@ return {
 	'tpope/vim-fugitive',
 	'tpope/vim-repeat',
 	'tpope/vim-surround',
+	'waycrate/swhkd-vim',
 	'xiyaowong/transparent.nvim',
 	{
 		'nvim-telescope/telescope.nvim',

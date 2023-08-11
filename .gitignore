@@ -211,6 +211,9 @@
 !/sway/
 /sway/*
 !/sway/config
+!/swhkd/
+/swhkd/*
+!/swhkd/swhkdrc
 !/tmux/
 /tmux/*
 !/tmux/tmux.conf

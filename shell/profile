@@ -1,6 +1,7 @@
 # vim: ft=sh
 
 # My custom exports
+export BEMENU_OPTS="--fn 18"
 export BROWSER="firefox"
 export EDITOR="nvim"
 export FILE_EXPLORER="ranger"
