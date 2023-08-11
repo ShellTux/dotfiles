@@ -6,7 +6,7 @@ BindsTo=default.target
 Type=simple
 Environment=XDG_CONFIG_HOME=%h/.config
 Environment=PATH=%h/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin
-ExecStart=%h/.local/bin/hotkeys.sh
+ExecStart=%h/.config/systemd/user/hotkeys.sh
 ExecReload=/usr/bin/pkexec pkill -HUP swhkd
 ExecStop=/usr/bin/pkexec pkill swhkd
 

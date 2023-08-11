@@ -208,6 +208,7 @@
 /systemd/user/*
 !/systemd/user/*.service
 !/systemd/user/*.target
+!/systemd/user/hotkeys.sh
 !/sway/
 /sway/*
 !/sway/config
