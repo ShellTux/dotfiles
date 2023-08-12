@@ -156,6 +156,7 @@ autocmd BufWritePost config.h !doas make clean install
 autocmd BufWritePost patches.def.h !rm -f patches.h && doas make clean install
 " AutoRecompile on save
 autocmd BufWritePost config.def.h !rm -f config.h && doas make clean install
+autocmd BufWritePost *.service !systemctl --user daemon-reload
 " Update Sxhkd (Simple x hot key daemon) after save
 autocmd BufWritePost sxhkdrc !systemctl restart --user sxhkd
 " Recompile Xmonad after save
