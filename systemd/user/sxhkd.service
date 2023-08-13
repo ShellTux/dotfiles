@@ -7,7 +7,8 @@ After=graphical-session.target
 [Service]
 Restart=always
 RestartSec=2
-Environment=WAYLAND_DISPLAY=
+Environment=PATH=%h/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin
+Environment=BEMENU_OPTS="--fn 18"
 ExecStart=/usr/bin/sxhkd
 ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 
