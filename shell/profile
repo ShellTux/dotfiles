@@ -2,10 +2,10 @@
 
 # My custom exports
 export BEMENU_OPTS="--fn 18"
-export BROWSER="firefox"
+export BROWSER=firefox
 export CDPATH=".:$HOME:${XDG_CONFIG_HOME:-$HOME/.config}:$HOME/.local/src"
-export EDITOR="nvim"
-export FILE_EXPLORER="ranger"
+export EDITOR=nvim
+export FILE_EXPLORER=ranger
 export GIT_EDITOR="$EDITOR"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export LESS='-R --use-color -Dd+r$Du+b'
@@ -14,13 +14,15 @@ export LESS='-R --use-color -Dd+r$Du+b'
 	&& export MANPAGER="sh -c 'col --no-backspaces --spaces \
 	| bat --language man --plain'"
 export MANROFFOPT='-c'
-export PAGER="less"
-export QT_QPA_PLATFORMTHEME='qt5ct'
+export PAGER=less
+export PASSWORD_STORE_CLIP_TIME=10
+export PASSWORD_STORE_GENERATED_LENGTH=64
+export QT_QPA_PLATFORMTHEME=qt5ct
 export SHELL="/bin/zsh"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-export STATUSBAR="dwmblocks"
-export TERMINAL="st"
-export VIDEO_PLAYER="mpv"
+export STATUSBAR=dwmblocks
+export TERMINAL=st
+export VIDEO_PLAYER=mpv
 export VISUAL="$EDITOR"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
