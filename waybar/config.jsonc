@@ -8,7 +8,7 @@
 		"~/.config/waybar/modules.jsonc",
 	],
 	// Choose the order of the modules
-	"modules-left": ["idle_inhibitor", "wlr/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
+	"modules-left": ["idle_inhibitor", "hyprland/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
 	"modules-center": ["hyprland/window", "hyprland/submap"],
 	"modules-right": ["keyboard-state", "custom/pacman", "hyprland/language", "pulseaudio", "network", "backlight", "battery", "battery#bat2", "clock#date", "clock", "tray"]
 },
