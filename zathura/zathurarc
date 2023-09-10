@@ -6,6 +6,12 @@ set recolor true
 set selection-clipboard clipboard
 set window-title-basename "true"
 set incremental-search "true"
+map j navigate next
+map k navigate previous
+map <S-j> scroll down 10
+map <S-k> scroll up 10
+map h scroll down 10
+map l scroll up 10
 # map D set "first-page-column 1:1"
 # map <C-d> set "first-page-column 1:2"
 # set pages-per-row 5
