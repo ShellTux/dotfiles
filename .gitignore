@@ -288,6 +288,9 @@
 !/yay/
 /yay/*
 !/yay/config.json
+!/ytfzf
+/ytfzf/*
+!/ytfzf/conf.sh
 !/zathura/
 /zathura/*
 !/zathura/zathurarc
