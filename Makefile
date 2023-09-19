@@ -14,6 +14,7 @@ PKG_MANAGER       = sudo pacman -S --needed --noconfirm
 AUR_MANAGER       = yay -S --aur --needed --noconfirm
 DEPENDECIES       = \
 		    clipmenu \
+		    eza \
 		    firewalld \
 		    flameshot \
 		    jq \
