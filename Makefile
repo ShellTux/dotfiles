@@ -98,3 +98,6 @@ icons: | $(ICONS_TARGET_DIR)
 
 git-hooks: pre-push post-merge
 	install --verbose --mode=755 $^ .git/hooks/
+
+xdg-user-dirs:
+	xdg-user-dirs-update --force
