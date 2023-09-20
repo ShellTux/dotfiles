@@ -20,6 +20,7 @@ DEPENDECIES       = \
 		    jq \
 		    libinput \
 		    network-manager-applet \
+		    noise-suppression-for-voice \
 		    picom \
 		    qpwgraph \
 		    rofi \
