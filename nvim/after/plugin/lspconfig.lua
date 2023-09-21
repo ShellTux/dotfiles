@@ -101,7 +101,9 @@ capabilities.offsetEncoding = { 'utf-16' }
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 lspconfig.clangd.setup({ capabilities = capabilities })
 lspconfig.tsserver.setup({})
-
+lspconfig.asm_lsp.setup({
+	root_dir = lspconfig.util.root_pattern('*.asm')
+})
 lsp.setup()
 
 local cmp = require('cmp')
