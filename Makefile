@@ -75,7 +75,10 @@ sxhkd: dependencies
 $(MPD_SHARE) $(MPD_STATE) $(DBUS_SERVICE_DIR) $(ICONS_TARGET_DIR):
 	mkdir --parents --verbose $@
 
+.PHONY: mpd
 mpd: | $(MPD_SHARE) $(MPD_STATE)
+	$(PKG_MANAGER) mpd mpc timidity++
+	systemctl --user enable --now mpd
 	touch "$(MPD_SHARE)/database"
 	touch "$(MPD_SHARE)/mpd.log"
 	touch "$(MPD_STATE)/mpd.pid"
