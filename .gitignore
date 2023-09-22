@@ -44,7 +44,6 @@
 !/etc/
 /etc/*
 !/etc/doas.conf
-!/etc/etc-installation.sh
 !/etc/grub.d
 !/etc/vconsole.conf
 !/etc/pacman.d/
@@ -54,11 +53,13 @@
 !/etc/pacman.d/hooks/log-installed.hook
 !/etc/NetworkManager/
 /etc/NetworkManager/*
+!/etc/NetworkManager/install.sh
 /etc/NetworkManager/dispatcher.d/*
 !/etc/NetworkManager/dispatcher.d/09-timezone
 !/etc/NetworkManager/dispatcher.d/10-enable-sshd
 !/etc/X11/
 /etc/X11/*
+!/etc/X11/install.sh
 !/etc/X11/xorg.conf.d/
 /etc/X11/xorg.conf.d/*
 !/etc/X11/xorg.conf.d/*.conf
@@ -66,10 +67,12 @@
 /etc/xdg/*
 !/etc/xdg/reflector/
 /etc/xdg/reflector/*
+!/etc/xdg/reflector/install.sh
+!/etc/xdg/reflector/reflector.conf
 !/etc/zsh
 /etc/zsh/*
 !/etc/zsh/zshenv
-!/etc/xdg/reflector/reflector.conf
+!/etc/zsh/install.sh
 !/fastfetch/
 /fastfetch/*
 !/fastfetch/config.conf

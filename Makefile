@@ -51,18 +51,40 @@ dependecies: yay
 	$(PKG_MANAGER) $(DEPENDECIES)
 	$(AUR_MANAGER) $(AUR_DEPENDECIES)
 
-etc:
-	$(PKG_MANAGER) libinput xf86-input-libinput
-	sudo ./etc/etc-installation.sh "$(USERNAME)"
+etc/NetworkManager:
+	$(PKG_MANAGER) \
+		networkmanager \
+		network-manager-applet \
+		networkmanager-openvpn \
+		nm-connection-editor
+	sudo ./etc/NetworkManager/install.sh
 
-install: dependecies
-	sudo ./etc/etc-installation.sh $(USERNAME)
+etc/X11:
+	$(PKG_MANAGER) \
+		libinput \
+		xf86-input-libinput
+	sudo ./etc/X11/install.sh
 
-.PHONY: sxhkd
-sxhkd: dependencies
-	$(PKG_MANAGER) sxhkd x11-ssh-askpass
-	sudo sed -i '0,/.*Path askpass.*/s||Path askpass /usr/lib/ssh/ssh-askpass|' /etc/sudo.conf
-	systemctl --user enable sxhkd.service
+etc/grub.d:
+	$(PKG_MANAGER) grub
+	sudo ./etc/grub.d/install.sh
+
+etc/xdg/reflector:
+	$(PKG_MANAGER) reflector
+	sudo ./etc/xdg/reflector/install.sh
+
+etc/zsh:
+	$(PKG_MANAGER) zsh
+	sudo ./etc/zsh/install.sh
+
+etc/doas.conf:
+	$(PKG_MANAGER) opendoas
+	sudo install --owner=root --group=root --mode=644 ./etc/vconsole.conf /etc/
+	sudo sed -i 's|<user>|$(USERNAME)|g' /etc/doas.conf
+
+etc/vconsole.conf:
+	$(PKG_MANAGER) terminus-font
+	sudo install --owner=root --group=root --mode=644 ./etc/vconsole.conf /etc/
 
 $(DBUS_SERVICE_DIR) \
 	$(ICONS_TARGET_DIR) \
@@ -70,6 +92,57 @@ $(DBUS_SERVICE_DIR) \
 	$(MPD_STATE) \
 	$(NEWSBOAT_HOME_DIR):
 	mkdir --parents --verbose $@
+
+git-hooks: pre-push post-merge
+	install --verbose --mode=755 $^ .git/hooks/
+
+.PHONY: alacritty
+alacritty:
+	$(PKG_MANAGER) \
+		alacritty \
+		otf-firamono-nerd \
+		ttf-fira-code \
+		ttf-firacode-nerd
+
+.PHONY: awesome
+awesome:
+	$(PKG_MANAGER) \
+		awesome \
+		awesome-terminal-fonts \
+		otf-font-awesome
+
+.PHONY: bat
+bat:
+	$(PKG_MANAGER) \
+		bat \
+		bat-extras
+
+dbus: | $(DBUS_SERVICE_DIR)
+	cp $(DBUS_SERVICES) $(DBUS_SERVICE_DIR)
+
+.PHONY: dunst
+dunst:
+	$(PKG_MANAGER) \
+		dunst \
+		notify-tools
+
+.PHONY: git
+git:
+	$(PKG_MANAGER) \
+		git \
+		onefetch
+
+.PHONY: hypr
+hypr:
+	$(PKG_MANAGER) \
+		hyprland \
+		xdg-desktop-portal-hyprland
+	$(AUR_MANAGER) \
+		waybar-hyprland-git
+
+.PHONY: icons
+icons: | $(ICONS_TARGET_DIR)
+	cp -r $(ICONS_SOURCE_DIR) $(ICONS_TARGET_DIR)
 
 .PHONY: mpd
 mpd: | $(MPD_SHARE) $(MPD_STATE)
@@ -80,8 +153,24 @@ mpd: | $(MPD_SHARE) $(MPD_STATE)
 	touch "$(MPD_STATE)/mpd.pid"
 	touch "$(MPD_STATE)/mpdstate"
 
-.PHONY: xmonad
-xmonad:
+.PHONY: newsboat
+newsboat: | $(NEWSBOAT_HOME_DIR)
+	touch "$(NEWSBOAT_HOME_DIR)/repos-urls"
+	touch "$(NEWSBOAT_HOME_DIR)/urls"
+
+.PHONY: sxhkd
+sxhkd:
+	$(PKG_MANAGER) sxhkd x11-ssh-askpass
+	sudo sed -i '0,/.*Path askpass.*/s||Path askpass /usr/lib/ssh/ssh-askpass|' /etc/sudo.conf
+	systemctl --user enable sxhkd.service
+
+.PHONY: xdg-user-dirs
+xdg-user-dirs:
+	$(PKG_MANAGER) xdg-user-dirs
+	xdg-user-dirs-update --force
+
+.PHONY: xmonad xmobar
+xmonad xmobar:
 	$(PKG_MANAGER) \
 		xmonad \
 		xmonad-utils \
@@ -90,22 +179,12 @@ xmonad:
 		xmobar \
 		trayer
 
-dbus: | $(DBUS_SERVICE_DIR)
-	cp $(DBUS_SERVICES) $(DBUS_SERVICE_DIR)
-
-.PHONY: icons
-icons: | $(ICONS_TARGET_DIR)
-	cp -r $(ICONS_SOURCE_DIR) $(ICONS_TARGET_DIR)
-
-git-hooks: pre-push post-merge
-	install --verbose --mode=755 $^ .git/hooks/
-
-xdg-user-dirs:
-	xdg-user-dirs-update --force
-
-newsboat: | $(NEWSBOAT_HOME_DIR)
-	touch "$(NEWSBOAT_HOME_DIR)/repos-urls"
-	touch "$(NEWSBOAT_HOME_DIR)/urls"
-
 yay:
 	./yay/yay-install.sh
+
+zsh:
+	$(PKG_MANAGER) \
+		zsh \
+		zsh-autosuggestions \
+		zsh-syntax-highlighting \
+		zsh-theme-powerlevel10k
