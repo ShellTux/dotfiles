@@ -10,6 +10,7 @@ DBUS_SERVICE_DIR  = $(DATA_HOME_DIR)/dbus-1/services
 DBUS_SERVICES     = $(CONFIG_HOME_DIR)/dunst/org.freedesktop.Notifications.service
 ICONS_TARGET_DIR  = $(DATA_HOME_DIR)
 ICONS_SOURCE_DIR  = $(CONFIG_HOME_DIR)/icons
+NEWSBOAT_HOME_DIR = $(CONFIG_HOME_DIR)/newsboat
 PKG_MANAGER       = sudo pacman -S --needed --noconfirm
 AUR_MANAGER       = yay -S --aur --needed --noconfirm
 DEPENDECIES       = \
@@ -36,10 +37,8 @@ AUR_DEPENDECIES   = \
 		    syncthing-gtk \
 		    syncthingtray
 
-all: symlink icons install
-
-.PHONY: test
-test:
+.PHONY: list-dependecies
+list-dependecies:
 	@echo $(DEPENDECIES) $(AUR_DEPENDECIES)
 
 symlink:
@@ -52,15 +51,24 @@ dependecies:
 	$(PKG_MANAGER) $(DEPENDECIES)
 	$(AUR_MANAGER) $(AUR_DEPENDECIES)
 
+etc:
+	$(PKG_MANAGER) libinput xf86-input-libinput
+	sudo ./etc/etc-installation.sh "$(USERNAME)"
+
 install: dependecies
 	sudo ./etc/etc-installation.sh $(USERNAME)
 
 .PHONY: sxhkd
 sxhkd: dependencies
-	sudo sed -i '0,/Path askpass/{s/.*Path askpass.*/Path askpass \/usr\/lib\/ssh\/ssh-askpass/}' /etc/sudo.conf
-	systemctl enable --user sxhkd.service
+	$(PKG_MANAGER) sxhkd x11-ssh-askpass
+	sudo sed -i '0,/.*Path askpass.*/s||Path askpass /usr/lib/ssh/ssh-askpass|' /etc/sudo.conf
+	systemctl --user enable sxhkd.service
 
-$(MPD_SHARE) $(MPD_STATE) $(DBUS_SERVICE_DIR) $(ICONS_TARGET_DIR):
+$(DBUS_SERVICE_DIR) \
+	$(ICONS_TARGET_DIR) \
+	$(MPD_SHARE) \
+	$(MPD_STATE) \
+	$(NEWSBOAT_HOME_DIR):
 	mkdir --parents --verbose $@
 
 .PHONY: mpd
@@ -74,7 +82,7 @@ mpd: | $(MPD_SHARE) $(MPD_STATE)
 
 .PHONY: xmonad
 xmonad:
-	sudo pacman -S --needed --noconfirm \
+	$(PKG_MANAGER) \
 		xmonad \
 		xmonad-utils \
 		xmonad-extras \
@@ -94,3 +102,7 @@ git-hooks: pre-push post-merge
 
 xdg-user-dirs:
 	xdg-user-dirs-update --force
+
+newsboat: | $(NEWSBOAT_HOME_DIR)
+	touch "$(NEWSBOAT_HOME_DIR)/repos-urls"
+	touch "$(NEWSBOAT_HOME_DIR)/urls"

@@ -20,7 +20,6 @@ reflector() {
 
 doas() {
 	install --owner=root --group=root --mode=644 ./etc/doas.conf /etc/
-	echo "$1"
 	sed -i 's|<user>|'"$username"'|g' /etc/doas.conf
 }
 

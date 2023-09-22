@@ -132,7 +132,6 @@
 /newsboat/*
 !/newsboat/config
 !/newsboat/themes
-!/newsboat/urls
 !/npm/
 /npm/*
 !/npm/npmrc
@@ -289,6 +288,7 @@
 !/yay/
 /yay/*
 !/yay/config.json
+!/yay/yay-install.sh
 !/ytfzf
 /ytfzf/*
 !/ytfzf/conf.sh
