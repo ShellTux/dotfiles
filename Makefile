@@ -24,6 +24,7 @@ DEPENDECIES       = \
 		    picom \
 		    qpwgraph \
 		    rofi \
+		    rofi-calc \
 		    rofi-emoji \
 		    sxhkd \
 		    syncthing \
