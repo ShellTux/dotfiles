@@ -47,7 +47,7 @@ symlink:
 	ln -sf $(CONFIG_HOME_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
 	cp --remove-destination $(CONFIG_HOME_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
 
-dependecies:
+dependecies: yay
 	$(PKG_MANAGER) $(DEPENDECIES)
 	$(AUR_MANAGER) $(AUR_DEPENDECIES)
 
@@ -106,3 +106,6 @@ xdg-user-dirs:
 newsboat: | $(NEWSBOAT_HOME_DIR)
 	touch "$(NEWSBOAT_HOME_DIR)/repos-urls"
 	touch "$(NEWSBOAT_HOME_DIR)/urls"
+
+yay:
+	./yay/yay-install.sh

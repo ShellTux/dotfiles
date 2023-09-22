@@ -1,7 +1,7 @@
 #!/bin/sh
 set -xe
 
-pacman -Qi yay >/dev/null 2>/dev/null && exit 0
+yay --version >/dev/null 2>/dev/null && exit 0
 
 temp_dir="$(mktemp --directory)"
 
