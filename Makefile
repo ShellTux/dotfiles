@@ -37,6 +37,8 @@ AUR_DEPENDECIES   = \
 		    syncthing-gtk \
 		    syncthingtray
 
+all: reflector *
+
 .PHONY: list-dependecies
 list-dependecies:
 	@echo $(DEPENDECIES) $(AUR_DEPENDECIES)
@@ -47,10 +49,11 @@ symlink:
 	ln -sf $(CONFIG_HOME_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
 	cp --remove-destination $(CONFIG_HOME_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
 
-dependecies: yay
-	$(PKG_MANAGER) $(DEPENDECIES)
-	$(AUR_MANAGER) $(AUR_DEPENDECIES)
+#dependecies: yay
+#	$(PKG_MANAGER) $(DEPENDECIES)
+#	$(AUR_MANAGER) $(AUR_DEPENDECIES)
 
+.PHONY: etc/NetworkManager
 etc/NetworkManager:
 	$(PKG_MANAGER) \
 		networkmanager \
@@ -59,29 +62,35 @@ etc/NetworkManager:
 		nm-connection-editor
 	sudo ./etc/NetworkManager/install.sh
 
-etc/X11:
+.PHONY: etc/X11 etc/X11/
+etc/X11 etc/X11/:
 	$(PKG_MANAGER) \
 		libinput \
 		xf86-input-libinput
 	sudo ./etc/X11/install.sh
 
-etc/grub.d:
+.PHONY: etc/grub.d etc/grub.d/
+etc/grub.d etc/grub.d/:
 	$(PKG_MANAGER) grub
 	sudo ./etc/grub.d/install.sh
 
-etc/xdg/reflector:
+.PHONY: etc/xdg/reflector etc/xdg/reflector/
+etc/xdg/reflector etc/xdg/reflector/:
 	$(PKG_MANAGER) reflector
 	sudo ./etc/xdg/reflector/install.sh
 
-etc/zsh:
+.PHONY: etc/zsh etc/zsh/
+etc/zsh etc/zsh/:
 	$(PKG_MANAGER) zsh
 	sudo ./etc/zsh/install.sh
 
+.PHONY: etc/doas.conf
 etc/doas.conf:
 	$(PKG_MANAGER) opendoas
 	sudo install --owner=root --group=root --mode=644 ./etc/vconsole.conf /etc/
 	sudo sed -i 's|<user>|$(USERNAME)|g' /etc/doas.conf
 
+.PHONY: etc/vconsole.conf
 etc/vconsole.conf:
 	$(PKG_MANAGER) terminus-font
 	sudo install --owner=root --group=root --mode=644 ./etc/vconsole.conf /etc/
@@ -111,6 +120,14 @@ awesome:
 		awesome-terminal-fonts \
 		otf-font-awesome
 
+.PHONY: bash
+bash:
+	$(PKG_MANAGER) \
+		bash \
+		bash-completion \
+		jq \
+		neofetch
+
 .PHONY: bat
 bat:
 	$(PKG_MANAGER) \
@@ -124,7 +141,7 @@ dbus: | $(DBUS_SERVICE_DIR)
 dunst:
 	$(PKG_MANAGER) \
 		dunst \
-		notify-tools
+		inotify-tools
 
 .PHONY: git
 git:
@@ -136,9 +153,8 @@ git:
 hypr:
 	$(PKG_MANAGER) \
 		hyprland \
+		waybar \
 		xdg-desktop-portal-hyprland
-	$(AUR_MANAGER) \
-		waybar-hyprland-git
 
 .PHONY: icons
 icons: | $(ICONS_TARGET_DIR)
@@ -157,6 +173,12 @@ mpd: | $(MPD_SHARE) $(MPD_STATE)
 newsboat: | $(NEWSBOAT_HOME_DIR)
 	touch "$(NEWSBOAT_HOME_DIR)/repos-urls"
 	touch "$(NEWSBOAT_HOME_DIR)/urls"
+
+.PHONY: reflector
+reflector: etc/xdg/reflector
+	$(PKG_MANAGER) reflector
+	sudo systemctl enable reflector.timer
+	sudo systemctl start reflector.service
 
 .PHONY: sxhkd
 sxhkd:
@@ -179,12 +201,18 @@ xmonad xmobar:
 		xmobar \
 		trayer
 
+.PHONY: yay
 yay:
 	./yay/yay-install.sh
 
+.PHONY: zsh
 zsh:
 	$(PKG_MANAGER) \
+		jq \
+		neofetch \
+		thefuck \
 		zsh \
 		zsh-autosuggestions \
+		zsh-completions \
 		zsh-syntax-highlighting \
 		zsh-theme-powerlevel10k

@@ -22,6 +22,7 @@ let mapleader = " " " Leader key
 " ##############
 " Vundle Plugins
 " ##############
+if filereadable(expand('~/.local/share/bundle/Vundle.vim/README.md'))
 set rtp+=$XDG_DATA_HOME/vim/bundle/Vundle.vim " Add Vundle to the runtime path
 filetype plugin indent on    " Required for Vundle packages Plugins
 call vundle#begin('$XDG_DATA_HOME/vim/bundle')
@@ -70,6 +71,9 @@ Plugin 'waycrate/swhkd-vim'
 Plugin 'xuhdev/vim-latex-live-preview' 	" A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plugin 'Xuyuanp/nerdtree-git-plugin'	" A plugin of NERDTree showing git status
 call vundle#end()
+else
+	echoerr "Vundle is not installed, plugins won't be loaded"
+endif
 
 
 
@@ -135,7 +139,11 @@ function! RandomColorscheme(colorschemes)
 		execute 'source ' colorscheme_file
 	endif
 
-	execute 'colorscheme ' . random_colorscheme
+	if exists("g:" . random_colorscheme)
+		execute 'colorscheme ' . random_colorscheme
+	else
+		echoerr "Colorscheme " . random_colorscheme . " doesn't exist."
+	endif
 endfunction
 
 if (has('termguicolors') && &termguicolors) || has('gui_running') || &t_Co == 256
