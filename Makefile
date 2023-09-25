@@ -189,6 +189,12 @@ sxhkd:
 	sudo sed -i '0,/.*Path askpass.*/s||Path askpass /usr/lib/ssh/ssh-askpass|' /etc/sudo.conf
 	systemctl --user enable sxhkd.service
 
+.PHONY: systemd
+systemd:
+	systemctl --user enable --now polkit-gnome.service
+	systemctl --user enable --now ssh-agent.service
+	systemctl --user enable --now sxhkd.service
+
 .PHONY: xdg-user-dirs
 xdg-user-dirs:
 	$(PKG_MANAGER) xdg-user-dirs
