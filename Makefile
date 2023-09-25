@@ -171,6 +171,7 @@ mpd: | $(MPD_SHARE) $(MPD_STATE)
 
 .PHONY: newsboat
 newsboat: | $(NEWSBOAT_HOME_DIR)
+	$(PKG_MANAGER) newsboat
 	touch "$(NEWSBOAT_HOME_DIR)/repos-urls"
 	touch "$(NEWSBOAT_HOME_DIR)/urls"
 
