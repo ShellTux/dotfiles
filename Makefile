@@ -84,16 +84,16 @@ etc/zsh etc/zsh/:
 	$(PKG_MANAGER) zsh
 	sudo ./etc/zsh/install.sh
 
-.PHONY: etc/doas.conf
-etc/doas.conf:
+.PHONY: etc/doas.conf opendoas
+etc/doas.conf opendoas:
 	$(PKG_MANAGER) opendoas
-	sudo install --owner=root --group=root --mode=644 ./etc/vconsole.conf /etc/
+	sudo install --owner=root --group=root --mode=400 ./etc/doas.conf /etc/
 	sudo sed -i 's|<user>|$(USERNAME)|g' /etc/doas.conf
 
-.PHONY: etc/vconsole.conf
-etc/vconsole.conf:
-	$(PKG_MANAGER) terminus-font
-	sudo install --owner=root --group=root --mode=644 ./etc/vconsole.conf /etc/
+.PHONY: /etc/vconsole.conf
+/etc/vconsole.conf:
+	$(PKG_MANAGER) terminus-font setconf
+	sudo setconf --add /etc/vconsole.conf FONT=ter-124b
 
 $(DBUS_SERVICE_DIR) \
 	$(ICONS_TARGET_DIR) \
@@ -174,11 +174,14 @@ newsboat: | $(NEWSBOAT_HOME_DIR)
 	touch "$(NEWSBOAT_HOME_DIR)/repos-urls"
 	touch "$(NEWSBOAT_HOME_DIR)/urls"
 
-.PHONY: reflector
 reflector: etc/xdg/reflector
 	$(PKG_MANAGER) reflector
 	sudo systemctl enable reflector.timer
 	sudo systemctl start reflector.service
+
+.PHONY: shell
+shell: zsh bash opendoas bat newsboat
+	$(PKG_MANAGER) eza neofetch
 
 .PHONY: sxhkd
 sxhkd:

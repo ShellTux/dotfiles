@@ -45,7 +45,6 @@
 /etc/*
 !/etc/doas.conf
 !/etc/grub.d
-!/etc/vconsole.conf
 !/etc/pacman.d/
 /etc/pacman.d/*
 !/etc/pacman.d/hooks
