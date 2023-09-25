@@ -220,6 +220,9 @@
 !/swhkd/
 /swhkd/*
 !/swhkd/swhkdrc
+!/tealdeer/
+/tealdeer/*
+!/tealdeer/config.toml
 !/tmux/
 /tmux/*
 !/tmux/tmux.conf
