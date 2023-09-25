@@ -147,6 +147,7 @@ dunst:
 git:
 	$(PKG_MANAGER) \
 		git \
+		neovim \
 		onefetch
 
 .PHONY: hypr
