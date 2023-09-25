@@ -13,29 +13,6 @@ ICONS_SOURCE_DIR  = $(CONFIG_HOME_DIR)/icons
 NEWSBOAT_HOME_DIR = $(CONFIG_HOME_DIR)/newsboat
 PKG_MANAGER       = sudo pacman -S --needed --noconfirm
 AUR_MANAGER       = yay -S --aur --needed --noconfirm
-DEPENDECIES       = \
-		    clipmenu \
-		    eza \
-		    firewalld \
-		    flameshot \
-		    jq \
-		    libinput \
-		    network-manager-applet \
-		    noise-suppression-for-voice \
-		    picom \
-		    qpwgraph \
-		    rofi \
-		    rofi-calc \
-		    rofi-emoji \
-		    sxhkd \
-		    syncthing \
-		    x11-ssh-askpass \
-		    xf86-input-libinput \
-		    xorg-xrdb
-AUR_DEPENDECIES   = \
-		    redshift-wayland-git \
-		    syncthing-gtk \
-		    syncthingtray
 
 all: reflector *
 
@@ -48,10 +25,6 @@ symlink:
 	ln -sf $(CONFIG_HOME_DIR)/bash/bashrc $(HOME_DIR)/.bashrc
 	ln -sf $(CONFIG_HOME_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
 	cp --remove-destination $(CONFIG_HOME_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
-
-#dependecies: yay
-#	$(PKG_MANAGER) $(DEPENDECIES)
-#	$(AUR_MANAGER) $(AUR_DEPENDECIES)
 
 .PHONY: etc/NetworkManager
 etc/NetworkManager:
