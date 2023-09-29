@@ -151,6 +151,9 @@
 !/nvim/snippets/
 /nvim/snippets/*
 !/nvim/snippets/*.snippets
+!/nvim/spell/
+/nvim/spell/*
+!/nvim/spell/*.spl
 !/nvim/after/plugin/
 /nvim/after/plugin/*
 !/nvim/after/plugin/*.lua
