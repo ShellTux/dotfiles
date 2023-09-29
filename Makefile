@@ -124,10 +124,9 @@ git:
 		onefetch
 
 .PHONY: hypr
-hypr:
+hypr: waybar
 	$(PKG_MANAGER) \
 		hyprland \
-		waybar \
 		xdg-desktop-portal-hyprland
 
 .PHONY: icons
@@ -169,6 +168,13 @@ systemd:
 	systemctl --user enable --now polkit-gnome.service
 	systemctl --user enable --now ssh-agent.service
 	systemctl --user enable --now sxhkd.service
+
+.PHONY: waybar
+waybar:
+	$(PKG_MANAGER) \
+		waybar
+	$(AUR_MANAGER) \
+		wlogout
 
 .PHONY: xdg-user-dirs
 xdg-user-dirs:
