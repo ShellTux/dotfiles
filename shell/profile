@@ -3,7 +3,7 @@
 # My custom exports
 export BEMENU_OPTS="--fn 18"
 export BROWSER=firefox
-export CDPATH=".:$HOME:${XDG_CONFIG_HOME:-$HOME/.config}:$HOME/.local/src"
+export CDPATH=".:$HOME:${XDG_CONFIG_HOME:-$HOME/.config}:$HOME/.local/src:$HOME/.local"
 export EDITOR=nvim
 export FILE_EXPLORER=ranger
 export GIT_EDITOR="$EDITOR"
