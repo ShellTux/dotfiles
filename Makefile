@@ -170,6 +170,14 @@ sxhkd:
 	sudo sed -i '0,/.*Path askpass.*/s||Path askpass /usr/lib/ssh/ssh-askpass|' /etc/sudo.conf
 	systemctl --user enable sxhkd.service
 
+.PHONY: syncthing
+syncthing:
+	$(PKG_MANAGER) \
+		syncthing
+	$(AUR_MANAGER) \
+	syncthing-gtk \
+	syncthingtray
+
 .PHONY: systemd
 systemd:
 	systemctl --user enable --now polkit-gnome.service
