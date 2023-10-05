@@ -179,7 +179,9 @@ syncthing:
 	syncthingtray
 
 .PHONY: systemd
-systemd:
+systemd: sxhkd
+	$(PKG_MANAGER) \
+		polkit-gnome
 	systemctl --user enable --now polkit-gnome.service
 	systemctl --user enable --now ssh-agent.service
 	systemctl --user enable --now sxhkd.service
