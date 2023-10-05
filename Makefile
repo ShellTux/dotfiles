@@ -142,6 +142,13 @@ mpd: | $(MPD_SHARE) $(MPD_STATE)
 	touch "$(MPD_STATE)/mpd.pid"
 	touch "$(MPD_STATE)/mpdstate"
 
+.PHONY: mpv
+mpv:
+	$(PKG_MANAGER) \
+		ffmpeg \
+		mpv \
+		yt-dlp
+
 .PHONY: newsboat
 newsboat: | $(NEWSBOAT_HOME_DIR)
 	$(PKG_MANAGER) newsboat
