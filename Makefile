@@ -14,7 +14,7 @@ NEWSBOAT_HOME_DIR = $(CONFIG_HOME_DIR)/newsboat
 PKG_MANAGER       = sudo pacman -S --needed --noconfirm
 AUR_MANAGER       = yay -S --aur --needed --noconfirm
 
-all: reflector *
+all: reflector [a-z]*
 
 .PHONY: list-dependecies
 list-dependecies:
@@ -206,3 +206,11 @@ zsh:
 		zsh-completions \
 		zsh-syntax-highlighting \
 		zsh-theme-powerlevel10k
+
+_btrfs:
+	$(PKG_MANAGER) \
+		btrfs-heatmap \
+		compsize \
+		duperemove \
+		grub-btrfs
+	$(AUR_MANAGER) timeshift-autosnap
