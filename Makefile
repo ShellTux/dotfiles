@@ -155,6 +155,15 @@ newsboat: | $(NEWSBOAT_HOME_DIR)
 	touch "$(NEWSBOAT_HOME_DIR)/repos-urls"
 	touch "$(NEWSBOAT_HOME_DIR)/urls"
 
+.PHONY: pipewire
+pipewire:
+	$(PKG_MANAGER) \
+		easyeffects \
+		noise-suppression-for-voice \
+		qpwgraph
+	systemctl --user enable pipewire pipewire-pulse
+	systemctl --user restart pipewire pipewire-pulse
+
 reflector: etc/xdg/reflector
 	$(PKG_MANAGER) reflector
 	sudo systemctl enable reflector.timer
