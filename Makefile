@@ -165,6 +165,11 @@ pipewire:
 	systemctl --user enable pipewire pipewire-pulse
 	systemctl --user restart pipewire pipewire-pulse
 
+.PHONY: redshift
+redshift:
+	$(AUR_MANAGER) \
+		redshift-wayland-git
+
 reflector: etc/xdg/reflector
 	$(PKG_MANAGER) reflector
 	sudo systemctl enable reflector.timer
