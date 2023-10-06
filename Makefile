@@ -126,6 +126,7 @@ git:
 .PHONY: hypr
 hypr: waybar
 	$(PKG_MANAGER) \
+		arc-gtk-theme \
 		hyprland \
 		xdg-desktop-portal-hyprland
 
@@ -199,8 +200,8 @@ systemd: sxhkd
 waybar:
 	$(PKG_MANAGER) \
 		waybar
-	$(AUR_MANAGER) \
-		wlogout
+	# $(AUR_MANAGER) \
+	# 	wlogout
 
 .PHONY: xdg-user-dirs
 xdg-user-dirs:
