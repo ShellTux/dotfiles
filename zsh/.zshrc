@@ -36,6 +36,12 @@ unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+if [ ! -f "$HISTFILE" ]
+then
+	mkdir --parents "$(dirname "$HISTFILE")"
+	touch "$HISTFILE"
+fi
+
 # Completions
 fpath=("${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions" $fpath)
 [ -f "$ZDOTDIR"/zsh-comp ] && source "$ZDOTDIR"/zsh-comp

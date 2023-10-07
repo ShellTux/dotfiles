@@ -72,4 +72,10 @@ export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/bash/history
 export HISTIGNORE='clear:ls:cd:[bf]g:exit:[ t\]*'
 # PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+if [ ! -f "$HISTFILE" ]
+then
+	mkdir --parents "$(dirname "$HISTFILE")"
+	touch "$HISTFILE"
+fi
+
 shellstart
