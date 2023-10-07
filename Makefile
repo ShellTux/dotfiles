@@ -107,6 +107,11 @@ bat:
 		bat \
 		bat-extras
 
+.PHONY: dash
+dash:
+	$(AUR_MANAGER) \
+		dashbinsh
+
 dbus: | $(DBUS_SERVICE_DIR)
 	cp $(DBUS_SERVICES) $(DBUS_SERVICE_DIR)
 
