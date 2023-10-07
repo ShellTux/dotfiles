@@ -246,3 +246,4 @@ _btrfs:
 		duperemove \
 		grub-btrfs
 	$(AUR_MANAGER) timeshift-autosnap
+	sudo setconf /etc/timeshift-autosnap.conf maxSnapshots=10
