@@ -133,6 +133,7 @@
 !/newsboat/
 /newsboat/*
 !/newsboat/config
+!/newsboat/repos-urls
 !/newsboat/themes
 !/npm/
 /npm/*
