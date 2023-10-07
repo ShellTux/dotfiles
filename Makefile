@@ -206,6 +206,12 @@ systemd: sxhkd
 	systemctl --user enable --now ssh-agent.service
 	systemctl --user enable --now sxhkd.service
 
+.PHONY: tmux
+tmux:
+	$(PKG_MANAGER) \
+		git \
+		tmux
+
 .PHONY: waybar
 waybar:
 	$(PKG_MANAGER) \
