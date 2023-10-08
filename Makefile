@@ -139,6 +139,17 @@ hypr: waybar
 icons: | $(ICONS_TARGET_DIR)
 	cp -r $(ICONS_SOURCE_DIR) $(ICONS_TARGET_DIR)
 
+.PHONY: ly
+ly:
+	$(PKG_MANAGER) \
+		ly \
+		setconf
+	sudo setconf --uncomment /etc/ly/config.ini animate=true
+	sudo setconf --uncomment /etc/ly/config.ini animation=1
+	sudo setconf --uncomment /etc/ly/config.ini bigclock=true
+	sudo setconf --uncomment /etc/ly/config.ini lang=pt
+	sudo systemctl enable ly.service
+
 .PHONY: mpd
 mpd: | $(MPD_SHARE) $(MPD_STATE)
 	$(PKG_MANAGER) mpd mpc timidity++
