@@ -108,7 +108,7 @@ bat:
 		bat-extras
 
 .PHONY: dash
-dash:
+dash: yay
 	$(AUR_MANAGER) \
 		dashbinsh
 
@@ -182,7 +182,7 @@ pipewire:
 	systemctl --user restart pipewire pipewire-pulse
 
 .PHONY: redshift
-redshift:
+redshift: yay
 	$(AUR_MANAGER) \
 		redshift-wayland-git
 
@@ -202,7 +202,7 @@ sxhkd:
 	systemctl --user enable sxhkd.service
 
 .PHONY: syncthing
-syncthing:
+syncthing: yay
 	$(PKG_MANAGER) \
 		syncthing
 	$(AUR_MANAGER) \
@@ -224,7 +224,7 @@ tmux:
 		tmux
 
 .PHONY: waybar
-waybar:
+waybar: yay
 	$(PKG_MANAGER) \
 		waybar
 	# $(AUR_MANAGER) \
@@ -261,7 +261,7 @@ zsh:
 		zsh-syntax-highlighting \
 		zsh-theme-powerlevel10k
 
-_btrfs:
+_btrfs: yay
 	$(PKG_MANAGER) \
 		btrfs-heatmap \
 		compsize \
