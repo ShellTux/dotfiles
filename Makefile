@@ -266,6 +266,14 @@ xmonad xmobar:
 yay:
 	./yay/yay-install.sh
 
+.PHONY: zathura
+zathura:
+	$(PKG_MANAGER) \
+		zathura \
+		zathura-cb \
+		zathura-djvu \
+		zathura-pdf-mupdf
+
 .PHONY: zsh
 zsh:
 	$(PKG_MANAGER) \
