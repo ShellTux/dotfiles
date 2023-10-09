@@ -166,6 +166,23 @@ mpv:
 		mpv \
 		yt-dlp
 
+.PHONY: nemo
+nemo: yay
+	$(PKG_MANAGER) \
+		glacier-calc \
+		nemo \
+		nemo-audio-tab \
+		nemo-emblems \
+		nemo-fileroller \
+		nemo-image-converter \
+		nemo-preview \
+		nemo-python \
+		nemo-share \
+		nemo-terminal
+	$(AUR_MANAGER) \
+		gtkhash-nemo
+
+
 .PHONY: newsboat
 newsboat: | $(NEWSBOAT_HOME_DIR)
 	$(PKG_MANAGER) newsboat
