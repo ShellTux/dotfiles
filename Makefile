@@ -20,7 +20,7 @@ all: reflector etc/* [a-zA-Z]*
 list-dependecies:
 	@echo $(DEPENDECIES) $(AUR_DEPENDECIES)
 
-symlink:
+symlink: X11
 	ln -sf $(CONFIG_HOME_DIR)/bash/bash_profile $(HOME_DIR)/.bash_profile
 	ln -sf $(CONFIG_HOME_DIR)/bash/bashrc $(HOME_DIR)/.bashrc
 	ln -sf $(CONFIG_HOME_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
@@ -107,6 +107,14 @@ bat:
 		bat \
 		bat-extras
 
+.PHONY: cups
+cups:
+	$(PKG_MANAGER) \
+		cups \
+		cups-pdf \
+		system-config-printer
+	sudo systemctl enable --now cups.service
+
 .PHONY: dash
 dash: yay
 	$(AUR_MANAGER) \
@@ -120,6 +128,12 @@ dunst:
 	$(PKG_MANAGER) \
 		dunst \
 		inotify-tools
+
+.PHONY: firewall
+firewall:
+	$(PKG_MANAGER) \
+		firewalld
+	sudo systemctl enable --now firewalld.service
 
 .PHONY: git
 git:
@@ -246,6 +260,18 @@ waybar: yay
 		waybar
 	# $(AUR_MANAGER) \
 	# 	wlogout
+
+.PHONY: X11
+X11: cups firewall syncthing
+	$(PKG_MANAGER) \
+		clipmenu \
+		flameshot \
+		network-manager-applet \
+		numlockx \
+		picom
+	$(AUR_MANAGER) \
+		redshift-wayland-git
+
 
 .PHONY: xdg-user-dirs
 xdg-user-dirs:
