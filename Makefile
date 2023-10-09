@@ -14,7 +14,7 @@ NEWSBOAT_HOME_DIR = $(CONFIG_HOME_DIR)/newsboat
 PKG_MANAGER       = sudo pacman -S --needed --noconfirm
 AUR_MANAGER       = yay -S --aur --needed --noconfirm
 
-all: reflector [a-z]*
+all: reflector etc/* [a-zA-Z]*
 
 .PHONY: list-dependecies
 list-dependecies:
@@ -44,7 +44,7 @@ etc/X11 etc/X11/:
 
 .PHONY: etc/grub.d etc/grub.d/
 etc/grub.d etc/grub.d/:
-	$(PKG_MANAGER) grub
+	$(PKG_MANAGER) grub os-prober
 	sudo ./etc/grub.d/install.sh
 
 .PHONY: etc/xdg/reflector etc/xdg/reflector/
