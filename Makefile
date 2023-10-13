@@ -135,6 +135,11 @@ firewall:
 		firewalld
 	sudo systemctl enable --now firewalld.service
 
+.PHONY: fonts
+fonts:
+	$(PKG_MANAGER) \
+		noto-fonts-cjk
+
 .PHONY: git
 git:
 	$(PKG_MANAGER) \
