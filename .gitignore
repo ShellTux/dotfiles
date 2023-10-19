@@ -133,6 +133,7 @@
 !/mpv/script-modules/*.lua
 !/mpv/script-opts/
 /mpv/script-opts/*
+!/mpv/script-opts/*.conf
 !/ncmpcpp/
 /ncmpcpp/*
 !/ncmpcpp/config
