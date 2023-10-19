@@ -123,6 +123,15 @@
 !/mpv/
 /mpv/*
 !/mpv/mpv.conf
+!/mpv/input.conf
+!/mpv/scripts/
+/mpv/scripts/*
+!/mpv/scripts/*.lua
+!/mpv/script-modules/
+/mpv/script-modules/*
+!/mpv/script-modules/*.lua
+!/mpv/script-opts/
+/mpv/script-opts/*
 !/ncmpcpp/
 /ncmpcpp/*
 !/ncmpcpp/config

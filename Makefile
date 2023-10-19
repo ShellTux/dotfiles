@@ -182,6 +182,7 @@ mpd: | $(MPD_SHARE) $(MPD_STATE)
 mpv:
 	$(PKG_MANAGER) \
 		ffmpeg \
+		mediainfo \
 		mpv \
 		yt-dlp
 
