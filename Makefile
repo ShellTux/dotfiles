@@ -228,6 +228,14 @@ reflector: etc/xdg/reflector
 	sudo systemctl enable reflector.timer
 	sudo systemctl start reflector.service
 
+.PHONY: rofi
+rofi:
+	$(PKG_MANAGER) \
+		rofi \
+		rofi-calc \
+		rofi-emoji \
+		rofi-pass
+
 .PHONY: shell
 shell: zsh bash opendoas bat newsboat
 	$(PKG_MANAGER) eza neofetch
