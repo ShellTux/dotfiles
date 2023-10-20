@@ -22,7 +22,10 @@ let mapleader = " " " Leader key
 " ##############
 " Vundle Plugins
 " ##############
-if filereadable(expand('~/.local/share/bundle/Vundle.vim/README.md'))
+if !filereadable(expand('~/.local/share/bundle/Vundle.vim/README.md'))
+	execute "!git clone https://github.com/VundleVim/Vundle.vim.git ~/.local/share/vim/bundle/Vundle.vim"
+endif
+
 set rtp+=$XDG_DATA_HOME/vim/bundle/Vundle.vim " Add Vundle to the runtime path
 filetype plugin indent on    " Required for Vundle packages Plugins
 call vundle#begin('$XDG_DATA_HOME/vim/bundle')
@@ -71,9 +74,6 @@ Plugin 'waycrate/swhkd-vim'
 Plugin 'xuhdev/vim-latex-live-preview' 	" A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plugin 'Xuyuanp/nerdtree-git-plugin'	" A plugin of NERDTree showing git status
 call vundle#end()
-else
-	echoerr "Vundle is not installed, plugins won't be loaded"
-endif
 
 
 
