@@ -22,7 +22,7 @@ let mapleader = " " " Leader key
 " ##############
 " Vundle Plugins
 " ##############
-if !filereadable(expand('~/.local/share/bundle/Vundle.vim/README.md'))
+if !filereadable(expand('~/.local/share/vim/bundle/Vundle.vim/README.md'))
 	execute "!git clone https://github.com/VundleVim/Vundle.vim.git ~/.local/share/vim/bundle/Vundle.vim"
 endif
 
