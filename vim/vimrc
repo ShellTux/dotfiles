@@ -63,6 +63,7 @@ Plugin 'ryanoasis/vim-devicons'		" Adds file type icons to Vim plugins
 Plugin 'sainnhe/everforest' 		" Comfortable & Pleasant Color Scheme for Vim
 Plugin 'sainnhe/gruvbox-material' 	" Gruvbox with Material Palette
 Plugin 'sainnhe/sonokai' 		" High Contrast & Vivid Color Scheme based on Monokai Pro
+Plugin 'Sammyalhashe/random_colorscheme.vim'
 Plugin 'stevearc/vim-arduino'		" Vim plugin for compiling and uploading arduino sketches
 Plugin 'tomasiser/vim-code-dark' 	" Dark color scheme for Vim and vim-airline, inspired by Dark+ in Visual Studio Code
 Plugin 'tomasr/molokai' 		" Molokai color scheme for Vim
@@ -114,41 +115,6 @@ set termguicolors
 set wrap
 set linebreak
 set background=dark
-
-let g:favorite_colorschemes = [
-      \ 'dracula',
-      \ 'gruvbox',
-      \ 'gruvbox-material',
-      \ 'molokai',
-      \ 'nightfly',
-      \ 'onedark',
-      \ 'retrobox',
-      \ 'tokyonight'
-      \]
-
-
-function! RandomColorscheme(colorschemes)
-	call srand(localtime())
-	let length             = len(a:colorschemes)
-	let random_index       = rand() % length
-	let random_colorscheme = a:colorschemes[random_index]
-
-	let colorscheme_file = $XDG_CONFIG_HOME . '/vim/colorschemes/'
-				\ . random_colorscheme . '.vim'
-	if filereadable(colorscheme_file)
-		execute 'source ' colorscheme_file
-	endif
-
-	if exists("g:" . random_colorscheme)
-		execute 'colorscheme ' . random_colorscheme
-	else
-		echoerr "Colorscheme " . random_colorscheme . " doesn't exist."
-	endif
-endfunction
-
-if (has('termguicolors') && &termguicolors) || has('gui_running') || &t_Co == 256
-	call RandomColorscheme(favorite_colorschemes)
-endif
 
 
 
