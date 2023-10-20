@@ -56,6 +56,7 @@ local registers = {
 		name = 'Tab',
 		c = 'Tab Close',
 	},
+	T = { '<cmd>Twilight<cr>', 'Twilight' },
 	u = 'Undo Tree'
 }
 

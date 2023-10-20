@@ -1,9 +1,11 @@
 return {
+	'dstein64/vim-startuptime',
 	'edeneast/nightfox.nvim',
 	'ellisonleao/gruvbox.nvim',
 	'equalsraf/neovim-gui-shim',
 	'farmergreg/vim-lastplace',
 	'folke/tokyonight.nvim',
+	'folke/twilight.nvim',
 	'folke/which-key.nvim',
 	'honza/vim-snippets',
 	'isobit/vim-caddyfile',
