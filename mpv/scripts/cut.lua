@@ -15,19 +15,13 @@ function detectLoop()
 	end
 
 	local filepath = mpv.get_property("path")
+	local filepath_escaped = filepath:gsub("'", "'\\''")
+
 	local filename = mpv.get_property("filename"):gsub("%..*$", "")
+	local filename_escaped = filename:gsub("'", "'\\''")
+
 	local file_extension = filepath:match("^.+(%..+)$")
 
-	-- local new_filename = filename .. '['
-	-- if loop_start ~= nil then
-	-- 	new_filename = new_filename .. loop_start
-	-- end
-	-- if loop_end ~= nil then
-	-- 	new_filename = new_filename .. loop_end
-	-- end
-	-- new_filename = new_filename .. '-'
-	-- new_filename = new_filename .. ']'
-	-- new_filename = new_filename .. file_extension
 	local new_filename
 	if loop_start == nil then
 		new_filename = string.format(
@@ -52,29 +46,30 @@ function detectLoop()
 			file_extension
 		)
 	end
+	local new_filename_escaped = new_filename:gsub("'", "'\\''")
 
 	local command
 	if loop_start == nil then
 		command = string.format(
-			"ffmpeg -i '%s' -to %s -codec copy '%s' -n",
-			filepath,
+			"ffmpeg -n -i '%s' -to %s -codec copy '%s'",
+			filepath_escaped,
 			loop_end,
-			new_filename
+			new_filename_escaped
 		)
 	elseif loop_end == nil then
 		command = string.format(
-			"ffmpeg -i '%s' -ss %s -codec copy '%s' -n",
-			filepath,
+			"ffmpeg -n -i '%s' -ss %s -codec copy '%s'",
+			filepath_escaped,
 			loop_start,
-			new_filename
+			new_filename_escaped
 		)
 	else
 		command = string.format(
-			"ffmpeg -i '%s' -ss %s -to %s -codec copy '%s' -n",
-			filepath,
+			"ffmpeg -n -i '%s' -ss %s -to %s -codec copy '%s'",
+			filepath_escaped,
 			loop_start,
 			loop_end,
-			new_filename
+			new_filename_escaped
 		)
 	end
 
