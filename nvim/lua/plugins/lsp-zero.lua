@@ -122,12 +122,12 @@ return {
 		-- BUG: https://github.com/neovim/neovim/pull/16694
 		capabilities.offsetEncoding = { 'utf-16' }
 
-		lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+		lspconfig.asm_lsp.setup({})
+		lspconfig.bashls.setup({})
 		lspconfig.clangd.setup({ capabilities = capabilities })
+		lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 		lspconfig.tsserver.setup({})
-		lspconfig.asm_lsp.setup({
-			root_dir = lspconfig.util.root_pattern('*.asm')
-		})
+
 		lsp.setup()
 
 		local cmp = require('cmp')
