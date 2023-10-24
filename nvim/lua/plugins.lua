@@ -1,8 +1,14 @@
 return {
-	'folke/neodev.nvim',
+	{
+		'folke/neodev.nvim',
+		lazy = false,
+		opts = {},
+	},
 	'folke/which-key.nvim',
 	{
 		'folke/neoconf.nvim',
-		cmd = 'Neoconf'
+		cmd = 'Neoconf',
+		opts = {},
+		priority = 10,
 	},
 }

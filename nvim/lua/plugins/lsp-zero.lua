@@ -22,61 +22,73 @@ return {
 		'saadparwaiz1/cmp_luasnip',
 	},
 	config = function()
-		local lsp = require('lsp-zero').preset({})
+		local lsp_zero = require('lsp-zero')
+		local lspconfig = require('lspconfig')
+		local mason = require('mason')
+		local cmp = require('cmp')
 
-		local telescope_present, _ = pcall(require, 'telescope')
+		lsp_zero.on_attach(function(client, bufnr)
+			lsp_zero.default_keymaps({ buffer = bufnr })
+			pcall(require 'lsp_signature'.on_attach, client, bufnr)
 
-		lsp.on_attach(function(client, bufnr)
-			lsp.default_keymaps({ buffer = bufnr })
+			local set_key = vim.keymap.set
 
-			-- vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, opts)
-			vim.keymap.set('n', 'g]', vim.diagnostic.goto_next)
-			vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev)
-			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-			vim.keymap.set('n', '<space>E', vim.diagnostic.open_float)
-			vim.keymap.set('n', '<space>f', function()
+			vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, opts)
+			set_key('n', 'g]', vim.diagnostic.goto_next)
+			set_key('n', 'g[', vim.diagnostic.goto_prev)
+			set_key('n', 'gD', vim.lsp.buf.declaration, opts)
+			set_key('n', 'K', vim.lsp.buf.hover, opts)
+			set_key('n', '<space>E', vim.diagnostic.open_float)
+			set_key('n', '<space>f', function()
 				vim.lsp.buf.format({ async = true, timeout_ms = 10000 })
 			end, opts)
-			vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-			vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-			vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-			vim.keymap.set('n', '<space>wl', function()
+			set_key('n', '<space>q', vim.diagnostic.setloclist)
+			set_key('n', '<space>rn', vim.lsp.buf.rename, opts)
+			set_key('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+			set_key('n', '<space>wl', function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 			end, opts)
-			vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-			vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+			set_key('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+			set_key({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+
+			local telescope_present, _ = pcall(require, 'telescope')
 
 			if telescope_present then
 				local options = { buffer = true }
-				vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', options)
-				vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', options)
-				vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', options)
-				vim.keymap.set('n', '<space>D', '<cmd>Telescope lsp_type_definitions', options)
+				set_key('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', options)
+				set_key('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', options)
+				set_key('n', 'gr', '<cmd>Telescope lsp_references<cr>', options)
+				set_key('n', '<space>D', '<cmd>Telescope lsp_type_definitions', options)
 			else
-				vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-				vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-				vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-				vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+				set_key('n', 'gd', vim.lsp.buf.definition, opts)
+				set_key('n', 'gi', vim.lsp.buf.implementation, opts)
+				set_key('n', 'gr', vim.lsp.buf.references, opts)
+				set_key('n', '<space>D', vim.lsp.buf.type_definition, opts)
 			end
 		end)
 
-		lsp.format_on_save({
+		lsp_zero.format_on_save({
 			format_opts = {
 				async = false,
 				timeout_ms = 7000,
 			},
 			servers = {
-				['clangd'] = { 'c', 'cpp' },
 				['lua_ls'] = { 'lua' },
 				['null-ls'] = { 'typescript', 'javascript' },
 				['rust_analyzer'] = { 'rust' },
 			}
 		})
 
-		local mason = require('mason')
+		-- Nerd Font v3.x.x
+		lsp_zero.set_sign_icons({
+			error = ' ',
+			warn  = ' ',
+			hint  = '󰌵 ',
+			info  = '󰋼 '
+		})
 
-		local options = {
+
+		local mason_options = {
 			-- not an option from mason.nvim
 			ensure_installed = {
 				'bash-language-server',
@@ -91,46 +103,41 @@ return {
 			max_concurrent_installers = 10,
 		}
 
-		mason.setup(options)
+		mason.setup(mason_options)
 
 		local function MasonInstallAll()
-			vim.cmd('MasonInstall ' .. table.concat(options.ensure_installed, ' '))
+			vim.cmd('MasonInstall ' .. table.concat(mason_options.ensure_installed, ' '))
 		end
 
 		vim.api.nvim_create_user_command('MasonInstallAll', MasonInstallAll, {})
 
-		require('mason-lspconfig').setup({
-			'bashls',
-			'clangd',
-			'lua_ls',
-			'pyright',
-			'rust_analyzer',
-			'tsserver',
-		})
-
-		-- Nerd Font v3.x.x
-		lsp.set_sign_icons({
-			error = ' ',
-			warn  = ' ',
-			hint  = '󰌵 ',
-			info  = '󰋼 '
-		})
-
 		-- (Optional) Configure lua language server for neovim
-		local lspconfig = require('lspconfig')
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		-- BUG: https://github.com/neovim/neovim/pull/16694
 		capabilities.offsetEncoding = { 'utf-16' }
 
-		lspconfig.asm_lsp.setup({})
-		lspconfig.bashls.setup({})
-		lspconfig.clangd.setup({ capabilities = capabilities })
-		lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-		lspconfig.tsserver.setup({})
+		require('mason-lspconfig').setup({
+			ensure_installed = {
+				'bashls',
+				'clangd',
+				'lua_ls',
+				'pyright',
+				'rust_analyzer',
+				'tsserver',
+			},
+			handlers = {
+				lsp_zero.default_setup,
+				clangd = function()
+					lspconfig.clangd.setup({ capabilities = capabilities })
+				end,
+				lua_ls = function()
+					lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
+				end,
+			},
+		})
 
-		lsp.setup()
+		lsp_zero.setup()
 
-		local cmp = require('cmp')
 		local cmp_action = require('lsp-zero').cmp_action()
 		require('luasnip.loaders.from_vscode').lazy_load()
 		require('luasnip.loaders.from_snipmate').lazy_load()
