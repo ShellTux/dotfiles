@@ -8,7 +8,7 @@ vim.opt.encoding = 'UTF-8'
 -- Text Display
 vim.opt.linebreak = true
 vim.opt.scrolloff = 999
-vim.opt.sidescrolloff = 999
+vim.opt.sidescrolloff = 10
 
 -- Tab / Indentation
 vim.opt.wrap = false
