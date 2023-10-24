@@ -31,39 +31,138 @@ return {
 			lsp_zero.default_keymaps({ buffer = bufnr })
 			pcall(require 'lsp_signature'.on_attach, client, bufnr)
 
+			local telescope_present, telescope_builtin = pcall(require, 'telescope.builtin')
+
+			local keybindings = {
+				n = {
+					['<S-k>'] = {
+						command = vim.lsp.buf.signature_help,
+						opts = {
+							desc = 'Signature help',
+						}
+					},
+					['g]'] = {
+						command = vim.diagnostic.goto_next,
+						opts = {
+							desc = 'Goto next Diagnostic',
+						}
+					},
+					['g['] = {
+						command = vim.diagnostic.goto_prev,
+						opts = {
+							desc = 'Goto previous Diagnostic',
+						}
+					},
+					['gD'] = {
+						command = vim.lsp.buf.declaration,
+						opts = { desc = 'Goto declaration' }
+					},
+					['K'] = {
+						command = vim.lsp.buf.hover,
+						opts = { desc = 'Hover' },
+					},
+					['<space>E'] = {
+						command = vim.diagnostic.open_float,
+						opts = { desc = 'Open diagnostic' },
+					},
+					['<space>f'] = {
+						command = function()
+							vim.lsp.buf.format({
+								async = true,
+								timeout_ms = 10000,
+							})
+						end,
+						opts = { desc = 'Format' },
+					},
+					['<space>q'] = {
+						command = vim.diagnostic.setloclist,
+						opts = { desc = 'Location List' },
+					},
+					['<space>rn'] = {
+						command = vim.lsp.buf.rename,
+						opts = { desc = 'Rename Symbol' }
+					},
+					['<space>wa'] = {
+						command = vim.lsp.buf.add_workspace_folder,
+						opts = { desc = 'Add workspace folder' }
+					},
+					['<space>wl'] = {
+						command = function()
+							print(vim.inspect(vim.lsp.buf
+								.list_workspace_folders()))
+						end,
+						opts = { desc = 'List workspace folders' }
+					},
+					['<space>wr'] = {
+						command = vim.lsp.buf.remove_workspace_folder,
+						opts = { desc = 'Remove workspace folder' }
+					},
+					['<space>ca'] = {
+						command = vim.lsp.buf.code_action,
+						opts = { desc = 'Code Action' },
+					},
+					['gd'] = {
+						command = telescope_builtin.lsp_definitions or
+						    vim.lsp.buf.definition,
+						opts = { desc = 'Definitions', buffer = true },
+					},
+					['gi'] = {
+						command = telescope_builtin.lsp_implementations or
+						    vim.lsp.buf.implementation,
+						opts = { desc = 'Implementations', buffer = true },
+					},
+					['gr'] = {
+						command = telescope_builtin.lsp_references or
+						    vim.lsp.buf.references,
+						opts = { desc = 'References', buffer = true },
+					},
+					['<space>D'] = {
+						command = telescope_builtin.lsp_type_definitions or
+						    vim.lsp.buf.type_definition,
+						opts = { desc = 'Type definitions', buffer = true },
+					},
+					['<leader>Lff'] = {
+						command = '<cmd>LspZeroFormat<cr>',
+						opts = { desc = 'Lsp Format' },
+					},
+					['<leader>Lft'] = {
+						command = function()
+							-- vim.b.lsp_zero_enable_autoformat = not vim.b
+							--     .lsp_zero_enable_autoformat
+						end,
+						opts = { desc = 'Toggle Lsp Format' },
+					},
+					['<leader>Li'] = {
+						command = '<cmd>LspInfo<cr>',
+						opts = { desc = 'Lsp Info' },
+					},
+					['<leader>Lr'] = {
+						command = '<cmd>LspRestart<cr>',
+						opts = { desc = 'Lsp Restart' },
+					},
+					['<leader>Lsta'] = {
+						command = '<cmd>LspStart<cr>',
+						opts = { desc = 'Lsp Start' },
+					},
+					['<leader>Lsto'] = {
+						command = '<cmd>LspStop<cr>',
+						opts = { desc = 'Lsp Stop' },
+					},
+				},
+				v = {
+					['<space>ca'] = {
+						command = vim.lsp.buf.code_action,
+						opts = { desc = 'Code Action' },
+					}
+				}
+			}
+
 			local set_key = vim.keymap.set
 
-			vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, opts)
-			set_key('n', 'g]', vim.diagnostic.goto_next)
-			set_key('n', 'g[', vim.diagnostic.goto_prev)
-			set_key('n', 'gD', vim.lsp.buf.declaration, opts)
-			set_key('n', 'K', vim.lsp.buf.hover, opts)
-			set_key('n', '<space>E', vim.diagnostic.open_float)
-			set_key('n', '<space>f', function()
-				vim.lsp.buf.format({ async = true, timeout_ms = 10000 })
-			end, opts)
-			set_key('n', '<space>q', vim.diagnostic.setloclist)
-			set_key('n', '<space>rn', vim.lsp.buf.rename, opts)
-			set_key('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-			set_key('n', '<space>wl', function()
-				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end, opts)
-			set_key('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-			set_key({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-
-			local telescope_present, _ = pcall(require, 'telescope')
-
-			if telescope_present then
-				local options = { buffer = true }
-				set_key('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', options)
-				set_key('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', options)
-				set_key('n', 'gr', '<cmd>Telescope lsp_references<cr>', options)
-				set_key('n', '<space>D', '<cmd>Telescope lsp_type_definitions', options)
-			else
-				set_key('n', 'gd', vim.lsp.buf.definition, opts)
-				set_key('n', 'gi', vim.lsp.buf.implementation, opts)
-				set_key('n', 'gr', vim.lsp.buf.references, opts)
-				set_key('n', '<space>D', vim.lsp.buf.type_definition, opts)
+			for mode, key_map in pairs(keybindings) do
+				for key, config in pairs(key_map) do
+					set_key(mode, key, config.command, config.opts)
+				end
 			end
 		end)
 
