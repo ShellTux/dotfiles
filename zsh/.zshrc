@@ -53,6 +53,8 @@ fpath=("${XDG_CONFIG_HOME:-$HOME/.config}/zsh/prompt_themes" "$fpath[@]")
 autoload -Uz promptinit
 promptinit
 
+[ -r /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh
+[ -r /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
 [ -f "$ZDOTDIR"/zsh-keybindings ] && source "$ZDOTDIR"/zsh-keybindings
 
 # Finally, make sure the terminal is in application mode, when zle is
