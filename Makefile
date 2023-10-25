@@ -282,7 +282,8 @@ X11: cups firewall syncthing
 		flameshot \
 		network-manager-applet \
 		numlockx \
-		picom
+		picom \
+		ttf-joypixels
 	$(AUR_MANAGER) \
 		redshift-wayland-git
 
@@ -295,12 +296,13 @@ xdg-user-dirs:
 .PHONY: xmonad xmobar
 xmonad xmobar:
 	$(PKG_MANAGER) \
-		xmonad \
-		xmonad-utils \
-		xmonad-extras \
-		xmonad-contrib \
+		trayer \
+		ttf-joypixels \
 		xmobar \
-		trayer
+		xmonad \
+		xmonad-contrib \
+		xmonad-extras \
+		xmonad-utils
 
 .PHONY: yay
 yay:
