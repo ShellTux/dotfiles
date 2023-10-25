@@ -226,6 +226,11 @@ return {
 			},
 			handlers = {
 				lsp_zero.default_setup,
+				asm_lsp = function()
+					lspconfig.asm_lsp.setup({
+						root_dir = lspconfig.util.root_pattern('*.asm')
+					})
+				end,
 				clangd = function()
 					lspconfig.clangd.setup({ capabilities = capabilities })
 				end,
