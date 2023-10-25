@@ -14,7 +14,7 @@ NEWSBOAT_HOME_DIR = $(CONFIG_HOME_DIR)/newsboat
 PKG_MANAGER       = sudo pacman -S --needed --noconfirm
 AUR_MANAGER       = yay -S --aur --needed --noconfirm
 
-all: reflector etc/* [a-zA-Z]*
+all: etc/* [a-zA-Z]*
 
 .PHONY: list-dependecies
 list-dependecies:
