@@ -14,6 +14,6 @@
 	diff-word = diff --word-diff --color-words
 	graph = log --graph
 	project-summary = !which onefetch && onefetch
-	touch = "!touch $1 && git add $1"
+	touch = "!touch $@ && git add $@"
 [filter "remove-pass"]
 	clean = "sed -e 's/^password=.*/#password=TODO/'"
