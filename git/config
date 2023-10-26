@@ -6,13 +6,14 @@
 [core]
 	excludesFile = ~/.config/git/ignore_global
 [alias]
-	cp = cherry-pick
 	conflict = diff --name-only --diff-filter=U
+	cp = cherry-pick
 	diff-copy = !git diff-staged | ([ "$XDG_SESSION_TYPE" = "x11" ] && xclip -selection clipboard || wl-copy)
 	diff-staged = diff --staged
 	diff-summary = diff --stat
 	diff-word = diff --word-diff --color-words
 	graph = log --graph
 	project-summary = !which onefetch && onefetch
+	touch = "!touch $1 && git add $1"
 [filter "remove-pass"]
 	clean = "sed -e 's/^password=.*/#password=TODO/'"
