@@ -1,4 +1,4 @@
-return	{
+return {
 	'folke/todo-comments.nvim',
 	dependencies = 'nvim-lua/plenary.nvim',
 	lazy = false,
@@ -8,8 +8,8 @@ return	{
 			TODO = { icon = " " },
 			HACK = { icon = " " },
 			WARN = { icon = " " },
-			PERF = { icon = " " },
-			NOTE = { icon = " " },
+			PERF = { icon = "󰅒 " },
+			NOTE = { icon = "󰍩 " },
 			TEST = { icon = "⏲ " },
 		},
 	},
