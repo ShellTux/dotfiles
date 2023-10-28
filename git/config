@@ -6,6 +6,7 @@
 [core]
 	excludesFile = ~/.config/git/ignore_global
 [alias]
+	branch-delete = branch --delete
 	conflict = diff --name-only --diff-filter=U
 	cp = cherry-pick
 	diff-copy = !git diff-staged | ([ "$XDG_SESSION_TYPE" = "x11" ] && xclip -selection clipboard || wl-copy)
