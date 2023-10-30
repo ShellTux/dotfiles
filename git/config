@@ -14,8 +14,10 @@
 	diff-summary = diff --stat
 	diff-word = diff --word-diff --color-words
 	graph = log --graph
+	open = "!xdg-open \"https://`git config --get remote.origin.url | sed -E \"s#(git@|git://|https?://)##;s#:#/#\"`\""
 	project-summary = !which onefetch && onefetch
 	showconfig = config --list
 	touch = "!touch $@ && git add $@"
+	visit = open
 [filter "remove-pass"]
 	clean = "sed -e 's/^password=.*/#password=TODO/'"
