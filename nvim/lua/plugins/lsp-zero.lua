@@ -53,6 +53,26 @@ return {
 							desc = 'Goto previous Diagnostic',
 						}
 					},
+					['g}'] = {
+						command = function()
+							vim.diagnostic.goto_next({
+								severity = vim.diagnostic.severity.ERROR,
+							})
+						end,
+						opts = {
+							desc = 'Goto next Error',
+						}
+					},
+					['g{'] = {
+						command = function()
+							vim.diagnostic.goto_prev({
+								severity = vim.diagnostic.severity.ERROR,
+							})
+						end,
+						opts = {
+							desc = 'Goto previous Error',
+						}
+					},
 					['gD'] = {
 						command = vim.lsp.buf.declaration,
 						opts = { desc = 'Goto declaration' }
