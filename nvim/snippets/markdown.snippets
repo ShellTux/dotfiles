@@ -17,3 +17,39 @@ snippet link_section "Link to Section"
 
 snippet link "Link to URL"
 	[${1:Text}](${2})
+
+# Pandoc
+snippet metadata_block "Metadata block for Pandoc"
+	---
+	title: My Title
+	author: ${1:Luís Góis}
+	date: ${2:`strftime("%B %d, %Y")`}
+	---
+	$0
+
+# Mermaid
+snippet mermaid_class_diagram "Mermaid Class Diagram"
+	---
+	title: ${1:Title}
+	---
+	classDiagram
+
+	note "${2:Generic Note}"
+
+	class ${3:Parent} {
+		-private_attribute: type
+		+public_attribute: type
+		#protected_attribute: type
+
+		-private_method()
+		+public_method()
+		#protected_method()
+	}
+
+	class ${4:Child} {
+
+	}
+
+	${3:Parent} <|-- ${4:Child}
+
+	note for ${4:Child} "Child generic note"
