@@ -225,6 +225,7 @@
 /shell/*
 !/shell/aliasrc
 !/shell/profile
+!/starship.toml
 !/sxhkd/
 /sxhkd/*
 !/sxhkd/sxhkdrc
