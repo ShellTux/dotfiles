@@ -44,7 +44,7 @@ alias lA='ls -l --human-readable --almost-all'
 alias ll='ls -l --human-readable'
 alias lower='tr "[:upper:]" "[:lower]"'
 alias lsblk-label='lsblk -o name,fstype,mountpoint,label,partlabel,size'
-alias ls='eza --across --color=automatic  --color-scale --icons \
+alias ls='eza --across --color=automatic  --color-scale all --icons \
 	--group-directories-first --binary --group --header --git'
 # alias ls='ls --color=auto'
 alias lspkgs='pacman -Qe --color=always | $PAGER -R'
