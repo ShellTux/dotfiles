@@ -1,0 +1,12 @@
+[Unit]
+Description=kdeconnectd
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/firewall-cmd --zone=home --add-service=kdeconnect --timeout=3h
+ExecStart=/usr/lib/kdeconnectd
+
+ExecStop=/usr/bin/firewall-cmd --zone=home --remove-service=kdeconnect
+
+[Install]
+WantedBy=default.target
