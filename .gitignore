@@ -166,6 +166,9 @@
 !/nvim/lua/plugins/*.lua
 !/nvim/after/
 /nvim/after/*
+!/nvim/after/ftplugin/
+/nvim/after/ftplugin/*
+!/nvim/after/ftplugin/asm.lua
 !/nvim/snippets/
 /nvim/snippets/*
 !/nvim/snippets/*.snippets
