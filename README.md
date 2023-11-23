@@ -70,6 +70,7 @@ This repository includes configurations for:
 - [Ranger](https://github.com/ranger/ranger)
 - [Redshift](http://jonls.dk/redshift/)
 - [Rofi](https://github.com/davatorium/rofi)
+- [Starship](https://starship.rs)
 - [Sway](https://swaywm.org/)
 - [Sxhkd](https://github.com/baskerville/sxhkd)
 - [Systemd](https://systemd.io/)
