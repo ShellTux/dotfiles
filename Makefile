@@ -20,12 +20,6 @@ all: etc/* [a-zA-Z]*
 list-dependecies:
 	@echo $(DEPENDECIES) $(AUR_DEPENDECIES)
 
-symlink: X11
-	ln -sf $(CONFIG_HOME_DIR)/bash/bash_profile $(HOME_DIR)/.bash_profile
-	ln -sf $(CONFIG_HOME_DIR)/bash/bashrc $(HOME_DIR)/.bashrc
-	ln -sf $(CONFIG_HOME_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
-	cp --remove-destination $(CONFIG_HOME_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
-
 .PHONY: etc/NetworkManager
 etc/NetworkManager:
 	$(PKG_MANAGER) \
@@ -100,6 +94,8 @@ bash:
 		bash-completion \
 		jq \
 		neofetch
+	ln -sf $(CONFIG_HOME_DIR)/bash/bash_profile $(HOME_DIR)/.bash_profile
+	ln -sf $(CONFIG_HOME_DIR)/bash/bashrc $(HOME_DIR)/.bashrc
 
 .PHONY: bat
 bat:
@@ -286,6 +282,8 @@ X11: cups firewall syncthing
 		ttf-joypixels
 	$(AUR_MANAGER) \
 		redshift-wayland-git
+	ln -sf $(CONFIG_HOME_DIR)/X11/Xresources $(HOME_DIR)/.Xresources
+	cp --remove-destination $(CONFIG_HOME_DIR)/X11/xinitrc $(HOME_DIR)/.xinitrc
 
 
 .PHONY: xdg-user-dirs
