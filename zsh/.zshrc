@@ -19,8 +19,8 @@ done
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [ "$is_tty" = "yes" ] \
-	&& source ~/.config/zsh/p10k.zsh \
-	|| source ~/.config/zsh/p10k.terminal.zsh
+	&& source ~/.config/zsh/p10k_tty.zsh \
+	|| source ~/.config/zsh/p10k.zsh
 
 LS_COLORS="${XDG_DATA_HOME:-$HOME/.local/share}/LS_COLORS"
 [ -f "$LS_COLORS" ] && eval $(dircolors -b "$LS_COLORS")
