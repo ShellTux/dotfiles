@@ -16,9 +16,19 @@ vim.keymap.set('n', '<Right>', '<cmd>vertical resize +2<cr>')  -- Vertical split
 vim.keymap.set('n', '<up>', '<cmd>resize -2<cr>')              -- split resize
 vim.keymap.set('n', '<down>', '<cmd>resize +2<cr>')            -- split resize
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true }) -- Escape Terminal
+-- Reselect after indenting
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
+-- https://ddrscott.github.io/blog/2016/yank-without-jank/
+vim.keymap.set('v', 'y', 'myy`y')
+vim.keymap.set('v', 'Y', 'myY`y')
+-- Visual move for wrapped text
+vim.keymap.set('n', 'j', "(v:count == 0 ? 'gj' : 'j')", { silent = true, expr = true })
+vim.keymap.set('n', 'k', "(v:count == 0 ? 'gk' : 'k')", { silent = true, expr = true })
+-- Quick escape
+vim.keymap.set('i', 'jj', '<Esc>')
+-- Easy insertion of ; or , at the end of the line from insert mode
+vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
+vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
 -- vim.keymap.set('v', 'J', vim.cmd("mark '>+1<CR>gv=gv")) -- Move visual block one line above
 -- vim.keymap.set('v', 'K', vim.cmd("mark '<-2<CR>gv=gv")) -- Move visual block one line below
--- vim.keymap.set('n', 'Y', vim.cmd('yg$')) -- Yank to then end of the line without moving cursor
--- vim.keymap.set('n', 'J', vim.cmd('mzJ`z')) -- Merge current line with line below without moving cursor
--- vim.keymap.set('n', '<leader>s', vim.cmd.[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) -- Replace
--- nnoremap <leader>x <cmd>!chmod u+x %<CR>	" Make this file executable
