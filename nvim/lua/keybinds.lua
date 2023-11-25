@@ -30,5 +30,3 @@ vim.keymap.set('i', 'jj', '<Esc>')
 -- Easy insertion of ; or , at the end of the line from insert mode
 vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
 vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
--- vim.keymap.set('v', 'J', vim.cmd("mark '>+1<CR>gv=gv")) -- Move visual block one line above
--- vim.keymap.set('v', 'K', vim.cmd("mark '<-2<CR>gv=gv")) -- Move visual block one line below
