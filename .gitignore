@@ -102,6 +102,7 @@
 /hypr/*
 !/hypr/*.conf
 !/hypr/xdg-desktop-portal-hyprland-script
+!/hypr/waybar-loop.sh
 !/kitty/
 /kitty/*
 !/kitty/kitty.conf
