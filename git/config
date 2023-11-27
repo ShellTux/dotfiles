@@ -5,6 +5,7 @@
 	defaultBranch = main
 [core]
 	excludesFile = ~/.config/git/ignore_global
+	autocrlf = input
 [alias]
 	branch-delete = branch --delete
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
