@@ -36,3 +36,7 @@
 	visit = "!xdg-open \"https://`git config --get remote.origin.url | sed -E \"s#(git@|git://|https?://|.git$)##;s#:#/#\"`\""
 [filter "remove-pass"]
 	clean = "sed -e 's/^password=.*/#password=TODO/'"
+[diff]
+	tool = neovim
+[difftool "neovim"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
