@@ -116,38 +116,25 @@ do
 	[ -d "$directory" ] && export PATH="$directory:$PATH"
 done
 
-echo -e "\033[38;2;200;0;0mUpdate pacman database\n\033[0mpacman -Syy\033[0m"
-doas pacman -Syy 2>/dev/null
 if tty | grep --quiet /dev/tty
 then
-	[ -n "$(pacman -Qu linux)" ] \
+	linux="$(pacman -Qu linux)"
+	nvidia="$(pacman -Qu nvidia 2>/dev/null)"
+
+	[ -n "$linux" ] \
 		&& echo "There is a kernel update" \
-		&& pacman -Qu linux
+		&& echo "$nvidia"
 
-	[ -n "$(pacman -Qu nvidia 2>/dev/null)" ] \
+	[ -n "$nvidia" ] \
 		&& echo "There is a nvidia driver update" \
-		&& pacman -Qu nvidia
+		&& echo "$nvidia"
 
-	[ -n "$(pacman -Qu linux)" ] || [ -n "$(pacman -Qu nvidia 2>/dev/null)" ] \
+	[ -n "$linux" ] || [ -n "$nvidia" ] \
 		&& doas pacman -Syu \
 		&& reboot
+
+	unset linux nvidia
 fi
 
 alias newsboat-repo='newsboat --url-file="$HOME"/.config/newsboat/repos-urls \
 	--cache-file="$HOME"/.local/share/newsboat/cache-repos.db --refresh-on-start'
-
-if [ ! "$(newsboat-repo --execute='reload' \
-	--execute='print-unread')" = "0 unread articles" ]
-then
-	printf '%s %s ' \
-		'There are updates in your repos would you like to read the articles?' \
-		'[Y/n]'
-	read -r confirm
-	if [ ! "$confirm" = n ] && [ ! "$confirm" = N ]
-	then
-		newsboat-repo
-		printf 'Would you like to update your repos? [Y/n] '
-		read -r confirm
-		[ ! "$confirm" = n ] && [ ! "$confirm" = N ] && update-repos
-	fi
-fi
