@@ -27,6 +27,3 @@ vim.keymap.set('n', 'j', "(v:count == 0 ? 'gj' : 'j')", { silent = true, expr = 
 vim.keymap.set('n', 'k', "(v:count == 0 ? 'gk' : 'k')", { silent = true, expr = true })
 -- Quick escape
 vim.keymap.set('i', 'jj', '<Esc>')
--- Easy insertion of ; or , at the end of the line from insert mode
-vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
-vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
