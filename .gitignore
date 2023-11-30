@@ -86,6 +86,9 @@
 !/git/config
 !/git/fshow
 !/git/ignore_global
+!/git/hooks/
+/git/hooks/*
+!/git/hooks/pre-push
 !/gnupg
 /gnupg/*
 !/gnupg/gpg-agent.conf

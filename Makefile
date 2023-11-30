@@ -69,8 +69,11 @@ $(DBUS_SERVICE_DIR) \
 	$(NEWSBOAT_HOME_DIR):
 	mkdir --parents --verbose $@
 
-git-hooks: pre-push post-merge
-	install --verbose --mode=755 $^ .git/hooks/
+.git/hooks/*: git/hooks/*
+	install --verbose --mode=755 $^ $@
+
+.PHONY: git-hooks
+git-hooks: .git/hooks/pre-push
 
 .PHONY: alacritty
 alacritty:
