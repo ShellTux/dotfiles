@@ -1,40 +1,40 @@
 # vim: sw=6
 
 XF86AudioPlay
-      mpc toggle; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      mpc toggle; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 shift + XF86AudioPlay
       notify-music
 
 super + XF86AudioPlay
-      music-menu dmenu ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      music-menu dmenu ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 super + alt + {0-9}
       mpc -q seek {0-9}0%
 
 XF86AudioMute
-      volume toggle-mute ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      volume toggle-mute ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 XF86Audio{LowerVolume,RaiseVolume}
-      volume 5 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      volume 5 {-,+}; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 control + XF86Audio{LowerVolume,RaiseVolume}
-      volume 1 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      volume 1 {-,+}; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 shift + XF86Audio{LowerVolume,RaiseVolume}
-      mpc volume {-,+}5 ; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      mpc volume {-,+}5 ; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 control + shift + XF86Audio{LowerVolume,RaiseVolume}
-      mpc volume {-,+}1; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      mpc volume {-,+}1; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 XF86Audio{Prev,Next}
-      mpc --quiet {prev,next}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      mpc --quiet {prev,next}; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 XF86MonBrightness{Down,Up}
-      brightness 5 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      brightness 5 {-,+}; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 shift + XF86MonBrightness{Down,Up}
-      brightness 1 {-,+}; pkill -RTMIN+2 dwmblocks; pkill -SIGUSR1 i3status
+      brightness 1 {-,+}; pkill -RTMIN+4 dwmblocks; pkill -SIGUSR1 i3status
 
 super + shift + apostrophe
       arch-wiki
