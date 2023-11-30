@@ -161,8 +161,6 @@ module.screen.connect_for_each_screen = function(screen)
 			layout = wibox.layout.fixed.horizontal,
 			mykeyboardlayout,
 			awful.widget.watch('sb-packages', day_to_seconds),
-			awful.widget.watch('sb-brightness', 60),
-			awful.widget.watch('sb-battery', 60),
 			awful.widget.watch('sb-volume', day_to_seconds),
 			awful.widget.watch('sb-internet', 15),
 			mytextclock,
