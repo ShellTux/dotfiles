@@ -49,6 +49,10 @@ fpath=("${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions" $fpath)
 [ -f "$ZDOTDIR"/zsh-comp ] && source "$ZDOTDIR"/zsh-comp
 autoload -Uz compinit
 compinit -i -d "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh/zcompdump-"$ZSH_VERSION"
+for file in "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions/fzf"/*
+do
+	source "$file"
+done
 
 # Themes
 fpath=("${XDG_CONFIG_HOME:-$HOME/.config}/zsh/prompt_themes" "$fpath[@]")

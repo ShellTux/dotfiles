@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+command -v fzf >/dev/null 2>&1 && {
+	source <(kubectl completion bash | sed 's#"${requestComp}" 2>/dev/null#"${requestComp}" 2>/dev/null | head -n -1 | fzf  --multi=0 #g')
+}

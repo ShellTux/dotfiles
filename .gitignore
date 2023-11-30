@@ -18,6 +18,11 @@
 !/bash/bash_profile
 !/bash/bashrc
 !/bash/bash-completion
+!/bash/completions/
+/bash/completions/*
+!/bash/completions/fzf
+/bash/completions/fzf/*
+!/bash/completions/fzf/kubectl
 !/bat/
 /bat/*
 !/bat/config
@@ -340,6 +345,9 @@
 !/zsh/completions
 /zsh/completions/*
 !/zsh/completions/_*
+!/zsh/completions/fzf
+/zsh/completions/fzf/*
+!/zsh/completions/fzf/kubectl
 
 !**README.md
 
