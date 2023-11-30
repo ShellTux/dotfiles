@@ -79,6 +79,7 @@
 !/git/
 /git/*
 !/git/config
+!/git/fshow
 !/git/ignore_global
 !/gnupg
 /gnupg/*
