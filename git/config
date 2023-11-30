@@ -36,6 +36,7 @@
 	visit = "!xdg-open \"https://`git config --get remote.origin.url | sed -E \"s#(git@|git://|https?://|.git$)##;s#:#/#\"`\""
 	sw = switch -
 	history = !~/.config/git/fshow
+	h = history
 [filter "remove-pass"]
 	clean = "sed -e 's/^password=.*/#password=TODO/'"
 [diff]
