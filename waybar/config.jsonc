@@ -22,7 +22,7 @@
 		"~/.config/waybar/modules.jsonc",
 	],
 	// Choose the order of the modules
-	"modules-left": ["custom/power", "custom/kernel", "sway/scratchpad", "disk"],
+	"modules-left": ["custom/power", "custom/kernel", "sway/scratchpad", "disk", "disk#home"],
 	"modules-center": ["mpd"],
 	"modules-right": ["custom/weather", "network#traffic", "cpu", "memory", "temperature", "user"]
 }]
