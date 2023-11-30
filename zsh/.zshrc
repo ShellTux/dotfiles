@@ -1,4 +1,6 @@
-[ $(tty | grep tty) ] && is_tty="yes" || is_tty="no"
+[ $(tty | grep tty) ] && is_tty=true || is_tty=false
+# HACK: Check if running a tty, even with tmux
+[ -n "$DISPLAY" ] && is_tty=false || is_tty=true
 
 neofetch
 
@@ -18,7 +20,7 @@ do
 done
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[ "$is_tty" = "yes" ] \
+$is_tty \
 	&& source ~/.config/zsh/p10k_tty.zsh \
 	|| source ~/.config/zsh/p10k.zsh
 
