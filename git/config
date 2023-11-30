@@ -6,6 +6,7 @@
 [core]
 	excludesFile = ~/.config/git/ignore_global
 	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
 	branch-delete = branch --delete
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
@@ -44,3 +45,5 @@
 	tool = neovim
 [difftool "neovim"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+[interactive]
+	diffFilter = diff-so-fancy --patch
