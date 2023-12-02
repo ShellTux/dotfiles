@@ -13,7 +13,7 @@ return {
 		},
 		custom_colorcolumn = {
 			bash = '90',
-			java = { '80', '100' },
+			java = '100',
 			lua = '100',
 			ruby = '120',
 			rust = { '90', '100' },
