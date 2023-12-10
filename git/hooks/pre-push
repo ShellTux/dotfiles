@@ -1,29 +1,16 @@
 #!/bin/sh
-set -e
+set -xe
 
-ORIGINAL_BRANCH="$(git branch --show-current)"
-CHERRY_PICK_BRANCH="$(git branch | sort --reverse | sed '/^\*/d;s/ //g;1q')"
+MAIN_BRANCH="$(git branch --format='%(refname:short)' | tail -1)"
+OTHER_BRANCHES="$(git branch --format='%(refname:short)' | head -n -1 | tr '\n' ' ')"
 
-commits=$(git log --pretty=format:%H origin/"$ORIGINAL_BRANCH"..HEAD | sort --reverse)
-
-# Switch to the cherry-pick branch
-printf '\033[36m%s\033[0m\n' "git switch $CHERRY_PICK_BRANCH"
-git switch "$CHERRY_PICK_BRANCH"
-
-for commit in $commits
+git stash
+for branch in $OTHER_BRANCHES
 do
-	printf '\033[36m%s\033[0m\n' "git cherry-pick $commit"
-	if ! git cherry-pick "$commit";
-	then
-		echo "Cherry-pick encountered conflicts. Please resolve them manually."
-		exit 1
-	fi
+	git switch "$branch"
+	git rebase "$MAIN_BRANCH"
+	git pull --rebase "$MAIN_BRANCH"
 done
-
-chmod --quiet u-x "$0"
-printf '\033[36m%s\033[0m\n' "git push"
-git push 2>/dev/null
-chmod --quiet u+x "$0"
-
-printf '\033[36m%s\033[0m\n' "git switch $ORIGINAL_BRANCH"
-git switch "$ORIGINAL_BRANCH"
+git switch "$MAIN_BRANCH"
+git stash apply
+git stash drop
