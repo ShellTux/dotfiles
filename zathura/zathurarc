@@ -1,6 +1,7 @@
 #
 # Startup options
 #
+set guioptions sv
 set adjust-open width
 set recolor true
 set selection-clipboard clipboard
