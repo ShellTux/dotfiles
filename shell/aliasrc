@@ -198,8 +198,12 @@ screenresolution() {
 # 	fi
 # fi
 
-precmd () {
+precmd() {
 	print -Pn "\e]0;%~\a"
+}
+
+preexec() {
+	printf '\033]2;%s\a' "$(echo "$1" | cut -d\  -f1)"
 }
 
 help() {
