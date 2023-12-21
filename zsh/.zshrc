@@ -12,11 +12,10 @@ p10k_prompt="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 [ -r "$p10k_prompt" ] && source "$p10k_prompt"
 
 for file in \
-	/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
 	/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
 	/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 do
-	source "$file"
+	[ -r "$file" ] && source "$file"
 done
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
@@ -75,3 +74,9 @@ fi
 
 aliasrc="${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 [ -f "$aliasrc" ] && source "$aliasrc"
+
+for file in \
+	/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+do
+	[ -r "$file" ] && source "$file"
+done
