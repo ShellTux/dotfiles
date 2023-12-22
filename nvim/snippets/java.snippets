@@ -1,3 +1,40 @@
 snippet toimplement "Add TODO and throw an exception to Implement"
 	// TODO: ${1:To Implement}
 	throw new Exception("${2:Not Yet Implemented}");
+
+snippet fileWrite "Java Snippet to write a file"
+	File ${1:file} = new File(${2:"filepath"});
+
+	try {
+		FileWriter ${3:fileWriter} = new FileWriter(${1:file});
+		BufferedWriter ${3:bufferWritter} = new BufferedWriter(${3:fileWriter});
+		${3:bufferWritter}.write("Hello");
+		${3:bufferWritter}.newLine();
+		${3:bufferWritter}.write("World");
+		${3:bufferWritter}.close();
+	} catch (IOException ex) {
+		System.out.println("Erro a escrever no ficheiro.");
+	}
+	$0
+
+snippet fileRead "Java Snippet to read a file"
+	File ${1:file} = new File("${2:filepath}");
+
+	if(${1:file}.exists() && ${1:file}.isFile()) {
+		try {
+			FileReader ${3:fileReader} = new FileReader(${1:file});
+			BufferedReader ${4:bufferReader} = new BufferedReader(${3:fileReader});
+			String line;
+			while((line = ${4:bufferReader}.readLine()) != null) {
+				System.out.println(line);
+			}
+			${4:bufferReader}.close();
+		} catch (FileNotFoundException ex) {
+			System.out.println("Error opening file");
+		} catch (IOException ex) {
+			System.out.println("Error reading file");
+		}
+	} else {
+		System.err.println("File doesn't exist");
+	}
+	$0
