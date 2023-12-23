@@ -1,5 +1,5 @@
 return {
- 	'folke/which-key.nvim',
+	'folke/which-key.nvim',
 	event = 'VeryLazy',
 	init = function()
 		vim.o.timeout = true
@@ -8,9 +8,10 @@ return {
 	config = function()
 		require('which-key').setup()
 		local vim_fugitive = require('vim-fugitive')
+		local functions = require('functions')
 
 		-- TODO: organize keybinds
-		local whichKey = require("which-key")
+		local whichKey = require('which-key')
 		local registers = {
 			d = {
 				b = { '<cmd>DapToggleBreakpoint<cr>', 'Add Breakpoint at line' },
@@ -51,6 +52,7 @@ return {
 				t = 'Find TODO',
 				s = 'Git status',
 			},
+			S = { functions.ToggleAutoSave, 'Toggle Auto Save' },
 			t = {
 				name = 'Tab',
 				c = 'Tab Close',

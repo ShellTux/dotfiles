@@ -31,3 +31,6 @@ vim.opt.background     = 'dark'
 
 -- Behaviour
 vim.opt.mouse:append('a')
+
+-- Custom
+vim.g.auto_save = true
