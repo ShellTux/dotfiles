@@ -4,14 +4,19 @@ snippet Template "Makefile Template for C and Assembly Project withing src direc
 	CFLAGS += -Wno-error=unused-parameter
 	CFLAGS += -Wno-error=unused-variable
 	CFLAGS += -Wno-error=unused-but-set-variable
+	CFLAGS += -I"\$\$PWD/${6}/"
 	LINKS = ${3}
 
 
 	SRCDIR = ${4:src}
 	OBJDIR = ${5:obj}
+	INCLUDEDIR = ${6:include}
 
 	# C Source Files
-	SOURCES  = $(shell find $(SRCDIR) -name "*.c" -o -name "*.s" -o -name "*.asm" | tr '\n' ' ')
+	SOURCES  = $(shell find $(SRCDIR) \
+			-name "*.c" -o \
+			-name "*.s" -o \
+			-name "*.asm" | tr '\n' ' ')
 	# Remove SRCDIR
 	SOURCES := $(SOURCES:$(SRCDIR)/%=%)
 
@@ -21,10 +26,10 @@ snippet Template "Makefile Template for C and Assembly Project withing src direc
 	OBJECTS := $(OBJECTS:%.asm=%.o)
 
 	# Header files
-	HEADERS  = $(wildcard $(SRCDIR)/*.h)
+	HEADERS  = $(wildcard $(INCLUDEDIR)/*.h)
 
-	TARGET = ${6:program}
-	TARDIR = ${7:build}
+	TARGET = ${7:program}
+	TARDIR = ${8:build}
 
 	.PHONY: all
 	all: $(TARGET)
@@ -33,6 +38,15 @@ snippet Template "Makefile Template for C and Assembly Project withing src direc
 	debug-flags: clean $(TARGET)
 
 	debug: CFLAGS += -DDEBUG=1
+
+	.PHONY: .clangd
+	.clangd:
+		rm --force $@
+
+		@echo CompileFlags: | tee --append $@
+		@echo '  Add:' | tee --append $@
+
+		@for flag in $(CFLAGS) ; do echo "    - \$\$flag" | tee --append $@ ; done
 
 	$(SRCDIR) $(OBJDIR) $(TARDIR) $(TESTDIR):
 		mkdir --parents --verbose $@
@@ -83,14 +97,19 @@ snippet Template++ "Makefile Template for C++ and Assembly Project withing src d
 	CFLAGS += -Wno-error=unused-parameter
 	CFLAGS += -Wno-error=unused-variable
 	CFLAGS += -Wno-error=unused-but-set-variable
+	CFLAGS += -I"\$\$PWD/${6}/"
 	LINKS = ${3}
 
 
 	SRCDIR = ${4:src}
 	OBJDIR = ${5:obj}
+	INCLUDEDIR = ${6:include}
 
 	# C Source Files
-	SOURCES  = $(shell find $(SRCDIR) -name "*.cpp" -o -name "*.s" -o -name "*.asm" | tr '\n' ' ')
+	SOURCES  = $(shell find $(SRCDIR) \
+			-name "*.cpp" -o \
+			-name "*.s" -o \
+			-name "*.asm" | tr '\n' ' ')
 	# Remove SRCDIR
 	SOURCES := $(SOURCES:$(SRCDIR)/%=%)
 
@@ -100,10 +119,10 @@ snippet Template++ "Makefile Template for C++ and Assembly Project withing src d
 	OBJECTS := $(OBJECTS:%.asm=%.o)
 
 	# Header files
-	HEADERS  = $(wildcard $(SRCDIR)/*.hpp)
+	HEADERS  = $(wildcard $(INCLUDEDIR)/*.hpp)
 
-	TARGET = ${6:program}
-	TARDIR = ${7:build}
+	TARGET = ${7:program}
+	TARDIR = ${8:build}
 
 	.PHONY: all
 	all: $(TARGET)
@@ -112,6 +131,15 @@ snippet Template++ "Makefile Template for C++ and Assembly Project withing src d
 	debug-flags: clean $(TARGET)
 
 	debug: CFLAGS += -DDEBUG=1
+
+	.PHONY: .clangd
+	.clangd:
+		rm --force $@
+
+		@echo CompileFlags: | tee --append $@
+		@echo '  Add:' | tee --append $@
+
+		@for flag in $(CFLAGS) ; do echo "    - \$\$flag" | tee --append $@ ; done
 
 	$(SRCDIR) $(OBJDIR) $(TARDIR) $(TESTDIR):
 		mkdir --parents --verbose $@
