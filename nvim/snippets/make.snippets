@@ -33,7 +33,6 @@ snippet Template "Makefile Template for C and Assembly Project withing src direc
 	debug-flags: clean $(TARGET)
 
 	debug: CFLAGS += -DDEBUG=1
-	debug: run
 
 	$(SRCDIR) $(OBJDIR) $(TARDIR) $(TESTDIR):
 		mkdir --parents --verbose $@
@@ -43,15 +42,6 @@ snippet Template "Makefile Template for C and Assembly Project withing src direc
 		@printf "Cleaning\n"
 		rm -f $(TARDIR)/$(TARGET) $(TARGET) $(TEST)
 		rm -rf $(OBJDIR)
-
-	.PHONY: run
-	run: $(TARGET)
-		@printf "\n\033[32m"
-		@printf "###############\n"
-		@printf "#   Running   #\n"
-		@printf "###############\n"
-		@printf "\033[0m\n"
-		./$(TARGET)
 
 	$(TARGET): $(OBJECTS:%=$(OBJDIR)/%) | $(TARDIR)
 		$(CC) $(CFLAGS) -o $(TARDIR)/$@ $^ $(LINKS)
@@ -87,64 +77,7 @@ snippet Template "Makefile Template for C and Assembly Project withing src direc
 		$(CC) $(CFLAGS) -c -o $@ $<
 	$0
 
-snippet CMakefile "Makefile Template"
-	CC = ${1:gcc}
-	CFLAGS = ${2:-Wall -Wextra -Werror}
-	CFLAGS += -Wno-error=unused-parameter
-	CFLAGS += -Wno-error=unused-variable
-	CFLAGS += -Wno-error=unused-but-set-variable
-	LINKS = ${3}
-
-	SRCDIR = ${4:src}
-	OBJDIR = ${5:obj}
-
-	SOURCES = $(wildcard $(SRCDIR)/*.${6:c})
-	HEADERS = $(wildcard $(SRCDIR)/*.${7:h})
-	OBJECTS = $(patsubst $(SRCDIR)/%.${6:c}, $(OBJDIR)/%.o, $(SOURCES))
-
-	TARGET = ${8:program}
-	TARDIR = ${9:build}
-
-	.PHONY: all clean
-	all: run
-
-	debug-flags: CFLAGS += -g -Og
-	debug-flags: clean $(TARGET)
-
-	debug: CFLAGS += -DDEBUG=1
-	debug: run
-
-	$(TARGET): $(OBJECTS) | $(TARDIR)
-		$(CC) $(CFLAGS) -o $@ $^ $(LINKS)
-
-	$(SRCDIR) $(OBJDIR) $(TARDIR) $(TESTDIR):
-		mkdir --parents --verbose $@
-
-	$(OBJDIR)/%.o: $(SRCDIR)/%.${6:c} $(HEADERS) | $(OBJDIR)
-		@printf "\n"
-		@printf "\033[31m"
-		@printf "########################\n"
-		@printf "Building %s\n" $@
-		@printf "########################\n"
-		@printf "\033[0m"
-		@printf "\n"
-		$(CC) $(CFLAGS) -c -o $@ $<
-
-	clean:
-		@printf "Cleaning\n"
-		rm -f $(OBJECTS) $(TARGET) $(TEST)
-
-	run: $(TARGET)
-		@printf "\n"
-		@printf "\033[32m"
-		@printf "###############\n"
-		@printf "#   Running   #\n"
-		@printf "###############\n"
-		@printf "\033[0m"
-		@printf "\n"
-		./$(TARGET)
-
-snippet CPPMakefile "Makefile Template"
+snippet Template++ "Makefile Template for C++ and Assembly Project withing src directory"
 	CC = ${1:g++}
 	CFLAGS = ${2:-Wall -Wextra -Werror}
 	CFLAGS += -Wno-error=unused-parameter
@@ -152,51 +85,73 @@ snippet CPPMakefile "Makefile Template"
 	CFLAGS += -Wno-error=unused-but-set-variable
 	LINKS = ${3}
 
+
 	SRCDIR = ${4:src}
 	OBJDIR = ${5:obj}
 
-	SOURCES = $(wildcard $(SRCDIR)/*.${6:cpp})
-	HEADERS = $(wildcard $(SRCDIR)/*.${7:hpp})
-	OBJECTS = $(patsubst $(SRCDIR)/%.${6:c}, $(OBJDIR)/%.o, $(SOURCES))
+	# C Source Files
+	SOURCES  = $(shell find $(SRCDIR) -name "*.cpp" -o -name "*.s" -o -name "*.asm" | tr '\n' ' ')
+	# Remove SRCDIR
+	SOURCES := $(SOURCES:$(SRCDIR)/%=%)
 
-	TARGET = ${8:program}
-	TARDIR = ${9:build}
+	# C Object Files
+	OBJECTS := $(SOURCES:%.cpp=%.o)
+	OBJECTS := $(OBJECTS:%.s=%.o)
+	OBJECTS := $(OBJECTS:%.asm=%.o)
 
-	.PHONY: all clean
-	all: run
+	# Header files
+	HEADERS  = $(wildcard $(SRCDIR)/*.hpp)
 
-	debug-flags: CFLAGS += -g -Og
+	TARGET = ${6:program}
+	TARDIR = ${7:build}
+
+	.PHONY: all
+	all: $(TARGET)
+
+	debug-flags: CFLAGS += -g
 	debug-flags: clean $(TARGET)
 
 	debug: CFLAGS += -DDEBUG=1
-	debug: run
-
-	$(TARGET): $(OBJECTS) | $(TARDIR)
-		$(CC) $(CFLAGS) -o $@ $^ $(LINKS)
 
 	$(SRCDIR) $(OBJDIR) $(TARDIR) $(TESTDIR):
 		mkdir --parents --verbose $@
 
-	$(OBJDIR)/%.o: $(SRCDIR)/%.${6:c} $(HEADERS) | $(OBJDIR)
-		@printf "\n"
-		@printf "\033[31m"
+	.PHONY: clean
+	clean:
+		@printf "Cleaning\n"
+		rm -f $(TARDIR)/$(TARGET) $(TARGET) $(TEST)
+		rm -rf $(OBJDIR)
+
+	$(TARGET): $(OBJECTS:%=$(OBJDIR)/%) | $(TARDIR)
+		$(CC) $(CFLAGS) -o $(TARDIR)/$@ $^ $(LINKS)
+		cp $(TARDIR)/$@ .
+
+	# Object rule for C++ files
+	$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS) | $(OBJDIR)
+		@printf "\n\033[31m"
 		@printf "########################\n"
 		@printf "Building %s\n" $@
 		@printf "########################\n"
-		@printf "\033[0m"
-		@printf "\n"
+		@printf "\033[0m\n"
+		mkdir -p \`dirname $@\`
 		$(CC) $(CFLAGS) -c -o $@ $<
 
-	clean:
-		@printf "Cleaning\n"
-		rm -f $(OBJECTS) $(TARGET) $(TEST)
+	# Object rule for Assembly files
+	$(OBJDIR)/%.o: $(SRCDIR)/%.s $(HEADERS) | $(OBJDIR)
+		@printf "\n\033[31m"
+		@printf "########################\n"
+		@printf "Building %s\n" $@
+		@printf "########################\n"
+		@printf "\033[0m\n"
+		mkdir -p \`dirname $@\`
+		$(CC) $(CFLAGS) -c -o $@ $<
 
-	run: $(TARGET)
-		@printf "\n"
-		@printf "\033[32m"
-		@printf "###############\n"
-		@printf "#   Running   #\n"
-		@printf "###############\n"
-		@printf "\033[0m"
-		@printf "\n"
-		./$(TARGET)
+	$(OBJDIR)/%.o: $(SRCDIR)/%.asm $(HEADERS) | $(OBJDIR)
+		@printf "\n\033[31m"
+		@printf "########################\n"
+		@printf "Building %s\n" $@
+		@printf "########################\n"
+		@printf "\033[0m\n"
+		mkdir -p \`dirname $@\`
+		$(CC) $(CFLAGS) -c -o $@ $<
+	$0
