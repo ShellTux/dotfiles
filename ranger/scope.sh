@@ -158,7 +158,13 @@ handle_image() {
         ## Image
         image/*)
             local orientation
-            orientation="$( identify -format '%[EXIF:Orientation]\n' -- "${FILE_PATH}" )"
+	    # HACK: identify has memory leak with gif files
+	    if [ "${mimetype}" = image/gif ]
+	    then
+		    orientation=1
+	    else
+		    orientation="$( identify -format '%[EXIF:Orientation]\n' -- "${FILE_PATH}" )"
+	    fi
             ## If orientation data is present and the image actually
             ## needs rotating ("1" means no rotation)...
             if [[ -n "$orientation" && "$orientation" != 1 ]]; then
