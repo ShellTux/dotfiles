@@ -239,6 +239,7 @@ return {
 			ensure_installed = {
 				'bashls',
 				'clangd',
+				'denols',
 				'lua_ls',
 				'pyright',
 				'rust_analyzer',
@@ -254,8 +255,22 @@ return {
 				clangd = function()
 					lspconfig.clangd.setup({ capabilities = capabilities })
 				end,
+				denols = function()
+					lspconfig.denols.setup({
+						root_dir = lspconfig.util.root_pattern(
+							'deno.json',
+							'deno.jsonc'
+						),
+					})
+				end,
 				lua_ls = function()
 					lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
+				end,
+				tsserver = function()
+					lspconfig.tsserver.setup {
+						root_dir = lspconfig.util.root_pattern('package.json'),
+						single_file_support = false,
+					}
 				end,
 			},
 		})
