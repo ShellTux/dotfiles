@@ -43,6 +43,7 @@
 	h = history
 	diff-last = !git diff HEAD~1 HEAD
 	stats = show --stat
+	patch = !git --no-pager diff --no-color
 [filter "remove-pass"]
 	clean = "sed -e 's/^password=.*/#password=TODO/'"
 [diff]
