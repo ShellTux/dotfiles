@@ -51,6 +51,8 @@
 	colorMoved = default
 [difftool "neovim"]
 	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+	conflictstyle = diff3
 [delta]
 	navigate = true
 	light = false
