@@ -45,7 +45,7 @@
 	stats = show --stat
 	patch = !git --no-pager diff --no-color
 [filter "remove-pass"]
-	clean = "sed -e 's/^password=.*/#password=TODO/'"
+	clean = "sed -e 's|^password=.*|#password=**********|'"
 [diff]
 	tool = neovim
 [difftool "neovim"]
