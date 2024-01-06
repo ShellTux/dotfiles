@@ -48,8 +48,12 @@
 	clean = "sed -e 's|^password=.*|#password=**********|'"
 [diff]
 	tool = neovim
+	colorMoved = default
 [difftool "neovim"]
 	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[delta]
+	navigate = true
+	light = false
 [interactive]
 	diffFilter = diff-so-fancy --patch
 [color]
