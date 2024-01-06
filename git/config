@@ -49,6 +49,6 @@
 [diff]
 	tool = neovim
 [difftool "neovim"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [interactive]
 	diffFilter = diff-so-fancy --patch
