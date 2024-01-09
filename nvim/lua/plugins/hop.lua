@@ -1,6 +1,7 @@
 return {
 	'phaazon/hop.nvim',
 	branch = 'v2', -- optional but strongly recommended
+	enabled = false, -- WARN: unmantained
 	lazy = false,
 	opts = {
 		keys = 'etovxqpdygfblzhckisuran',
