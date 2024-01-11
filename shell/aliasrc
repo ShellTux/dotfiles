@@ -109,6 +109,14 @@ mkcd() {
 	cd "$1" || exit
 }
 
+mktouch() {
+	for file in $@
+	do
+		mkdir --parents "$(dirname "$file")"
+		touch "$file"
+	done
+}
+
 vimfzf () {
       wd="$(pwd)"
       file=$(find -L "$HOME" \
