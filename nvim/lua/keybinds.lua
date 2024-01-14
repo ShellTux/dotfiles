@@ -2,6 +2,8 @@
 --- Keybindings
 --------------
 vim.g.mapleader = ' '
+vim.keymap.set('n', 'cn', vim.cmd.cnext)
+vim.keymap.set('n', 'cp', vim.cmd.cprevious)
 vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)               -- Turn off highlighting
 vim.keymap.set('n', '<C-j>', vim.cmd.tabprevious)              -- Previous tab
 vim.keymap.set('n', '<C-k>', vim.cmd.tabnext)                  -- Next tab
