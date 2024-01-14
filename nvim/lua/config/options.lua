@@ -1,4 +1,5 @@
 vim.g.auto_save    = true
+vim.opt.autochdir  = true
 vim.opt.background = 'dark'
 -- vim.opt.colorcolumn = '100'
 -- vim.opt.completeopt = 'menuone,noinsert,noselect'
