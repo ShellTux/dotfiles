@@ -1,36 +1,23 @@
--- vim.opt.tabstop = 2
-vim.opt.wildignore     = { '*.o', '*.a', '__pycache__' }
-vim.opt.listchars      = { tab = '> ', trail = '•', nbsp = '~' }
-vim.opt.wildmenu       = true
-vim.opt.syntax         = 'enabled'
-vim.opt.encoding       = 'UTF-8'
-
--- Text Display
-vim.opt.linebreak      = true
-vim.opt.scrolloff      = 999
-vim.opt.sidescrolloff  = 10
-vim.opt.textwidth      = 80
-
--- Tab / Indentation
-vim.opt.wrap           = false
-
--- Search
-vim.opt.incsearch      = true
-vim.opt.ignorecase     = true
-vim.opt.smartcase      = true
-vim.opt.hlsearch       = true
-
--- Appearance
+vim.g.auto_save    = true
+vim.opt.background = 'dark'
+-- vim.opt.colorcolumn = '100'
+-- vim.opt.completeopt = 'menuone,noinsert,noselect'
+vim.opt.encoding   = 'UTF-8'
+vim.opt.hlsearch   = true
+vim.opt.ignorecase = true
+vim.opt.incsearch  = true
+vim.opt.linebreak  = true
+vim.opt.listchars  = { tab = '> ', trail = '•', nbsp = '~' }
+vim.opt.mouse:append('a')
 vim.opt.number         = true
 vim.opt.relativenumber = false
-vim.opt.termguicolors  = true
--- vim.opt.colorcolumn = '100'
+vim.opt.scrolloff      = 999
+vim.opt.sidescrolloff  = 10
 vim.opt.signcolumn     = 'yes'
--- vim.opt.completeopt = 'menuone,noinsert,noselect'
-vim.opt.background     = 'dark'
-
--- Behaviour
-vim.opt.mouse:append('a')
-
--- Custom
-vim.g.auto_save = true
+vim.opt.smartcase      = true
+vim.opt.syntax         = 'enabled'
+vim.opt.termguicolors  = true
+vim.opt.textwidth      = 80
+vim.opt.wildignore     = { '*.o', '*.a', '__pycache__' }
+vim.opt.wildmenu       = true
+vim.opt.wrap           = false
