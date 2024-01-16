@@ -3,6 +3,7 @@ vim.opt.background = 'dark'
 -- vim.opt.colorcolumn = '100'
 -- vim.opt.completeopt = 'menuone,noinsert,noselect'
 vim.opt.encoding   = 'UTF-8'
+vim.opt.exrc       = true
 vim.opt.hlsearch   = true
 vim.opt.ignorecase = true
 vim.opt.incsearch  = true
