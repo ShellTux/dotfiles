@@ -6,7 +6,7 @@ return {
 	},
 	keys = {
 		vim.keymap.set('n', '<leader>pb', ':Telescope buffers<CR>'),
-		vim.keymap.set('n', '<leader>pc', ':Telescope colorscheme<CR>'),
+		vim.keymap.set('n', '<leader>pc', ':Telescope colorscheme enable_preview=true<CR>'),
 		vim.keymap.set('n', '<leader>pC', ':Telescope git_branches<CR>'),
 		vim.keymap.set('n', '<leader>pf', ':Telescope find_files<CR>'),
 		vim.keymap.set('n', '<leader>pg', ':Telescope git_files<CR>'),
