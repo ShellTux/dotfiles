@@ -79,11 +79,15 @@ export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
+export GRIPHOME="$XDG_CONFIG_HOME/grip"
 # export LESSHISTFILE="-" # Disable less history file
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc.py
 export PYTHONUSERBASE=$XDG_DATA_HOME/python
@@ -104,6 +108,40 @@ export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority # This will give an error with LightDM
 export XCURSOR_PATH=${XCURSOR_PATH}:/usr/share/icons:${XDG_DATA_HOME}/icons
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+
+for directory in \
+	"$CARGO_HOME" \
+	"$GNUPGHOME" \
+	"$GRADLE_USER_HOME" \
+	"$GRIPHOME" \
+	"$IPYTHONDIR" \
+	"$JUPYTER_CONFIG_DIR" \
+	"$PARALLEL_HOME" \
+	"$PASSWORD_STORE_DIR" \
+	"$RUSTUP_HOME" \
+	"$STACK_ROOT" \
+	"$TERMINFO" \
+	"${XDG_CONFIG_HOME}/putty" \
+	"$ZDOTDIR"
+do
+	[ ! -d "$directory" ] && mkdir --parents "$directory"
+done
+
+for file in \
+	"$GTK2_RC_FILES" \
+	"$INPUTRC" \
+	"$LESSHISTFILE" \
+	"$NPM_CONFIG_USERCONFIG" \
+	"$PYTHONSTARTUP" \
+	"$R_ENVIRON_USER" \
+	"$SCREENRC" \
+	"$TEXMFCONFIG" \
+	"$TEXMFVAR" \
+	"$WINEPREFIX"
+do
+	directory="$(dirname "$file")"
+	[ ! -d "$directory" ] && mkdir --parents "$directory"
+done
 
 systemctl --user import-environment GNUPGHOME
 
