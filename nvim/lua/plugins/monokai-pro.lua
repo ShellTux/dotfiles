@@ -2,7 +2,7 @@ return {
 	'loctvl842/monokai-pro.nvim',
 	lazy = false,
 	priority = 999,
-	config = {
+	opts = {
 		transparent_background = true,
 		day_night = {
 			enable = true,

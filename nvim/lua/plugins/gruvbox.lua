@@ -1,8 +1,8 @@
 return {
- 	'ellisonleao/gruvbox.nvim',
+	'ellisonleao/gruvbox.nvim',
 	lazy = false,
 	priority = 999,
-	config = {
+	opts = {
 		transparent_mode = true,
 	}
 }

@@ -2,7 +2,7 @@ return {
 	'edeneast/nightfox.nvim',
 	lazy = false,
 	priority = 999,
-	config = {
+	opts = {
 		options = {
 			transparent = true,
 		}
