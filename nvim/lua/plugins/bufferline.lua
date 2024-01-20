@@ -6,7 +6,7 @@ return {
 	init = function()
 		vim.opt.termguicolors = true
 	end,
-	config = {
+	opts = {
 		options = {
 			mode = "tabs", --set to "tabs" to only show tabpages instead
 			diagnostics = "coc",
@@ -14,7 +14,7 @@ return {
 				local s = " "
 				for e, n in pairs(diagnostics_dict) do
 					local sym = e == "error" and " "
-					or (e == "warning" and " " or "" )
+					    or (e == "warning" and " " or "")
 					s = s .. n .. sym
 				end
 				return s
@@ -27,7 +27,7 @@ return {
 			hover = {
 				enabled = true,
 				delay = 200,
-				reveal = {'close'}
+				reveal = { 'close' }
 			},
 		},
 	}

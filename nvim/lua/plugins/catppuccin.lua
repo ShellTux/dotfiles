@@ -3,7 +3,7 @@ return {
 	name = 'catppuccin',
 	lazy = false,
 	priority = 999,
-	config = {
+	opts = {
 		transparent_background = true,
 	},
 }

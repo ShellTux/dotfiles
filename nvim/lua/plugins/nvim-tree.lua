@@ -4,7 +4,7 @@ return {
 	init = function()
 		vim.opt.termguicolors = true
 	end,
-	config = {
+	opts = {
 		sort_by = "case_sensitive",
 		renderer = {
 			group_empty = true,

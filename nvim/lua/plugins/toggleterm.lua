@@ -2,7 +2,7 @@ return {
 	'akinsho/toggleterm.nvim',
 	enabled = false,
 	version = '*',
-	config = {
+	opts = {
 		open_mapping = '<C-s>',
 		direction = 'horizontal',
 		size = 10,

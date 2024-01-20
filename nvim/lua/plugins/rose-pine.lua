@@ -1,9 +1,9 @@
-return	{
+return {
 	'rose-pine/neovim',
 	name = 'rose-pine',
 	lazy = false,
 	priority = 999,
-	config = {
+	opts = {
 		--- @usage 'auto'|'main'|'moon'|'dawn'
 		variant = 'auto',
 		--- @usage 'main'|'moon'|'dawn'

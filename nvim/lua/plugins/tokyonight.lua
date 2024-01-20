@@ -2,7 +2,7 @@ return {
  	'folke/tokyonight.nvim',
 	lazy = false,
 	priority = 999,
-	config = {
+	opts = {
 		transparent = true,
 	},
 }

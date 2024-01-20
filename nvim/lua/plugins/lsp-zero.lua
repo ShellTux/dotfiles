@@ -214,6 +214,7 @@ return {
 				'clangd',
 				'clang-format',
 				'codelldb',
+				'json-lsp',
 				'lua-language-server',
 				'pyright',
 				'rust-analyzer',

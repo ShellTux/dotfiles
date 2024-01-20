@@ -1,7 +1,7 @@
 return {
 	'lewis6991/gitsigns.nvim',
 	lazy = false,
-	config = {
+	opts = {
 		signcolumn = true,
 		numhl      = true,
 		linehl     = false,

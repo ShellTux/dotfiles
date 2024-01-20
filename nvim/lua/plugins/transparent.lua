@@ -4,7 +4,7 @@ return {
 	init = function()
 		vim.g.transparent_enabled = 1;
 	end,
-	config = {
+	opts = {
 		-- table: default groups
 		groups = {
 			'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
