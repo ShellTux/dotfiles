@@ -218,14 +218,6 @@ help() {
 	"$@" --help 2>&1 | bathelp
 }
 
-clipboard() {
-	case $XDG_SESSION_TYPE in
-		x11) xclip -selection clipboard ;;
-		wayland) wl-copy ;;
-		*) echo 'Unsupported session type.' ;;
-	esac
-}
-
 shellstart() {
 	for neofetch in neofetch fastfetch
 	do
