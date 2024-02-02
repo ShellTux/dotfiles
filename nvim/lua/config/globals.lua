@@ -10,8 +10,6 @@ vim.g.favorite_colorschemes = {
 	'gruvbox',
 	'kanagawa',
 	'kanagawa-dragon',
-	'monokai-pro',
-	'monokai-pro-ristretto',
 	'nightfox',
 	'nordfox',
 	'onedark',
