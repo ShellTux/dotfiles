@@ -222,6 +222,9 @@
 !/systemd/user/*.service
 !/systemd/user/*.target
 !/systemd/user/hotkeys.sh
+!/systemd/user/dunst.service.d
+/systemd/user/dunst.service.d/*
+!/systemd/user/dunst.service.d/override.conf
 !/sway/
 /sway/*
 !/sway/config
