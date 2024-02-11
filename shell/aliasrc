@@ -57,7 +57,7 @@ alias newsboat-repo='newsboat --url-file="$HOME"/.config/newsboat/repos-urls' \
 alias np='nano --nowrap PKGBUILD'
 alias open=xdg-open
 alias port='netstat --tcp --udp --listening --all --numeric --program --wide'
-alias publicIP='printf "%s\n" "$(curl --silent ifconfig.me)"'
+alias publicIP='printf "%s\n" "$(curl --ipv4 --silent ifconfig.me)"'
 alias :q=exit
 alias randomcolor='printf "#$(openssl rand -hex 3 | tr "[:lower:]" "[:upper:]")\n"'
 alias rmdir='rmdir --verbose --parents'
