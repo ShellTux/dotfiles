@@ -177,6 +177,11 @@
 !/pipewire/pipewire.conf.d/
 /pipewire/pipewire.conf.d/*
 !/pipewire/pipewire.conf.d/99-input-denoising.conf
+
+!/pgcli
+/pgcli/*
+!/pgcli/config
+
 !/polybar/
 /polybar/*
 !/polybar/config.ini
