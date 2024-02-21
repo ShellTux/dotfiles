@@ -233,6 +233,11 @@
 !/sway/
 /sway/*
 !/sway/config
+
+!/swaylock/
+/swaylock/*
+!/swaylock/config
+
 !/swhkd/
 /swhkd/*
 !/swhkd/swhkdrc
