@@ -264,6 +264,11 @@ systemd: sxhkd
 	systemctl --user enable --now ssh-agent.service
 	systemctl --user enable --now sxhkd.service
 
+.PHONY: swayidle
+swayidle:
+	$(PKG_MANAGER) \
+		swayidle
+
 .PHONY: tmux
 tmux:
 	$(PKG_MANAGER) \

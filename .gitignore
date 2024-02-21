@@ -230,9 +230,14 @@
 !/systemd/user/dunst.service.d
 /systemd/user/dunst.service.d/*
 !/systemd/user/dunst.service.d/override.conf
+
 !/sway/
 /sway/*
 !/sway/config
+
+!/swayidle/
+/swayidle/*
+!/swayidle/config
 
 !/swaylock/
 /swaylock/*
