@@ -5,7 +5,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/swayidle -w timeout 180 'waylock -fork-on-lock' timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+ExecStart=/usr/bin/swayidle -w timeout 180 'swaylock --daemonize' timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 
 [Install]
 WantedBy=hyprland-session.target
