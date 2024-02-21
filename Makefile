@@ -152,6 +152,7 @@ hypr: waybar
 		arc-gtk-theme \
 		hyprland \
 		xdg-desktop-portal-hyprland
+	systemctl --user enable --now swayidle-hyprland.service
 
 .PHONY: icons
 icons: | $(ICONS_TARGET_DIR)
