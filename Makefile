@@ -152,6 +152,8 @@ hypr: waybar
 		arc-gtk-theme \
 		hyprland \
 		xdg-desktop-portal-hyprland
+	$(AUR_MANAGER) \
+		swaylock-effects-git
 	systemctl --user enable --now swayidle-hyprland.service
 
 .PHONY: icons
