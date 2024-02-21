@@ -147,13 +147,11 @@ git:
 		onefetch
 
 .PHONY: hypr
-hypr: waybar
+hypr: swayidle swaylock waybar
 	$(PKG_MANAGER) \
 		arc-gtk-theme \
 		hyprland \
 		xdg-desktop-portal-hyprland
-	$(AUR_MANAGER) \
-		swaylock-effects-git
 	systemctl --user enable --now swayidle-hyprland.service
 
 .PHONY: icons
@@ -268,6 +266,11 @@ systemd: sxhkd
 swayidle:
 	$(PKG_MANAGER) \
 		swayidle
+
+.PHONY: swaylock
+swaylock:
+	$(AUR_MANAGER) \
+		swaylock-effects-git
 
 .PHONY: tmux
 tmux:
