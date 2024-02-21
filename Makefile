@@ -275,6 +275,13 @@ waybar: yay
 	# $(AUR_MANAGER) \
 	# 	wlogout
 
+.PHONY: wezterm
+wezterm:
+	$(PKG_MANAGER) \
+		wezterm \
+		wezterm-terminfo \
+		wezterm-shell-integration
+
 .PHONY: X11
 X11: cups firewall syncthing
 	$(PKG_MANAGER) \
