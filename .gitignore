@@ -82,6 +82,10 @@
 /fastfetch/*
 !/fastfetch/config.conf
 
+!/foot/
+/foot/*
+!/foot/foot.ini
+
 !/git/
 
 !/gnupg
