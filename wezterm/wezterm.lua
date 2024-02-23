@@ -236,6 +236,19 @@ local config = {
 			{ key = "u",      mods = "CTRL", action = act.CopyMode("ClearPattern") },
 		},
 	},
+
+	mouse_bindings = {
+		{
+			event = { Down = { streak = 15, button = { WheelUp = 1 } } },
+			mods = 'NONE',
+			action = act.ScrollByLine(-1),
+		},
+		{
+			event = { Down = { streak = 15, button = { WheelDown = 1 } } },
+			mods = 'NONE',
+			action = act.ScrollByLine(1),
+		},
+	}
 }
 
 return config
