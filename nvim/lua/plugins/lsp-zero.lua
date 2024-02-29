@@ -21,6 +21,23 @@ return {
 		'rafamadriz/friendly-snippets',
 		'saadparwaiz1/cmp_luasnip',
 	},
+	init = function()
+		local wk = require('which-key')
+		wk.register({
+			['<leader>F'] = {
+				function()
+					if vim.b.lsp_zero_enable_autoformat == 0 then
+						vim.b.lsp_zero_enable_autoformat = 1
+						vim.notify("Lsp auto format enabled")
+					else
+						vim.b.lsp_zero_enable_autoformat = 0
+						vim.notify("Lsp auto format disabled")
+					end
+				end,
+				'Toggle LSP Zero Auto format'
+			},
+		}, { mode = 'n' })
+	end,
 	config = function()
 		local lsp_zero = require('lsp-zero')
 		local lspconfig = require('lspconfig')
