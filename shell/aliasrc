@@ -61,7 +61,7 @@ alias publicIP='printf "%s\n" "$(curl --ipv4 --silent ifconfig.me)"'
 alias :q=exit
 alias randomcolor='printf "#$(openssl rand -hex 3 | tr "[:lower:]" "[:upper:]")\n"'
 alias rmdir='rmdir --verbose --parents'
-alias rm='rm --verbose --one-file-system --no-preserve-root'
+alias rm='rm --verbose --one-file-system --no-preserve-root --interactive=once'
 alias silicon='silicon --theme OneHalfDark --font "FiraCode Nerd Font"'
 alias shred='shred --verbose'
 alias ssh-agentd='eval $(ssh-agent -s)'
