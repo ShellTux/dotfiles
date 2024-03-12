@@ -32,6 +32,7 @@ HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
 setopt autocd extendedglob notify
+setopt hist_ignore_all_dups hist_find_no_dups
 unsetopt beep
 # bindkey -v
 bindkey -e
