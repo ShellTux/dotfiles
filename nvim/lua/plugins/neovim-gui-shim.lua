@@ -1,3 +1,4 @@
 return {
- 	'equalsraf/neovim-gui-shim',
+	lazy = false,
+	'equalsraf/neovim-gui-shim',
 }
