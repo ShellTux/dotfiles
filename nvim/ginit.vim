@@ -3,7 +3,7 @@ set mouse=a
 
 if exists(':GuiFont')
 	" Use GuiFont! to ignore font errors
-	GuiFont FiraCode Nerd Font:h20
+	GuiFont FiraCode Nerd Font:h15
 endif
 
 if exists(':GuiTabline')
