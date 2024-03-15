@@ -231,6 +231,17 @@ shellstart() {
 	done
 }
 
+function ya() {
+	local tmp
+	tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]
+	then
+		cd -- "$cwd" || exit
+	fi
+	rm -f -- "$tmp"
+}
+
 # battheme() {
 # 	bat --list-themes | fzf --preview="bat --theme={} --color=always $@"
 # }

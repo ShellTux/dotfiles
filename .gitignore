@@ -324,6 +324,13 @@
 /yay/*
 !/yay/config.json
 !/yay/yay-install.sh
+
+!/yazi
+/yazi/*
+!/yazi/yazi.toml
+!/yazi/keymap.toml
+!/yazi/theme.toml
+
 !/ytfzf
 /ytfzf/*
 !/ytfzf/conf.sh
