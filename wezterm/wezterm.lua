@@ -53,7 +53,9 @@ local config = {
 	font = wezterm.font_with_fallback {
 		'FiraCode Nerd Font',
 		'Fira Code',
+		'JetBrainsMono Nerd Font',
 		'JetBrains Mono',
+		'Source Code Pro',
 		'DengXian',
 	},
 
