@@ -205,6 +205,8 @@ local config = {
 
 			{ key = "PageUp",     mods = "NONE",  action = act.CopyMode("PageUp") },
 			{ key = "PageDown",   mods = "NONE",  action = act.CopyMode("PageDown") },
+			{ key = "u",          mods = "CTRL",  action = act.CopyMode("PageUp") },
+			{ key = "d",          mods = "CTRL",  action = act.CopyMode("PageDown") },
 
 			{ key = "b",          mods = "CTRL",  action = act.CopyMode("PageUp") },
 			{ key = "f",          mods = "CTRL",  action = act.CopyMode("PageDown") },
