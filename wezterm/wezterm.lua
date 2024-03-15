@@ -95,7 +95,7 @@ local config = {
 		{ key = "k",          mods = "LEADER",         action = act.ActivatePaneDirection("Up") },
 		{ key = "l",          mods = "LEADER",         action = act.ActivatePaneDirection("Right") },
 		{ key = "DownArrow",  mods = "LEADER",         action = act.ActivatePaneDirection("Down") },
-		{ key = "RightArrow", mods = "LEADER",         action = act.ActivatePaneDirection("Left") },
+		{ key = "LeftArrow",  mods = "LEADER",         action = act.ActivatePaneDirection("Left") },
 		{ key = "RightArrow", mods = "LEADER",         action = act.ActivatePaneDirection("Right") },
 		{ key = "UpArrow",    mods = "LEADER",         action = act.ActivatePaneDirection("Up") },
 
