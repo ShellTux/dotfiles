@@ -139,7 +139,7 @@ check_directory_for_new_repository() {
 
 	if [ "$current_repository" ] && [ "$current_repository" != "$last_repository" ]
 	then
-		if [ "$(stat --format=%Y .git/FETCH_HEAD)" -lt "$(date --date='1 day ago' +%s)" ]
+		if [ "$(stat --format=%Y "$(git rev-parse --show-toplevel)/.git/FETCH_HEAD")" -lt "$(date --date='1 day ago' +%s)" ]
 		then
 			echo This repository was fetched longer than 1 day ago
 			printf 'Fetch [y/N]? '
