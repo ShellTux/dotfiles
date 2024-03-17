@@ -2,7 +2,7 @@
 # HACK: Check if running a tty, even with tmux
 [ -n "$DISPLAY" ] && is_tty=false || is_tty=true
 
-neofetch
+[ ! "$ASCIINEMA_REC" = 1 ] && neofetch
 
 # Enable Powerlevel10k instant prompt.
 # Should stay close to the top of ~/.config/zsh/.zshrc.

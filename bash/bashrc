@@ -86,4 +86,4 @@ fi
 
 command -v starship >/dev/null && eval "$(starship init bash)"
 
-shellstart
+[ ! "$ASCIINEMA_REC" = 1 ] && shellstart
