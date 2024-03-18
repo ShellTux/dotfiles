@@ -136,9 +136,21 @@ vimfzf () {
 last_repository=
 check_directory_for_new_repository() {
 	current_repository=$(git rev-parse --show-toplevel 2> /dev/null)
-	
+
 	if [ "$current_repository" ] && [ "$current_repository" != "$last_repository" ]
 	then
+		if [ "$(stat --format=%Y "$(git rev-parse --show-toplevel)/.git/FETCH_HEAD")" -lt "$(date --date='1 day ago' +%s)" ]
+		then
+			echo This repository was fetched longer than 1 day ago
+			printf 'Fetch [y/N]? '
+			read -r confirmation
+			if [ "$confirmation" = y ] || [ "$confirmation" = Y ]
+			then
+				echo Fetching ...
+				git fetch --verbose
+			fi
+			unset confirmation
+		fi
 		onefetch_language="$(onefetch --output=json | jq --raw-output '.infoFields[6].LanguagesInfo.languagesWithPercentage[0].language')"
 		onefetch_image="${XDG_CONFIG_HOME:-$HOME/.config}/onefetch/images/$onefetch_language.png"
 		! onefetch --image="$onefetch_image" 2>/dev/null && onefetch
