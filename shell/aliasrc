@@ -139,7 +139,15 @@ check_directory_for_new_repository() {
 
 	if [ "$current_repository" ] && [ "$current_repository" != "$last_repository" ]
 	then
-		if [ "$(stat --format=%Y "$(git rev-parse --show-toplevel)/.git/FETCH_HEAD")" -lt "$(date --date='1 day ago' +%s)" ]
+		FETCH_MODIFIED_DATE="$(\
+			stat --format=%Y \
+			"$(git rev-parse --show-toplevel)/.git/FETCH_HEAD"\
+			)"
+		THREADSHOULD_DATE="$(date --date='1 minute ago' +%s)"
+		if \
+			[ -n "$(git remote -v)" ] \
+			&& \
+			[ "$FETCH_MODIFIED_DATE" -lt "$THREADSHOULD_DATE" ]
 		then
 			echo This repository was fetched longer than 1 day ago
 			printf 'Fetch [y/N]? '
@@ -151,6 +159,7 @@ check_directory_for_new_repository() {
 			fi
 			unset confirmation
 		fi
+		unset FETCH_MODIFIED_DATE THREADSHOULD_DATE
 		onefetch_language="$(onefetch --output=json | jq --raw-output '.infoFields[6].LanguagesInfo.languagesWithPercentage[0].language')"
 		onefetch_image="${XDG_CONFIG_HOME:-$HOME/.config}/onefetch/images/$onefetch_language.png"
 		! onefetch --image="$onefetch_image" 2>/dev/null && onefetch
