@@ -200,6 +200,10 @@ screenresolution() {
 	xrandr | awk '/\*/ {print $1}'
 }
 
+json-beautify() {
+	jq . "$1" > tmp.json && mv tmp.json "$1"
+}
+
 # optional, greet also when opening shell directly in repository directory
 # adds time to startup
 # check_directory_for_new_repository
