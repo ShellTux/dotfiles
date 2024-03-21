@@ -166,9 +166,9 @@ check_directory_for_new_repository() {
 			unset FETCH_MODIFIED_DATE THRESHOLD THRESHOLD_DATE
 		fi
 		unset FETCH_FILE
-		onefetch_language="$(onefetch --output=json | jq --raw-output '.infoFields[6].LanguagesInfo.languagesWithPercentage[0].language')"
+		onefetch_language="$(onefetch --output=json 2>/dev/null | jq --raw-output '.infoFields[6].LanguagesInfo.languagesWithPercentage[0].language')"
 		onefetch_image="${XDG_CONFIG_HOME:-$HOME/.config}/onefetch/images/$onefetch_language.png"
-		! onefetch --image="$onefetch_image" 2>/dev/null && onefetch
+		[ -n "$onefetch_language" ] && ! onefetch --image="$onefetch_image" 2>/dev/null && onefetch
 	fi
 	last_repository=$current_repository
 }
