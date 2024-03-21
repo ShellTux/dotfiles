@@ -278,6 +278,11 @@ tmux:
 		git \
 		tmux
 
+.PHONY: ueberzug
+ueberzug:
+	$(AUR_MANAGER) \
+		ueberzugpp
+
 .PHONY: waybar
 waybar: yay
 	$(PKG_MANAGER) \
@@ -326,6 +331,11 @@ xmonad xmobar:
 .PHONY: yay
 yay:
 	./yay/yay-install.sh
+
+.PHONY: yazi
+yazi: ueberzug
+	$(PKG_MANAGER) \
+		yazi
 
 .PHONY: zathura
 zathura:
