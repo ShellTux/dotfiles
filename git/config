@@ -42,8 +42,8 @@
 	sw = switch -
 	touch = "!touch $@ && git add $@"
 	unstage = reset HEAD --
-	visit-branch = "!xdg-open \"https://`git config --get remote.origin.url | sed -E \"s#(git@|git://|https?://|.git$)##;s#:#/#\"`/tree/`git branch --show-current`\""
-	visit = "!xdg-open \"https://`git config --get remote.origin.url | sed -E \"s#(git@|git://|https?://|.git$)##;s#:#/#\"`\""
+	visit-branch = "!xdg-open \"https://`git config --get remote.origin.url | sed -E \"s#(git@|git://|https?://|.git$)##g;s#:#/#\"`/tree/`git branch --show-current`\""
+	visit = "!xdg-open \"https://`git config --get remote.origin.url | sed -E \"s#(git@|git://|https?://|.git$)##g;s#:#/#\"`\""
 [filter "remove-pass"]
 	clean = "sed -e 's|^password=.*|#password=**********|'"
 [diff]
