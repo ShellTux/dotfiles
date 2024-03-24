@@ -152,6 +152,10 @@ keymap = [
 	{ on = [ "~" ], run = "help", desc = "Open help" },
 ]
 
+prepend_keymap = [
+	{ on = [ "<C-s>" ], run  = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
+]
+
 [tasks]
 
 keymap = [
