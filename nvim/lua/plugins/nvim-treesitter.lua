@@ -1,10 +1,14 @@
 local nvim_treesitter_options = {
 	ensure_installed = {
+		'bash',
 		'c',
 		'cpp',
 		'lua',
+		'markdown',
+		'markdown_inline',
 		'python',
 		'query',
+		'regex',
 		'rust',
 		'vim',
 		'vimdoc',
