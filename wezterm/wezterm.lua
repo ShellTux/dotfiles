@@ -51,9 +51,9 @@ local config = {
 	--disable_default_key_bindings = true,
 	--line_height = 1,
 	font = wezterm.font_with_fallback {
+		'JetBrainsMono Nerd Font',
 		'FiraCode Nerd Font',
 		'Fira Code',
-		'JetBrainsMono Nerd Font',
 		'JetBrains Mono',
 		'Source Code Pro',
 		'DengXian',
