@@ -91,6 +91,15 @@
 !/gnupg
 /gnupg/*
 !/gnupg/gpg-agent.conf
+
+!/i3
+/i3/*
+!/i3/config
+
+!/i3status
+/i3status/*
+!/i3status/config
+
 !/icons/
 /icons/*
 !/icons/svg/

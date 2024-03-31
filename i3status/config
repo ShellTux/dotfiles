@@ -1,0 +1,69 @@
+# vim: ft=conf
+
+general {
+        colors = true
+        interval = 5
+}
+
+order += "volume master"
+order += "cpu_usage"
+order += "disk /"
+order += "wireless _first_"
+order += "battery all"
+order += "memory"
+order += "tztime local"
+
+volume master {
+        format = "🔊 %volume"
+        format_muted = "🔇"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+cpu_usage {
+        format= "🖥️ %usage <%cpu0 %cpu1>"
+        max_threshold= 75
+}
+
+wireless _first_ {
+        format_up = "W (%quality at %essid, %bitrate) %ip"
+        format_down = ""
+}
+
+ethernet _first_ {
+        format_up = "E %ip (%speed)"
+        format_down = ""
+}
+
+battery all {
+    format = " %status %percentage "
+        format_down = "No battery"
+        last_full_capacity = true
+        integer_battery_capacity = true
+        status_chr = ""
+        status_bat = "🔋"
+        status_unk = ""
+        status_full = ""
+        low_threshold = 20
+        threshold_type = time
+}
+
+tztime local {
+        # format = "%Y-%m-%d %H:%M"
+        format = "%H:%M"
+}
+
+load {
+        format = "%1min %5min %15min"
+}
+
+memory {
+        format = "🧠 %percentage_used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+
+disk "/" {
+        format = "💾 %percentage_used"
+}
