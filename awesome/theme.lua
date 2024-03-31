@@ -9,7 +9,7 @@ local themes_path  = require('gears.filesystem').get_themes_dir()
 
 local theme = {}
 
-theme.font         = 'FiraCode Nerd Font 14'
+theme.font         = 'FiraCode Nerd Font 12'
 theme.taglist_font = 'Font Awesome 6 Free'
 
 theme.bg_normal     = '#222222'
