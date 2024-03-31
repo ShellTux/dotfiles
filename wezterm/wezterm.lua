@@ -17,6 +17,11 @@ local config = {
 	window_decorations = 'NONE',
 	term = 'screen-256color',
 	use_ime = true,
+	default_cursor_style = 'BlinkingBlock',
+	animation_fps = 20,
+	cursor_blink_ease_in = 'Linear',
+	cursor_blink_ease_out = 'Linear',
+	cursor_blink_rate = 800,
 
 	----------------
 	-- Appearance --
@@ -142,6 +147,11 @@ local config = {
 				end),
 			},
 		},
+		{
+			key = 'F12',
+			mods = 'NONE',
+			action = wezterm.action { EmitEvent = "toggle-leader" },
+		},
 	},
 
 	key_tables = {
@@ -254,5 +264,24 @@ local config = {
 		},
 	}
 }
+
+
+wezterm.on("toggle-leader", function(window, pane)
+	local overrides = window:get_config_overrides() or {}
+	if not overrides.leader then
+		-- replace it with an "impossible" leader that will never be pressed
+		overrides.leader = { key = "_", mods = "CTRL|ALT|SUPER" }
+		overrides.colors = { background = "#100000" }
+		overrides.window_background_opacity = 0.95
+		wezterm.log_warn("[leader] clear")
+	else
+		-- restore to the main leader
+		overrides.leader = nil
+		overrides.colors = nil
+		overrides.window_background_opacity = nil
+		wezterm.log_warn("[leader] set")
+	end
+	window:set_config_overrides(overrides)
+end)
 
 return config
