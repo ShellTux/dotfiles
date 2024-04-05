@@ -1,0 +1,11 @@
+[Unit]
+Description=Wallpaper Loop
+
+[Service]
+Type=simple
+Environment=PATH=%h/.local/bin:/usr/local/bin:/sbin/
+Environment=WALLPAPERS_HOME_DIR=%h/Wallpapers/Computer/
+ExecStart=%h/.local/bin/wallpaperLoop
+
+[Install]
+WantedBy=default.target
