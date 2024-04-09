@@ -1,193 +1,96 @@
-" ####################
-" Variables definition
-" ####################
+" vim:fileencoding=utf-8:foldmethod=marker
+
 " Add XDG Base directory to runtimepath
-set runtimepath^=$XDG_CONFIG_HOME/vim					" ~/.config/vim
-set runtimepath+=$XDG_DATA_HOME/vim					" ~/.local/share/vim
-set runtimepath+=$XDG_CONFIG_HOME/vim/after				" ~/.config/vim/after
-set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim			" ~/.local/share/vim, ~/.config/vim
-set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after	" ~/.config/vim/after, ~/.local/share/vim/after
-let g:netrw_home = $XDG_DATA_HOME."/vim"		" Set home as	  ~/.config/vim 
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+let g:netrw_home = $XDG_DATA_HOME."/vim"
 call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
-set viewdir=$XDG_DATA_HOME/vim/view | call mkdir(&viewdir, 'p')		" ~/.local/share/vim/view
-set backupdir=$XDG_CACHE_HOME/vim/backup | call mkdir(&backupdir, 'p')	" ~/.cache/vim/backup
-set directory=$XDG_CACHE_HOME/vim/swap   | call mkdir(&directory, 'p')	" ~/.cache/vim/swap
-set undodir=$XDG_CACHE_HOME/vim/undo     | call mkdir(&undodir,   'p')	" ~/.cache/vim/undo
+set viewdir=$XDG_DATA_HOME/vim/view | call mkdir(&viewdir, 'p')
+set backupdir=$XDG_CACHE_HOME/vim/backup | call mkdir(&backupdir, 'p')
+set directory=$XDG_CACHE_HOME/vim/swap   | call mkdir(&directory, 'p')
+set undodir=$XDG_CACHE_HOME/vim/undo     | call mkdir(&undodir,   'p')
 if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
 let mapleader = " " " Leader key
 
+let g:enable_plugins = v:true
 
+" Plugins {{{
+if g:enable_plugins
+	let data_dir = '~/.config/vim'
 
-
-" ##############
-" Vundle Plugins
-" ##############
-if !filereadable(expand('~/.local/share/vim/bundle/Vundle.vim/README.md'))
-	execute "!git clone https://github.com/VundleVim/Vundle.vim.git ~/.local/share/vim/bundle/Vundle.vim"
-endif
-
-set rtp+=$XDG_DATA_HOME/vim/bundle/Vundle.vim " Add Vundle to the runtime path
-filetype plugin indent on    " Required for Vundle packages Plugins
-call vundle#begin('$XDG_DATA_HOME/vim/bundle')
-Plugin 'airblade/vim-gitgutter' 	" shows a git diff in the sign column
-Plugin 'arcticicestudio/nord-vim' 	" An arctic, north-bluish clean and elegant Vim theme
-Plugin 'bluz71/vim-nightfly-colors' 	" A dark midnight theme for classic Vim & modern Neovim
-Plugin 'dracula/vim'			" Dracula dark theme for vim
-Plugin 'dylanaraps/wal.vim' 		" A vim colorscheme for use with wal
-Plugin 'easymotion/vim-easymotion' 	" Vim motions on speed!
-Plugin 'elkowar/yuck.vim' 		" Vim filetype support for the new eww configuration language yuck
-Plugin 'Everblush/everblush.vim' 	" A beautiful and dark vim colorscheme
-Plugin 'farmergreg/vim-lastplace' 	" Intelligently reopen files at your last edit position in Vim
-Plugin 'frazrepo/vim-rainbow'		" Rainbow brackets for Vim
-Plugin 'ghifarit53/tokyonight-vim' 	" A clean, dark vim colorscheme that celebrates the lights of downtown Tokyo at night, based on a VSCode theme by @enkia with the same name [Archived because I'm no longer using this] 
-Plugin 'honza/vim-snippets'
-Plugin 'iamcco/markdown-preview.nvim'	" Preview markdown on your browser with synchronised scrolling
-Plugin 'itchyny/lightline.vim'		" A light and configurable statusline/tabline plugin for Vim
-Plugin 'joshdick/onedark.vim'		" A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
-Plugin 'junegunn/fzf.vim'		" A fuzzy finder for vim
-Plugin 'KabbAmine/vCoolor.vim'		" vCoolor is a Vim plugin that allows using a color picker/selector directly from the editor
-Plugin 'kovetskiy/sxhkd-vim'		" indent, highlight syntax and detect sxhkd - Simple X hotkey daemon configuration files
-Plugin 'lervag/vimtex'			" VimTeX is a modern Vim and Neovim filetype and syntax plugin for LaTeX files
-Plugin 'liuchengxu/vim-which-key'
-Plugin 'mbbill/undotree' 		" The undo history visualizer for VIM
-Plugin 'mg979/vim-visual-multi'
-Plugin 'mmisono/viminesweeper' 		" Minesweeper
-Plugin 'Mofiqul/adwaita.nvim' 		" Neovim colorscheme using Gnome Adwaita syntax
-Plugin 'mofiqul/vscode.nvim' 		" Neovim/Vim color scheme inspired by Dark+ and Light+ theme in Visual Studio Code
-Plugin 'morhetz/gruvbox'		" Retro groove color scheme for Vim
-Plugin 'nanotech/jellybeans.vim' 	" A colorful, dark color scheme for Vim
-Plugin 'preservim/nerdtree' 		" File system explorer for the Vim editor
-Plugin 'romainl/Apprentice' 		" A dark, low-contrast, Vim colorscheme
-Plugin 'RRethy/vim-hexokinase', {'do':'make hexokinase'}	" (Neo)Vim plugin for asynchronously displaying the colours in the file
-Plugin 'ryanoasis/vim-devicons'		" Adds file type icons to Vim plugins
-Plugin 'sainnhe/everforest' 		" Comfortable & Pleasant Color Scheme for Vim
-Plugin 'sainnhe/gruvbox-material' 	" Gruvbox with Material Palette
-Plugin 'sainnhe/sonokai' 		" High Contrast & Vivid Color Scheme based on Monokai Pro
-Plugin 'Sammyalhashe/random_colorscheme.vim'
-Plugin 'stevearc/vim-arduino'		" Vim plugin for compiling and uploading arduino sketches
-Plugin 'tomasiser/vim-code-dark' 	" Dark color scheme for Vim and vim-airline, inspired by Dark+ in Visual Studio Code
-Plugin 'tomasr/molokai' 		" Molokai color scheme for Vim
-Plugin 'tpope/vim-commentary'		" Comment stuff out
-Plugin 'tpope/vim-fugitive'		" A Git wrapper so awesome, it should be illegal
-Plugin 'tpope/vim-surround' 		" Delete/change/add parentheses/quotes/XML-tags/much more with ease
-Plugin 'tribela/vim-transparent'
-Plugin 'VundleVim/Vundle.vim'		" Vundle, the plug-in manager for Vim. Vundle is short for Vim bundle
-Plugin 'waycrate/swhkd-vim'
-Plugin 'xuhdev/vim-latex-live-preview' 	" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plugin 'Xuyuanp/nerdtree-git-plugin'	" A plugin of NERDTree showing git status
-call vundle#end()
-
-
-
-
-" #####################
-" Plugins Configuration
-" #####################
-" My Plugin settings {
-for f in glob('~/.config/vim/plugin/*.vim', 0, 1)
-	if filereadable(expand(f))
-		execute 'source' f
+	if empty(glob(data_dir . '/autoload/plug.vim'))
+		silent execute '!curl --fail --location --output '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 	endif
-endfor
-if has('nvim')
-	for f in glob('~/.config/vim/plugin/*.nvim', 0, 1)
-		if filereadable(expand(f))
-			execute 'source' f
-		endif
-	endfor
+
+	autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+				\| PlugInstall --sync | source $MYVIMRC
+				\| endif
+
+	call plug#begin('$XDG_DATA_HOME/vim/plug')
+
+	Plug 'airblade/vim-gitgutter'
+	Plug 'dracula/vim', { 'as': 'Dracula' }
+	Plug 'farmergreg/vim-lastplace'
+	Plug 'ghifarit53/tokyonight-vim'
+	Plug 'iamcco/markdown-preview.nvim'
+	Plug 'joshdick/onedark.vim'
+	Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+	Plug 'tpope/vim-commentary'
+	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-sensible'
+	Plug 'tpope/vim-surround'
+
+	call plug#end()
 endif
-" }
+" }}}
 
 
-
-
-" ########
-" Settings
-" ########
-syntax enable		" Syntax highlighting
-set wildmenu		" Command-line completion (Tab to invoke completion) and a menu pops up
-set ignorecase smartcase 	" Ignores case when the pattern contains lowercase only, otherwise will try to exact match
-set incsearch		" While typing a search command, show where the pattern, as it was typed	so far, matches. The matched string is highlighted. If the pattern is invalid or not found, nothing is shown.
-set hlsearch		" Highlight search
-set number		" precede each line with its line number.
-set encoding=UTF-8
-set scrolloff=999	" Minimal number of screen lines to keep above and below the cursor.
-set termguicolors
-set wrap
-set linebreak
+" Options {{{
+colorscheme habamax
+highlight ColorColumn ctermbg=lightgray guibg=red
+set foldenable
 set background=dark
+set encoding=UTF-8
+set hlsearch
+set ignorecase smartcase
+set incsearch
+set linebreak
+set number
+set scrolloff=999
+set termguicolors
+set wildmenu
+syntax enable
+" }}}
 
 
-
-
-" ###############
-" Custom commands
-" ###############
-" AutoRecompile on save
-autocmd BufWritePost patches.h !doas make clean install
-" AutoRecompile on save
-autocmd BufWritePost config.h !doas make clean install
-" AutoRecompile on save
-autocmd BufWritePost patches.def.h !rm -f patches.h && doas make clean install
-" AutoRecompile on save
-autocmd BufWritePost config.def.h !rm -f config.h && doas make clean install
+" AutoCmd {{{
 autocmd BufWritePost *.service !systemctl --user daemon-reload
-" Update Sxhkd (Simple x hot key daemon) after save
 autocmd BufWritePost sxhkdrc !systemctl restart --user sxhkd
 autocmd BufWritePost swhkdrc !systemctl restart --user hotkeys
-" Recompile Xmonad after save
 autocmd BufWritePost xmonad.hs !xmonad --recompile
-" Update Xresources
 autocmd BufWritePost .Xresources !xrdb ~/.Xresources
-" Source .bashrc after save
-" autocmd BufWritePost .bashrc !source .bashrc 	
-if has('nvim')
-      command! Reload execute "source ~/.config/nvim/init.vim"	" Reload command to source init.vim
-else
-      command! Reload execute "source ~/.config/vim/vimrc"	" Reload command to source vimrc
-endif
+autocmd BufWritePost .bashrc !source .bashrc 	
+" }}}
 
 
+" Commands {{{
+command! Reload execute "source $MYVIMRC"
+" }}}
 
 
-" ###########
-" Keybindings
-" ###########
-nnoremap <C-Left> :tabprevious<CR>	" Previous tab
-nnoremap <C-j> :tabprevious<CR>		" Previous tab
-nnoremap <leader>tc :tabclose<CR>	" Close tab
-nnoremap <C-Right> :tabnext<CR>		" Next tab
-nnoremap <C-k> :tabnext<CR>		" Next tab
-nnoremap <C-h> :nohlsearch<CR>		" Turn off highlighting
-vnoremap J :m '>+1<CR>gv=gv 		" Move visual block one line above
-vnoremap K :m '<-2<CR>gv=gv 		" Move visual block one line below
-nnoremap Y yg$ 				" Yank to then end of the line without moving cursor
-nnoremap J mzJ`z 			" Merge current line with line below without moving cursor
-nnoremap <leader>cs :Colors<CR>
-" nnoremap <leader>s [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]] 	" Replace
-nnoremap <leader>x <cmd>!chmod u+x %<CR>	" Make this file executable
-nnoremap <Left> :vertical resize -2<CR>	" Vertical split resize
-nnoremap <Right> :vertical resize +2<CR>	" Vertical split resize
-nnoremap <Up> :resize -2<CR>	" Split resize
-nnoremap <Down> :resize +2<CR>	" Split resize
-" nnoremap <C-h> <C-W> h 			" Move to left buffer
-" nnoremap <C-j> <C-W> j 			" Move to bottom buffer
-" nnoremap <C-k> <C-W> k 			" Move to upper buffer
-" nnoremap <C-l> <C-W> l 			" Move to right buffer
-if has('nvim')
-      " Run Shell scripts
-      autocmd FileType sh noremap <F9> :w<CR>:vsplit term://time sh '%'<CR>i
-      autocmd FileType sh noremap <F9> <esc>:w<CR>:vsplit term://time sh '%'<CR>i
-      " Run Python scripts
-      autocmd FileType python noremap <F9> :w<CR>:vsplit term://time python '%'<CR>i
-      autocmd FileType python noremap <F9> <esc>:w<CR>:vsplit term://time python '%'<CR>i
-      " Compile C programs with the same filename in the same directory
-      autocmd FileType c noremap <F9> <esc><CR>:vsplit term://time make<CR>i
-else
-      " Run Shell scripts
-      autocmd FileType sh map <buffer> <F9> :w<CR>:exec '!time sh' shellescape(@%, 1)<CR>
-      autocmd FileType sh imap <buffer> <F9> <esc>:w<CR>:exec '!time sh' shellescape(@%, 1)<CR>
-      " Run Python scripts
-      autocmd FileType python map <buffer> <F9> :w<CR>:exec '!time python' shellescape(@%, 1)<CR>
-      autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!time python' shellescape(@%, 1)<CR>
-endif
+" Keybindings {{{
+nnoremap <C-h> :nohlsearch<CR>
+nnoremap <Down> :resize +2<CR>
+nnoremap J mzJ`z
+nnoremap <leader>tc :tabclose<CR>
+nnoremap <Left> :vertical resize -2<CR>
+nnoremap <Right> :vertical resize +2<CR>
+nnoremap <Up> :resize -2<CR>
+nnoremap Y yg$
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+" }}}
