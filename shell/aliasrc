@@ -134,6 +134,14 @@ vimfzf () {
       [ -f "$file" ] || [ -d "$file" ] && $EDITOR "$file" && cd "$wd" || exit
 }
 
+getch() {
+	old_tty_settings="$(stty --save)"
+	stty raw -echo
+	char=$(dd bs=1 count=1 2>/dev/null)
+	stty "$old_tty_settings"
+	printf '%c' "$char"
+}
+
 # git repository greeter
 last_repository=
 check_directory_for_new_repository() {
@@ -157,7 +165,8 @@ check_directory_for_new_repository() {
 			then
 				echo "This repository was fetched longer than $THRESHOLD_DATE"
 				printf 'Fetch [y/N]? '
-				read -r confirmation
+				confirmation="$(getch)"
+				printf '%c\n' "$confirmation"
 				if [ "$confirmation" = y ] || [ "$confirmation" = Y ]
 				then
 					echo Fetching ...
