@@ -58,6 +58,7 @@ alias np='nano --nowrap PKGBUILD'
 alias open=xdg-open
 alias port='netstat --tcp --udp --listening --all --numeric --program --wide'
 alias progress='progress --wait-delay .5 --monitor-continuously'
+alias procs='procs --watch-interval=.5 --watch'
 alias publicIP='printf "%s\n" "$(curl --ipv4 --silent ifconfig.me)"'
 alias :q=exit
 alias randomcolor='printf "#$(openssl rand -hex 3 | tr "[:lower:]" "[:upper:]")\n"'
@@ -76,8 +77,9 @@ alias upper='tr "[:lower:]" "[:upper:]"'
 alias watch='watch --color --interval 1'
 alias yay='yay --sudo notify-sudo'
 alias youtube-dl='yt-dlp'
-alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail --embed-metadata \
-	--embed-chapters'
+alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail \
+	--embed-metadata --embed-chapters \
+	--format "bestvideo[height<=1440]+bestaudio/best"'
 
 command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
 
