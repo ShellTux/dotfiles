@@ -119,6 +119,7 @@ mkcd() {
 }
 
 mktouch() {
+	# shellcheck disable=SC2068
 	for file in $@
 	do
 		mkdir --parents "$(dirname "$file")"
