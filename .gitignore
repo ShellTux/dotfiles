@@ -326,6 +326,11 @@
 !/xournalpp/
 /xournalpp/*
 !/xournalpp/latex
+
+!/wikiman
+/wikiman/*
+!/wikiman/wikiman.conf
+
 !/yarn/
 /yarn/*
 !/yarn/config
