@@ -13,7 +13,7 @@ return {
 		vim.keymap.set('n', '<leader>pG', ':Telescope live_grep<CR>'),
 		vim.keymap.set('n', '<leader>ph', ':Telescope help_tags<CR>'),
 		vim.keymap.set('n', '<leader>ps', ':Telescope git_status<CR>'),
-		vim.keymap.set('n', '<leader>M', ':Telescope man_pages sections=1,3,7<CR>'),
+		vim.keymap.set('n', '<leader>M', ':Telescope man_pages sections=0p,1,2,3,3p,3type,7<CR>'),
 	},
 	config = function()
 		pcall(require 'telescope'.load_extension, 'luasnip')
