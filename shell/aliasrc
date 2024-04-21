@@ -205,7 +205,9 @@ screenresolution() {
 }
 
 json-beautify() {
-	jq . "$1" > tmp.json && mv tmp.json "$1"
+	temp_json="$(mktemp --suffix=.json)"
+	jq . "$1" > "$temp_json" && mv "$temp_json" "$1"
+	unset temp_json
 }
 
 # optional, greet also when opening shell directly in repository directory
