@@ -4,17 +4,19 @@
 
 [[ $- != *i* ]] && return
 
-[ -r /usr/share/bash-completion/bash_completion ] \
-	&& . /usr/share/bash-completion/bash_completion
-[ -r /usr/share/fzf/completion.bash ] && . /usr/share/fzf/completion.bash
-[ -r /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
 [ -r "$(which doas)" ] && complete -cf doas
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/aliasrc ] \
-	&& . "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/aliasrc
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/bash/bash-completion ] \
-	&& . "${XDG_CONFIG_HOME:-$HOME/.config}"/bash/bash-completion
-for file in "${XDG_CONFIG_HOME:-$HOME/.config}/bash/completions/fzf"/*
+
+for file in \
+	/usr/share/bash-completion/bash_completion \
+	/usr/share/fzf/completion.bash \
+	/usr/share/fzf/key-bindings.bash \
+	/usr/share/wikiman/widgets/widget.bash \
+	"${XDG_CONFIG_HOME:-$HOME/.config}/bash/completions/fzf/kubectl" \
+	"${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" \
+	"${XDG_CONFIG_HOME:-$HOME/.config}/bash/bash-completion"
 do
+	[ ! -f "$file" ] && continue
+	# shellcheck source=/dev/null
 	source "$file"
 done
 

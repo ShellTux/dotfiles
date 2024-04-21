@@ -77,7 +77,8 @@ aliasrc="${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 [ -f "$aliasrc" ] && source "$aliasrc"
 
 for file in \
-	/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+	/usr/share/wikiman/widgets/widget.zsh
 do
 	[ -r "$file" ] && source "$file"
 done
