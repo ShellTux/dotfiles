@@ -1,4 +1,6 @@
-# ~/ cleaning aliases
+# vim: ft=sh foldmethod=marker
+
+# ~/ cleaning aliases {{{
 alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'
 alias code='code --extensions-dir "$XDG_DATA_HOME/vscode"'
 alias emcc='emcc --cache "$EM_CACHE"'
@@ -11,10 +13,13 @@ alias units='units --history "$XDG_CACHE_HOME"/units_history'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias xbindkeys='xbindkeys -f "${XDG_CONFIG_HOME:-$HOME/.config}"/xbindkeys/config'
 alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME:-$HOME/.config}/yarn/config"'
+# }}}
 
-# My custom aliaseses
+# Custom Aliases {{{
+
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 command -v batcat &>/dev/null && alias bat=batcat
+command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
 alias bathelp='bat --plain --language=help'
 alias cd1='cd ..'
 alias cd2='cd ../../'
@@ -81,12 +86,10 @@ alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail \
 	--embed-metadata --embed-chapters \
 	--format "bestvideo[height<=1440]+bestaudio/best"'
 
-command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
+# }}}
 
-# Start - Custom functions
+# Custom Functions {{{
 
-# ex - archive extractor
-# usage: ex <file>
 ex ()
 {
 	if [ -f "$1" ]
@@ -290,6 +293,4 @@ function ya() {
 # 	bat --list-themes | fzf --preview="bat --theme={} --color=always $@"
 # }
 
-# END - Custom functions
-
-# vim:ft=sh
+# }}}
