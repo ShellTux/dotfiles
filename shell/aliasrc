@@ -126,19 +126,6 @@ mktouch() {
 	done
 }
 
-vimfzf () {
-      wd="$(pwd)"
-      file=$(find -L "$HOME" \
-	      ! -path "$HOME/.cache/*" \
-	      ! -path "*/.stfolder/*" \
-	      ! -path "*/.stversions/*" \
-	      ! -path "*/__pycache__/*" \
-	      -maxdepth 7 2>/dev/null | sk --exact --preview='bat --color=always {}')
-      [ -f "$file" ] && cd "$(dirname "$file")" || exit
-      [ -d "$file" ] && cd "$file" || exit
-      [ -f "$file" ] || [ -d "$file" ] && $EDITOR "$file" && cd "$wd" || exit
-}
-
 getch() {
 	old_tty_settings="$(stty --save)"
 	stty raw -echo
