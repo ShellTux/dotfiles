@@ -180,18 +180,23 @@ check_directory_for_new_repository() {
 activatevenv() {
 	for dir in venv/ .venv/ env/ .env/
 	do
-		if [ -d "$dir" ]
+		activate_file="./$dir/bin/activate"
+
+		test -d "$dir" || continue
+		test -f "$activate_file" || continue
+
+		printf 'Do you want to activate this python virtual environment? [y/N] '
+		confirm="$(getch)"
+		echo "$confirm"
+		if echo -n "$confirm" | grep --silent --ignore-case --only-matching y
 		then
-			activate_file="./$dir/bin/activate"
-			if [ -e "$activate_file" ]
-			then
-				source "$activate_file"
-				echo "Virtual environment activated automatically"
-				break
-			fi
+			# shellcheck source=/dev/null
+			source "$activate_file"
+			echo 'Virtual environment activated automatically'
 		fi
+		break
 	done
-	unset activate_file dir
+	unset activate_file dir confirm
 }
 
 cd() {
