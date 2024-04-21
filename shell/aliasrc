@@ -279,8 +279,10 @@ function ya() {
 	rm -f -- "$tmp"
 }
 
-# battheme() {
-# 	bat --list-themes | fzf --preview="bat --theme={} --color=always $@"
-# }
+battheme() {
+	# shellcheck disable=SC2145
+	bat --list-themes \
+		| fzf --preview-window=:70% --preview="bat --theme={} --color=always $@"
+}
 
 # }}}
