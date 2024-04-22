@@ -49,19 +49,11 @@ fpath=("${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions" $fpath)
 [ -f "$ZDOTDIR"/zsh-comp ] && source "$ZDOTDIR"/zsh-comp
 autoload -Uz compinit
 compinit -i -d "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh/zcompdump-"$ZSH_VERSION"
-for file in "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions/fzf"/*
-do
-	source "$file"
-done
 
 # Themes
 fpath=("${XDG_CONFIG_HOME:-$HOME/.config}/zsh/prompt_themes" "$fpath[@]")
 autoload -Uz promptinit
 promptinit
-
-[ -r /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh
-[ -r /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
-[ -f "$ZDOTDIR"/zsh-keybindings ] && source "$ZDOTDIR"/zsh-keybindings
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -73,12 +65,14 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-aliasrc="${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
-[ -f "$aliasrc" ] && source "$aliasrc"
-
 for file in \
+	/usr/share/fzf/completion.zsh \
+	/usr/share/fzf/key-bindings.zsh \
+	/usr/share/wikiman/widgets/widget.zsh \
 	/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
-	/usr/share/wikiman/widgets/widget.zsh
+	"$ZDOTDIR"/zsh-keybindings \
+	"${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions/fzf/kubectl" \
+	"${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 do
-	[ -r "$file" ] && source "$file"
+	[ -f "$file" ] && source "$file"
 done
