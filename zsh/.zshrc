@@ -4,6 +4,11 @@
 
 [ ! "$ASCIINEMA_REC" = 1 ] && neofetch
 
+if  command -v zellij &>/dev/null && [ -z "$TMUX" ]
+then
+	eval "$(zellij setup --generate-auto-start zsh)"
+fi
+
 # Enable Powerlevel10k instant prompt.
 # Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

@@ -89,3 +89,8 @@ fi
 command -v starship >/dev/null && eval "$(starship init bash)"
 
 [ ! "$ASCIINEMA_REC" = 1 ] && shellstart
+
+if  command -v zellij &>/dev/null && [ -z "$TMUX" ]
+then
+	eval "$(zellij setup --generate-auto-start bash)"
+fi
