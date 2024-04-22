@@ -350,6 +350,14 @@
 !/ytfzf/conf.sh
 !/zathura/
 /zathura/*
+
+!/zellij
+/zellij/*
+!/zellij/config.kdl
+!/zellij/themes/
+/zellij/themes/*
+!/zellij/themes/*.kdl
+
 !/zathura/zathurarc
 !/zsh
 /zsh/*
