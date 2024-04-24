@@ -1,56 +1,137 @@
-snippet Template "Makefile Template for C/C++ and Assembly Project"
-	MAKEFLAGS += --jobs=4 --output-sync=target
+snippet Template "Makefile Template"
+	# Variables {{{
 
-	CC = ${1:gcc}
-	CFLAGS = ${2:-Wall -Wextra -Werror}
+	# Variables - Repo Source Codde {{{
+
+	ASSETS_DIR   = assets
+	DOCS_DIR     = docs
+	INCLUDE_DIRS = $(shell pwd)/include
+	OBJ_DIR      = obj
+	SRC_DIR      = src
+	TARGETS_DIR  = build
+	TARGETS      = target
+
+	SOURCES := $(shell find . \
+		   -type f \
+		   -name "*.c" -o \
+		   -name "*.cpp" 2>/dev/null | tr '\n' ' ')
+	HEADERS  = $(shell find . \
+		   -name "*.h" -o \
+		   -name "*.hpp" \
+		   2>/dev/null | tr '\n' ' ')
+
+	TARGETS := $(TARGETS:%=$(TARGETS_DIR)/%)
+
+	# }}}
+
+	# Variables - Documentation {{{
+
+	ARCHIVE             = archive.zip
+	INSTALLATION_MANUAL = installation-manual.pdf
+	PRESENTATION        = presentation.pdf
+	REPORT              = relatorio.pdf
+	REPORT              = report.pdf
+	USER_MANUAL         = user-manual.pdf
+
+	PANDOC_OPTS := --resouce-path=.:..:$(DOCS_DIR):$(ASSETS_DIR)
+
+	PANDOC_OPTS += --highlight-style=assets/onehalfdark.theme
+	PANDOC_OPTS += --variable=theme:Warsaw
+
+	DOCUMENTS     := $(REPORT) $(USER_MANUAL) $(INSTALLATION_MANUAL)
+	PRESENTATIONS := $(PRESENTATION)
+
+	# }}}
+
+	# Variables - Python {{{
+
+	VENV   := venv
+	PYTHON := ./$(VENV)/bin/python
+	PIP    := ./$(VENV)/bin/pip
+
+	# }}}
+
+	# Variables - Compilation {{{
+
+	CC     = gcc
+	CCP    = g++
+	CFLAGS = -Wall -Wextra -Werror
+	LINKS  =
+
 	CFLAGS += -Wno-error=unused-parameter
 	CFLAGS += -Wno-error=unused-variable
 	CFLAGS += -Wno-error=unused-but-set-variable
-	CFLAGS += -I"\$\$PWD/${7}/"
-	LINKS = ${3}
+	CFLAGS += -fdiagnostics-color=always
+	CFLAGS += $(INCLUDE_DIRS:%=-I% )
 
-	SRCDIR = ${4:src}
-	OBJDIR = ${5:obj}
-	TESTDIR = ${6:tests}
-	INCLUDEDIR = ${7:include}
-	TARDIR = ${8:build}
+	# }}}
 
-	TARGET = $(TARDIR)/${9:program}
-	TESTTARGET = $(TARDIR)/${10:test}
+	# Variables - Miscellaneous {{{
 
-	SOURCES  = $(shell find $(SRCDIR) \
-		   -name "*.c" -o \
-		   -name "*.cpp" -o \
-		   -name "*.s" -o \
-		   -name "*.asm" | tr '\n' ' ')
-	TESTSRCS := $(SOURCES) $(shell find $(TESTDIR) -type f \
-		    -name '*.cpp' -o \
-		    -name '*.c' -o \
-		    -name '*.s' -o \
-		    -name '*.asm' | tr '\n' ' ')
+	OPEN = xdg-open
 
-	OBJECTS := $(SOURCES:%=$(OBJDIR)/%.o)
-	TESTOBJS := $(TESTSRCS:%=$(OBJDIR)/%.o)
+	# }}}
 
-	HEADERS  = $(shell find $(INCLUDEDIR) \
-		   -name "*.h" -o \
-		   -name "*.hpp" \
-		   | tr '\n' ' ')
+	# }}}
 
-	.PHONY: all
-	all: $(TARGET)
+	# Rules {{{
 
-	debug-flags: CFLAGS += -g
-	debug-flags: clean $(TARGET)
+	# Rules - Custom {{{
 
+	all: warning $(VENV) $(DOCUMENTS) $(PRESENTATIONS) $(TARGETS)
+
+	gdb: MAKEFLAGS += --always-make
+	gdb: CFLAGS += -g -Og
+	gdb: all
+
+	debug: MAKEFLAGS += --always-make
 	debug: CFLAGS += -DDEBUG=1
-	debug: $(TARGET)
+	debug: run
 
-	setup: .clangd pre-commit
+	.PHONY: run
+	run: warning $(TARGETS)
+		@for target in $(TARGETS) ; do $$target ; done
 
-	.PHONY: .git/hooks/%
-	.git/hooks/%: scripts/%
-		install --mode=755 $< $@
+	check:
+		parallel --jobs 4 --group clang-tidy --quiet ::: $(SOURCES)
+
+	.PHONY: clean-ipcs
+	clean-ipcs:
+		@test $(shell id --user) -ge 1000 \
+			&& echo ipcrm --all && ipcrm --all \
+			|| printf '%s\n' 'This rule is meant to remove non-root ipc resources'
+
+	.PHONY: watch
+	watch:
+		@while true ;\
+		do \
+			clear ; \
+			$(MAKE) warning --no-print-directory || exit 1 \
+			$(MAKE) --no-print-directory; \
+			inotifywait --quiet --event modify --recursive $(INCLUDE_DIR) --recursive $(SRC_DIR); \
+		done
+
+	.PHONY: PRINT-MACROS
+	PRINT-MACROS:
+		@make -p MAKE-MACROS| grep -A1 "^# makefile" | grep -v "^#\|^--" | sort
+
+	.PHONY: warning
+	warning:
+		@pwd | grep --quiet ' ' \
+			&& printf '\033[33m[WARNING]\033[0m: %s\n' 'Current working directory of Makefile contains spaces. This is known to cause bugs.' \
+			&& printf '\033[36m[INFO]\033[0m:    pwd: "%s"\n' "$(shell pwd)" \
+			&& printf '%s\n' 'Please Try compiling by making sure the full path to this Makefile does not contain spaces.' \
+			&& exit 1 \
+			|| true
+
+	clang-tidy:
+		parallel --jobs 4 --group clang-tidy --quiet ::: $(SOURCES)
+
+	clang-format:
+		clang-format --verbose -i \
+			$(shell find . -type f -name "*.[ch]" -o -name "*.[ch]pp") 2>&1
+
+	setup: .clangd
 
 	.PHONY: .clangd
 	.clangd:
@@ -62,86 +143,77 @@ snippet Template "Makefile Template for C/C++ and Assembly Project"
 		@echo CompileFlags: | tee --append $@
 		@echo '  Add:' | tee --append $@
 
-		@for flag in $(CFLAGS) ; do echo "    - \$\$flag" | tee --append $@ ; done
-
-	$(SRCDIR) $(OBJDIR) $(TARDIR) $(TESTDIR):
-		mkdir --parents --verbose $@
+		@for flag in $(CFLAGS) ; do echo "    - $$flag" | tee --append $@ ; done
 
 	.PHONY: clean
 	clean:
-		@printf "Cleaning\n"
-		rm -f $(TARGET)
-		rm -r $(OBJDIR) || true
-		rm -r $(VENV) || true
+		@printf "\n\033[31m"
+		@printf "########################\n"
+		@printf "Cleaning ...\n" $@
+		@printf "########################\n"
+		@printf "\033[0m\n"
+		rm --force $(TARGETS) $(DOCUMENTS) $(PRESENTATIONS)
+		rm --recursive --force $(OBJ_DIR) $(VENV)
+		find . -type f -name '*.pyc' -delete
 
-	$(TARGET): $(OBJECTS) | $(TARDIR)
+	help:
+		man
+
+	# }}}
+
+	# Rules - Documentation {{{
+
+	$(PRESENTATIONS): PANDOC_OPTS += --to=beamer
+
+	archive: $(ARCHIVE)
+
+	.PHONY: $(ARCHIVE)
+	$(ARCHIVE): $(DOCUMENTS) $(PRESENTATIONS)
+		git archive --output=$@ $(^:%=--add-file=%) HEAD
+
+	%.pdf: %.md
+		pandoc $(PANDOC_OPTS) --output=$@ $<
+
+	# }}}
+
+	# Rules - Compilation {{{
+
+	$(OBJ_DIR)/%.c.o: %.c $(HEADERS)
 		@printf "\n\033[31m"
 		@printf "########################\n"
 		@printf "Building %s\n" $@
 		@printf "########################\n"
 		@printf "\033[0m\n"
-	ifneq ($(shell nm --print-file-name $(OBJECTS) | grep ' main\$\$'), "")
-		@grep \
-			--max-count=1 \
-			--recursive \
-			--with-filename \
-			--extended-regexp '(int|void) main\(' $(SOURCES) | \
-			cut -d: -f1 | \
-			sed 's|^|$(OBJDIR)/|;s|\$\$|.o|' | \
-			tr '\n' ' ' | \
-			xargs $(MAKE) --no-print-directory --always-make
-	endif
-		$(CC) $(CFLAGS) -o $@ $^ $(LINKS)
-
-	check:
-		parallel --jobs 4 --group clang-tidy --quiet ::: $(SOURCES)
-
-	$(OBJDIR)/%.cpp.o: %.cpp $(HEADERS) | $(OBJDIR)
-		@printf "\n\033[31m"
-		@printf "########################\n"
-		@printf "Building %s\n" $@
-		@printf "########################\n"
-		@printf "\033[0m\n"
-		mkdir -p \`dirname $@\`
+		mkdir --parents "$$(dirname "$@")"
 		$(CC) $(CFLAGS) -c -o $@ $<
 
-	.PHONY: test
-	test: $(TESTTARGET)
-		GTEST_COLOR=1 ./$@ | diff-so-fancy
-
-	$(TESTTARGET): $(TESTOBJS) | $(TARDIR)
+	$(OBJ_DIR)/%.cpp.o: %.cpp $(HEADERS)
 		@printf "\n\033[31m"
 		@printf "########################\n"
-		@printf "Running unit tests...\n"
+		@printf "Building %s\n" $@
 		@printf "########################\n"
 		@printf "\033[0m\n"
-		strip --strip-symbol=main $(OBJECTS)
-		$(CC) $(CFLAGS) -o $@ $^ $(LINKS)
+		mkdir --parents "$$(dirname "$@")"
+		$(CCP) $(CFLAGS) -c -o $@ $<
 
-	.PHONY: format
-	format:
-		$(eval FILES := $(SOURCES) $(TESTSRCS) $(HEADERS))
-		clang-format --verbose -i $(FILES) 2>&1
+	$(TARGETS): MAKEFLAGS += --jobs=4 --output-sync=target
+	$(TARGETS): %:
+		$(CC) $(CFLAGS) -o $@ $^
 
-	.PHONY: watch
-	watch:
-		@while true ;\
-		do \
-			clear ; \
-			$(MAKE) $(TARGET) --no-print-directory; \
-			inotifywait --quiet --event modify $(SOURCES) $(HEADERS); \
-		done
+	SOURCES = target
+	target: $(SOURCES:%=$(OBJ_DIR)/$(SRC_DIR)/%.c.o)
 
-	.PHONY: watch-test
-	watch-test:
-		@while true ;\
-		do \
-			clear ; \
-			$(MAKE) test --no-print-directory; \
-			inotifywait --quiet --event modify $(TESTSRCS) $(HEADERS); \
-		done
+	# }}}
 
-	.PHONY: PRINT-MACROS
-	PRINT-MACROS:
-		@make -p MAKE-MACROS| grep -A1 "^# makefile" | grep -v "^#\|^--" | sort
-	$0
+	# Rules - Python {{{
+
+	# }}}
+
+	$(VENV): $(VENV)/bin/activate
+
+	$(VENV)/bin/activate: requirements.txt
+		python3 -m venv $(VENV)
+		$(PIP) install --requirement $<
+	# }}}
+
+	# vim: foldmethod=marker
