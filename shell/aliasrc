@@ -60,7 +60,6 @@ alias mv='mv --verbose'
 alias newsboat-repo='newsboat --url-file="$HOME"/.config/newsboat/repos-urls' \
 	'--cache-file="$HOME"/.local/share/newsboat/cache-repos.db --refresh-on-start'
 alias np='nano --nowrap PKGBUILD'
-alias open=xdg-open
 alias port='netstat --tcp --udp --listening --all --numeric --program --wide'
 alias progress='progress --wait-delay .5 --monitor-continuously'
 alias procs='procs --watch-interval=.5 --watch'
@@ -288,6 +287,13 @@ battheme() {
 	# shellcheck disable=SC2145
 	bat --list-themes \
 		| fzf --preview-window=:70% --preview="bat --theme={} --color=always $@"
+}
+
+open() {
+	for arg
+	do
+		xdg-open "$arg" &
+	done
 }
 
 # }}}
