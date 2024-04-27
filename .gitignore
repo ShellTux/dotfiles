@@ -301,9 +301,12 @@
 !/wl-clipboard-history/
 /wl-clipboard-history/*
 !/wl-clipboard-history/ignore
+
 !/wofi
 /wofi/*
 !/wofi/*.css
+!/wofi/config
+
 !/X11/
 /X11/*
 !/X11/colorschemes

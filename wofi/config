@@ -1,0 +1,4 @@
+# vim:ft=conf
+stylesheet=dracula.css
+show=dmenu
+allow_images=true
