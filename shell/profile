@@ -153,9 +153,12 @@ for directory in \
 	"$CARGO_HOME"/bin \
 	"$HOME"/Applications \
 	"$HOME"/bin \
-	"$HOME"/.local/bin
+	$("$HOME"/.local/bin/path 2>/dev/null) \
+	"$HOME/.local/bin"
 do
-	[ -d "$directory" ] && export PATH="$directory:$PATH"
+	[ -d "$directory" ] \
+		&& ! (echo "$PATH" | grep --silent "$directory:") \
+		&& export PATH="$directory:$PATH"
 done
 
 if tty | grep --quiet /dev/tty
