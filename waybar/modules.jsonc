@@ -240,6 +240,7 @@
 	"mpd": {
 		"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ({songPosition}|{queueLength}) {volume}% ",
 		"format-disconnected": "Disconnected ",
+		"format-paused": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Paused ",
 		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
 		"unknown-tag": "N/A",
 		"interval": 2,
