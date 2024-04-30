@@ -1,8 +1,17 @@
-# general settings
-auto-reload yes
-max-items 50
+# vim: foldmethod=marker
 
-# Colorschemes
+# General Settings {{{
+
+auto-reload yes
+max-items 500
+cache-file "~/.local/share/newsboat/cache.db"
+reload-threads 5
+reload-time 15
+refresh-on-startup yes
+
+# }}}
+
+# Colorschemes {{{
 # include /usr/share/doc/newsboat/contrib/colorschemes/commander
 # include /usr/share/doc/newsboat/contrib/colorschemes/cyanism
 # include /usr/share/doc/newsboat/contrib/colorschemes/greenscreen
@@ -20,6 +29,7 @@ include /usr/share/doc/newsboat/contrib/colorschemes/nord
 # include /usr/share/doc/newsboat/contrib/colorschemes/universal-color
 # include ~/.config/newsboat/themes/dark
 # include ~/.config/newsboat/themes/latte
+# }}}
 
 # bind keys - vim style
 bind-key j down
