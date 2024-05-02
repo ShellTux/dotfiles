@@ -171,7 +171,12 @@ check_directory_for_new_repository() {
 		unset FETCH_FILE
 		onefetch_language="$(onefetch --output=json 2>/dev/null | jq --raw-output '.infoFields[6].LanguagesInfo.languagesWithPercentage[0].language')"
 		onefetch_image="${XDG_CONFIG_HOME:-$HOME/.config}/onefetch/images/$onefetch_language.png"
-		[ -n "$onefetch_language" ] && ! onefetch --image="$onefetch_image" 2>/dev/null && onefetch
+		if [ -n "$onefetch_language" ] && [ -z "$TMUX" ]
+		then
+			onefetch --image="$onefetch_image" 2>/dev/null
+		else
+			onefetch
+		fi
 	fi
 	last_repository=$current_repository
 }
