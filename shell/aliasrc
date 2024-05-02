@@ -262,11 +262,11 @@ help() {
 }
 
 shellstart() {
-	for neofetch in neofetch fastfetch
+	for fetch in fastfetch neofetch
 	do
-		if command -v "$neofetch" &>/dev/null
+		if command -v "$fetch" &>/dev/null
 		then
-			"$neofetch"
+			"$fetch"
 			break
 		fi
 	done
