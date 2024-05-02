@@ -2,7 +2,7 @@
 # HACK: Check if running a tty, even with tmux
 [ -n "$DISPLAY" ] && is_tty=false || is_tty=true
 
-[ ! "$ASCIINEMA_REC" = 1 ] && neofetch
+[ ! "$ASCIINEMA_REC" = 1 ] && fastfetch
 
 if  command -v zellij &>/dev/null && [ -z "$TMUX" ]
 then
