@@ -161,25 +161,5 @@ do
 		&& export PATH="$directory:$PATH"
 done
 
-if tty | grep --quiet /dev/tty
-then
-	linux="$(pacman -Qu linux)"
-	nvidia="$(pacman -Qu nvidia 2>/dev/null)"
-
-	[ -n "$linux" ] \
-		&& echo "There is a kernel update" \
-		&& echo "$nvidia"
-
-	[ -n "$nvidia" ] \
-		&& echo "There is a nvidia driver update" \
-		&& echo "$nvidia"
-
-	[ -n "$linux" ] || [ -n "$nvidia" ] \
-		&& doas pacman -Syu \
-		&& reboot
-
-	unset linux nvidia
-fi
-
 alias newsboat-repo='newsboat --url-file="$HOME"/.config/newsboat/repos-urls \
 	--cache-file="$HOME"/.local/share/newsboat/cache-repos.db --refresh-on-start'
