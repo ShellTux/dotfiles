@@ -3,11 +3,12 @@
 # General Settings {{{
 
 auto-reload yes
-max-items 500
 cache-file "~/.local/share/newsboat/cache.db"
+download-timeout 5
+max-items 500
+refresh-on-startup yes
 reload-threads 5
 reload-time 15
-refresh-on-startup yes
 
 # }}}
 
