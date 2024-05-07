@@ -77,6 +77,7 @@ for file in \
 	/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
 	"$ZDOTDIR"/zsh-keybindings \
 	"${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions/fzf/kubectl" \
+	"${XDG_CONFIG_HOME:-$HOME/.config}/zsh/widgets/fzf.zsh" \
 	"${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 do
 	[ -f "$file" ] && source "$file"

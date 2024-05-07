@@ -362,6 +362,7 @@
 !/zellij/themes/*.kdl
 
 !/zathura/zathurarc
+
 !/zsh
 /zsh/*
 !/zsh/[.]p10k.terminal.zsh
@@ -378,6 +379,9 @@
 !/zsh/completions/fzf
 /zsh/completions/fzf/*
 !/zsh/completions/fzf/kubectl
+!/zsh/widgets
+/zsh/widgets/*
+!/zsh/widgets/*.zsh
 
 !**README.md
 
