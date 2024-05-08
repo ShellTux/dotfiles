@@ -8,7 +8,7 @@ _fzf_explore() {
 		find . -type f
 	fi | fzf \
 			--preview='bat --color=always --style=numbers {}' \
-			--bind='enter:execute(bat {})+clear-query' \
+			--bind='enter:execute(bat --paging=always {})+clear-query' \
 			--preview-window=right:70%
 
 	zle redisplay
