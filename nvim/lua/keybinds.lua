@@ -4,9 +4,9 @@
 vim.g.mapleader = ' '
 vim.keymap.set('n', 'cn', vim.cmd.cnext)
 vim.keymap.set('n', 'cp', vim.cmd.cprevious)
-vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)               -- Turn off highlighting
-vim.keymap.set('n', '<C-j>', vim.cmd.tabprevious)              -- Previous tab
-vim.keymap.set('n', '<C-k>', vim.cmd.tabnext)                  -- Next tab
+vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)
+vim.keymap.set('n', '<C-j>', vim.cmd.bnext)
+vim.keymap.set('n', '<C-k>', vim.cmd.bprevious)
 vim.keymap.set('n', '<C-S-j>', '<cmd>tabmove -1<cr>')          -- Previous tab
 vim.keymap.set('n', '<C-S-k>', '<cmd>tabmove +1<cr>')          -- Next tab
 vim.keymap.set('n', '<C-Left>', vim.cmd.tabprevious)           -- Previous tab
