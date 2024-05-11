@@ -8,8 +8,9 @@ return {
 	end,
 	opts = {
 		options = {
-			mode = "tabs", --set to "tabs" to only show tabpages instead
-			diagnostics = "coc",
+			mode = "buffers",
+			diagnostics = "nvim_lsp",
+			close_command = "bdelete! %d",
 			diagnostics_indicator = function(count, level, diagnostics_dict, context)
 				local s = " "
 				for e, n in pairs(diagnostics_dict) do
@@ -30,5 +31,14 @@ return {
 				reveal = { 'close' }
 			},
 		},
-	}
+	},
+	keys = {
+		{ "<C-k>",      "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+		{ "<C-j>",      "<cmd>BufferLineCyclePrev<cr>", desc = "Previous buffer" },
+		{ "<C-S-k>",    "<cmd>BufferLineMoveNext<cr>",  desc = "Move buffer to the left" },
+		{ "<C-S-j>",    "<cmd>BufferLineMovePrev<cr>",  desc = "Move buffer to the right" },
+		{ "<leader>bp", "<cmd>BufferLinePick<cr>",      desc = "Pick buffer" },
+		{ "<leader>bc", "<cmd>BufferLinePickClose<cr>", desc = "Pick close buffer" },
+		{ "<leader>bP", "<cmd>BufferLineTogglePin<cr>", desc = "Toggle pin buffer" },
+	},
 }
