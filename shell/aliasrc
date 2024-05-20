@@ -175,18 +175,16 @@ check_directory_for_new_repository() {
 		FETCH_FILE="$(git rev-parse --show-toplevel)/.git/FETCH_HEAD"
 		if [ -f "$FETCH_FILE" ]
 		then
-			FETCH_MODIFIED_DATE="$(\
-				stat --format=%Y \
-				"$FETCH_FILE"\
-				)"
+			FETCH_MODIFIED_DATE="$(stat --format=%Y "$FETCH_FILE")"
 			THRESHOLD_DATE='12 hours ago'
 			THRESHOLD="$(date --date="$THRESHOLD_DATE" +%s)"
+			DELTA_DATE="$(displaytime $((THRESHOLD - FETCH_MODIFIED_DATE)))"
 			if \
 				[ -n "$(git remote -v)" ] \
 				&& \
 				[ "$FETCH_MODIFIED_DATE" -lt "$THRESHOLD" ]
 			then
-				echo "This repository was fetched longer than $THRESHOLD_DATE"
+				echo "This repository was fetched $DELTA_DATE ago"
 				printf 'Fetch [y/N]? '
 				confirmation="$(getch)"
 				printf '%c\n' "$confirmation"
@@ -197,7 +195,7 @@ check_directory_for_new_repository() {
 				fi
 				unset confirmation
 			fi
-			unset FETCH_MODIFIED_DATE THRESHOLD THRESHOLD_DATE
+			unset FETCH_MODIFIED_DATE THRESHOLD THRESHOLD_DATE DELTA_DATE
 		fi
 		unset FETCH_FILE
 		onefetch_language="$(onefetch --output=json 2>/dev/null | jq --raw-output '.infoFields[6].LanguagesInfo.languagesWithPercentage[0].language')"
