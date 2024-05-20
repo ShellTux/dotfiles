@@ -78,3 +78,5 @@
 	markEmptyLines = true
 	stripLeadingSymbols = true
 	useUnicodeRuler = true
+[rerere]
+	enabled = true
