@@ -79,7 +79,6 @@ alias tree='eza --color=auto  --color-scale all --icons --tree --git-ignore'
 alias updateDwmblocks='pkill -SIGUSR1 dwmblocks'
 alias upper='tr "[:lower:]" "[:upper:]"'
 alias watch='watch --color --interval 1'
-alias yay='yay --sudo notify-sudo'
 alias youtube-dl='yt-dlp'
 alias ytdownload='yt-dlp --embed-subs --all-subs --embed-thumbnail \
 	--embed-metadata --embed-chapters \
@@ -344,6 +343,11 @@ fzfe() {
 			--bind='enter:execute(bat --paging=always {})+clear-query' \
 			--preview-window=right:70%
 	fi
+}
+
+cdmktemp() {
+	dir="$(mktemp --directory)"
+	cd "$dir" || exit
 }
 
 # }}}
