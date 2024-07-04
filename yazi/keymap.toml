@@ -153,7 +153,7 @@ keymap = [
 ]
 
 prepend_keymap = [
-	{ on = [ "<C-s>" ], run  = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
+	{ on = [ "<A-s>" ], run  = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
 ]
 
 [tasks]
