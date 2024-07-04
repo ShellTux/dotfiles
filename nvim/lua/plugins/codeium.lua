@@ -15,6 +15,7 @@ vim.g.codeium_filetypes = {
 	java = true,
 	kotlin = true,
 	lua = true,
+	markdown = true,
 	php = true,
 	python = true,
 	rust = true,
