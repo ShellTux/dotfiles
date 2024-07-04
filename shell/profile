@@ -150,6 +150,7 @@ done
 systemctl --user import-environment GNUPGHOME
 
 for directory in \
+	~/.nix-profile/bin \
 	"$CARGO_HOME"/bin \
 	"$HOME"/Applications \
 	"$HOME"/bin \
