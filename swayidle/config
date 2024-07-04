@@ -1,5 +1,5 @@
 # vim:ft=conf
 
-timeout 300 'swaylock --daemonize'
-timeout 360 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+timeout 1200 'swaylock --daemonize'
+timeout 1500 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 before-sleep 'swaylock --daemonize'
