@@ -125,42 +125,33 @@
 		"exec": "waybar-wttr.py",
 		"return-type": "json"
 	},
-
-
-
-
 	"disk": {
 		"interval": 30,
 		"format": " {path}: {percentage_used}%",
 		"path": "/"
 	},
-
-
-
-
 	"disk#home": {
 		"interval": 30,
 		"format": " {path}: {percentage_used}%",
 		"path": "/home"
 	},
-
-
-
-
 	"hyprland/window": {
-		"format": "👉 {}",
+		"format": "{title}",
+		"rewrite": {
+			"(.*) — Mozilla Firefox": "$1",
+			"( )?(.*) - n?vim": "$2  $1",
+			"^n?vim$": ""
+		},
 		"separate-outputs": true,
-		"max-length": 50
-
+		"max-length": 50,
+		"icon": true
 	},
-
 	"hyprland/language": {
 		"format": " {}",
 		"format-en": "EN",
 		"format-pt": "PT",
 		//"keyboard-name": "at-translated-set-2-keyboard"
 	},
-
 	"hyprland/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": true,
