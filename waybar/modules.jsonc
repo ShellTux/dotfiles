@@ -2,13 +2,20 @@
 	"backlight": {
 		// "device": "acpi_video1",
 		"format": "{percent}% {icon}",
-		"format-icons": ["", "", "", "", "", "", "", "", ""],
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			""
+		],
 		"on-scroll-up": "brightnessctl set +1% --quiet",
 		"on-scroll-down": "brightnessctl set 1%- --min-value 1 --quiet",
 	},
-
-
-
 	"battery": {
 		"states": {
 			"good": 95,
@@ -21,59 +28,52 @@
 		"format-alt": "{time} {icon}",
 		// "format-good": "", // An empty format will hide the module
 		// "format-full": "",
-		"format-icons": ["", "", "", "", ""]
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
 	},
-
 	"battery#bat2": {
 		"bat": "BAT2"
 	},
-
-
-
-
 	"clock": {
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 		"format": "{:%H:%M} ",
 		"format-alt": "{:%I:%M %p} ",
 		"calendar": {
-			"mode"          : "month",
-			"mode-mon-col"  : 3,
-			"weeks-pos"     : "right",
-			"on-scroll"     : 1,
+			"mode": "month",
+			"mode-mon-col": 3,
+			"weeks-pos": "right",
+			"on-scroll": 1,
 			"on-click-right": "mode",
 			"format": {
-				"months":     "<span color='#ffead3'><b>{}</b></span>",
-				"days":       "<span color='#ecc6d9'><b>{}</b></span>",
-				"weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-				"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-				"today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+				"months": "<span color='#ffead3'><b>{}</b></span>",
+				"days": "<span color='#ecc6d9'><b>{}</b></span>",
+				"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
 			}
 		}
 	},
-
-
-
-
 	"clock#date": {
 		"format": "{:%d/%m} ",
 		"format-alt": "{:%a, %d/%m/%y} ",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 		"calendar": {
-			"mode"          : "year",
+			"mode": "year",
 			"mode-mon-col": 3,
 			"format": {
-				"months":     "<span color='#ffead3'><b>{}</b></span>",
-				"days":       "<span color='#ecc6d9'><b>{}</b></span>",
-				"weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-				"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-				"today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+				"months": "<span color='#ffead3'><b>{}</b></span>",
+				"days": "<span color='#ecc6d9'><b>{}</b></span>",
+				"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
 			}
 		}
 	},
-
-
-
-
 	"cpu": {
 		"format": "{icon} {usage}% ",
 		"tooltip": false,
@@ -81,51 +81,43 @@
 		"on-click": "sb-cpu 1",
 		"on-click-middle": "sb-cpu 2",
 		"on-click-right": "sb-cpu 3",
-		"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+		"format-icons": [
+			"▁",
+			"▂",
+			"▃",
+			"▄",
+			"▅",
+			"▆",
+			"▇",
+			"█"
+		],
 		"states": {
 			"critical": 90
 		}
 	},
-
-
-
-
 	"custom/kernel": {
 		"exec": "uname -r",
 		"format": " {}",
-		"interval": "once",                     // every hour
-		"exec-if": "exit 0",                  // always run; consider advanced run conditions
+		"interval": "once", // every hour
+		"exec-if": "exit 0", // always run; consider advanced run conditions
 		"on-click": "sb-kernel 1",
 		"signal": 9,
 	},
-
-
-
-
 	"custom/pacman": {
 		"format": "{}  ",
-		"interval": 3600,                     // every hour
-		"exec": "pacman -Qu | wc -l",       // # of updates
-		"exec-if": "exit 0",                  // always run; consider advanced run conditions
+		"interval": 3600, // every hour
+		"exec": "pacman -Qu | wc -l", // # of updates
+		"exec-if": "exit 0", // always run; consider advanced run conditions
 		"on-click": "sb-packages 1",
 		"on-click-right": "scratchpad --command 'sb-packages 3'; pkill -SIGRTMIN+8 waybar",
 		"on-double-click": "scratchpad --command 'arch-linux-upgrade'; pkill -SIGRTMIN+8 waybar", // update system
 		"signal": 8
 	},
-
-
-
-
 	"custom/power": {
 		"format": "",
 		"tooltip": false,
 		"on-click": "sh -c '(sleep 0.3s; wlogout --protocol layer-shell)' & disown",
 	},
-
-
-
-
-
 	"custom/weather": {
 		"format": "{}",
 		"tooltip": true,
@@ -192,15 +184,11 @@
 		"on-scroll-up": "hyprctl dispatch workspace e-1",
 		"on-scroll-down": "hyprctl dispatch workspace e+1"
 	},
-
 	"hyprland/submap": {
 		"format": "✌️ {}",
 		"max-length": 8,
 		"tooltip": false
 	},
-
-
-
 	"idle_inhibitor": {
 		"format": "{icon}",
 		"format-icons": {
@@ -208,9 +196,6 @@
 			"deactivated": ""
 		}
 	},
-
-
-
 	"keyboard-state": {
 		"numlock": true,
 		"capslock": true,
@@ -223,9 +208,6 @@
 			"unlocked": ""
 		}
 	},
-
-
-
 	"memory": {
 		"format": "{}% ",
 		"format-alt": "{used:0.1f} GiB / {total} GiB ",
@@ -234,9 +216,6 @@
 			"critical": 90
 		}
 	},
-
-
-
 	"mpd": {
 		"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ({songPosition}|{queueLength}) {volume}% ",
 		"format-disconnected": "Disconnected ",
@@ -269,9 +248,6 @@
 		"tooltip-format": "MPD (connected)",
 		"tooltip-format-disconnected": "MPD (disconnected)"
 	},
-
-
-
 	"network": {
 		"format-wifi": "{essid} ({signalStrength}%) ",
 		"format-ethernet": "{ipaddr}/{cidr} ",
@@ -280,19 +256,12 @@
 		"format-disconnected": "Disconnected ⚠",
 		"format-alt": "{ifname}: {ipaddr}/{cidr}"
 	},
-
-
-
 	"network#traffic": {
 		"format": "{bandwidthUpBits} {bandwidthDownBits} ",
 		"format-alt": "{bandwidthUpBytes} {bandwidthDownBytes} ",
 		"format-disconnected": "Disconnected ⚠",
 		"interval": 1,
 	},
-
-
-
-
 	"custom/network-traffic": {
 		"format": "{icon} {}",
 		"return-type": "json",
@@ -305,11 +274,6 @@
 		// "exec-if": "sleep 0.1", // Give enough time for `sway output` command changes to propagate so we can read them in the next `exec`
 		// "on-click": "( swaymsg -r -t get_outputs | jq '.[0].scale' | xargs test 1 = ) && swaymsg output DP-1 scale 1.4 || swaymsg output DP-1 scale 1"
 	},
-
-
-
-
-
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float
 		"format": "{volume}% {icon} {format_source}",
@@ -325,22 +289,25 @@
 			"phone": "",
 			"portable": "",
 			"car": "",
-			"default": ["", "", ""]
+			"default": [
+				"",
+				"",
+				""
+			]
 		},
 		"on-click": "pavucontrol",
 		"on-click-right": "qpwgraph"
 	},
-
-
-
-
 	"sway/mode": {
 		"format": "<span style=\"italic\">{}</span>"
 	},
 	"sway/scratchpad": {
 		"format": "{icon} {count}",
 		"show-empty": false,
-		"format-icons": ["", ""],
+		"format-icons": [
+			"",
+			""
+		],
 		"tooltip": true,
 		"tooltip-format": "{app}: {title}"
 	},
@@ -363,27 +330,22 @@
 			"default": ""
 		}
 	},
-
-
-
-
 	"temperature": {
 		// "thermal-zone": 2,
 		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
 		"critical-threshold": 80,
 		// "format-critical": "{temperatureC}°C {icon}",
 		"format": "{temperatureC}°C {icon}",
-		"format-icons": ["", "", ""]
+		"format-icons": [
+			"",
+			"",
+			""
+		]
 	},
-
-
 	"tray": {
 		// "icon-size": 21,
 		"spacing": 10
 	},
-
-
-
 	"wlr/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": true,
@@ -407,9 +369,6 @@
 		"on-scroll-up": "hyprctl dispatch workspace e-1",
 		"on-scroll-down": "hyprctl dispatch workspace e+1"
 	},
-
-
-
 	"temperature": {
 		// "thermal-zone": 2,
 		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
@@ -417,10 +376,6 @@
 		// "format-critical": "{temperatureC}°C ",
 		"format": "{temperatureC}°C "
 	},
-
-
-
-
 	"user": {
 		"format": "{work_H}H  ",
 		"interval": 60,
@@ -428,14 +383,14 @@
 		"width": 30,
 		"icon": true,
 	},
-
-
-
-
 	"wireplumber": {
 		"format": "{volume}% {icon}",
 		"format-muted": "",
 		"on-click": "helvum",
-		"format-icons": ["", "", ""]
+		"format-icons": [
+			"",
+			"",
+			""
+		]
 	}
 }
